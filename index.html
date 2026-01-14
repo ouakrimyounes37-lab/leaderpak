@@ -7,23 +7,22 @@
     
     <!-- 1. Import Map (Doit être le premier script lié aux modules) -->
     <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@19.0.0",
-        "react/": "https://esm.sh/react@19.0.0/",
-        "react-dom": "https://esm.sh/react-dom@19.0.0",
-        "react-dom/": "https://esm.sh/react-dom@19.0.0/",
-        "@google/genai": "https://esm.sh/@google/genai@1.35.0"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react/": "https://esm.sh/react@19.0.0/",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/": "https://esm.sh/react-dom@19.0.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.35.0"
+  }
+}
+</script>
 
     <!-- 2. Shim process pour éviter les erreurs "process is not defined" -->
     <script>
       window.process = { 
         env: { 
-          NODE_ENV: 'production',
-          API_KEY: '' 
+          NODE_ENV: 'production'
         } 
       };
     </script>

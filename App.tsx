@@ -16,17 +16,23 @@ const App: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCatalogFilter, setActiveCatalogFilter] = useState<string>('Tous');
 
+  // Réinitialisation forcée du scroll en haut de page à chaque changement d'étape
+  useEffect(() => {
+    // On cible à la fois window, body et documentElement pour parer à toutes les configurations CSS/Navigateurs
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.body.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [currentStep]);
+
   const nextStep = () => {
     if (currentStep < TourStep.CONVERSION) {
       setCurrentStep(currentStep + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
   const prevStep = () => {
     if (currentStep > TourStep.LANDING) {
       setCurrentStep(currentStep - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -34,7 +40,6 @@ const App: React.FC = () => {
     setCurrentStep(step);
     setActiveCatalogFilter(filter);
     setIsSidebarOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const renderStep = () => {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getSalesInsight } from '../geminiService.ts';
 import { HERO_SPONGES } from '../constants.tsx';
 
 interface Props {
@@ -8,7 +7,6 @@ interface Props {
 }
 
 const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
-  const [insight, setInsight] = useState<string>("Analyse stratégique en cours...");
   const [selectedSponge, setSelectedSponge] = useState<any>(null);
   
   const [customUnits, setCustomUnits] = useState<number>(240);
@@ -22,10 +20,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
   const [clientName, setClientName] = useState("");
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
   const pdfTemplateRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    getSalesInsight("Éponges Métalliques Inox 410").then(setInsight);
-  }, []);
 
   useEffect(() => {
     if (selectedSponge) {
@@ -160,15 +154,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
             <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Étape 02 — Focus Produit</span>
             <h2 className="text-4xl font-bold mt-2">La Gamme VEDAL Métal</h2>
             <p className="text-slate-500 mt-2 text-lg">Nos éponges métalliques sont conçues pour répondre à vos exigences professionnelles et s’adapter à vos standards logistiques.</p>
-        </div>
-
-        <div className="bg-slate-900 rounded-3xl p-6 mb-12 flex flex-col md:flex-row items-center gap-6 text-white shadow-2xl">
-            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-blue-500/20">
-                <i className="fas fa-lightbulb"></i>
-            </div>
-            <div className="text-sm italic font-medium leading-relaxed text-slate-300">
-                "{insight}"
-            </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
