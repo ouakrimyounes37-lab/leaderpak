@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { TourStep } from './types';
-import LandingView from './components/LandingView';
-import Step1ValueProp from './components/Step1ValueProp';
-import Step2HeroProduct from './components/Step2HeroProduct';
-import Step3Catalog from './components/Step3Catalog';
-import Step4Simulator from './components/Step4Simulator';
-import Step5Credibility from './components/Step5Credibility';
-import Step6Conversion from './components/Step6Conversion';
-import QuickPriceAccess from './components/QuickPriceAccess';
-import BuyerDashboard from './components/BuyerDashboard';
-import TourProgress from './components/TourProgress';
+import { TourStep } from './types.ts';
+import LandingView from './components/LandingView.tsx';
+import Step1ValueProp from './components/Step1ValueProp.tsx';
+import Step2HeroProduct from './components/Step2HeroProduct.tsx';
+import Step3Catalog from './components/Step3Catalog.tsx';
+import Step4Simulator from './components/Step4Simulator.tsx';
+import Step5Credibility from './components/Step5Credibility.tsx';
+import Step6Conversion from './components/Step6Conversion.tsx';
+import QuickPriceAccess from './components/QuickPriceAccess.tsx';
+import BuyerDashboard from './components/BuyerDashboard.tsx';
+import TourProgress from './components/TourProgress.tsx';
 
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<TourStep>(TourStep.LANDING);
@@ -133,7 +133,7 @@ const App: React.FC = () => {
         </nav>
       )}
 
-      {/* Contenu principal - Suppression des classes de centrage et largeur max */}
+      {/* Contenu principal */}
       <main className={`flex-1 w-full ${currentStep !== TourStep.LANDING ? 'pt-24' : ''}`}>
         {renderStep()}
       </main>

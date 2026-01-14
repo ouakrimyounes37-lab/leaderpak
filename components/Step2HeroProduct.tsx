@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getSalesInsight } from '../geminiService';
-import { HERO_SPONGES } from '../constants';
+import { getSalesInsight } from '../geminiService.ts';
+import { HERO_SPONGES } from '../constants.tsx';
 
 interface Props {
   onNext: () => void;
@@ -11,16 +11,13 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
   const [insight, setInsight] = useState<string>("Analyse stratégique en cours...");
   const [selectedSponge, setSelectedSponge] = useState<any>(null);
   
-  // Personnalisation dynamique pour la modale
   const [customUnits, setCustomUnits] = useState<number>(240);
   const [packagingOption, setPackagingOption] = useState<string>("Packaging sur-mesure");
   
-  // Dimensions de carton
   const [cartonLength, setCartonLength] = useState<string>("60");
   const [cartonWidth, setCartonWidth] = useState<string>("40");
   const [cartonHeight, setCartonHeight] = useState<string>("30");
 
-  // State pour la modale de téléchargement
   const [showDownloadPopup, setShowDownloadPopup] = useState(false);
   const [clientName, setClientName] = useState("");
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
@@ -88,7 +85,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         boxSizing: 'border-box'
       }}
     >
-      {/* Header */}
       <div style={{ borderBottom: '4px solid #2563eb', paddingBottom: '10mm', marginBottom: '10mm', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div>
           <h1 style={{ fontSize: '28pt', fontWeight: '900', color: '#1d4ed8', margin: '0' }}>LEADER PAK</h1>
@@ -100,7 +96,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         </div>
       </div>
       
-      {/* Product Info Section */}
       <div style={{ marginBottom: '10mm' }}>
         <h2 style={{ fontSize: '16pt', fontWeight: '900', marginBottom: '15px', color: '#0f172a', borderLeft: '4px solid #2563eb', paddingLeft: '10px' }}>SPÉCIFICATIONS PRODUIT</h2>
         <div style={{ backgroundColor: '#f8fafc', padding: '20px', borderRadius: '15px', border: '1px solid #e2e8f0' }}>
@@ -127,7 +122,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         </div>
       </div>
 
-      {/* Logistics Config Section */}
       <div style={{ marginBottom: '10mm' }}>
         <h2 style={{ fontSize: '16pt', fontWeight: '900', marginBottom: '15px', color: '#0f172a', borderLeft: '4px solid #2563eb', paddingLeft: '10px' }}>CONFIGURATION LOGISTIQUE VALIDÉE</h2>
         <div style={{ border: '2px solid #0f172a', borderRadius: '15px', padding: '25px' }}>
@@ -150,7 +144,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         </div>
       </div>
 
-      {/* Footer / Contact */}
       <div style={{ marginTop: '20mm', padding: '15px', backgroundColor: '#0f172a', borderRadius: '10px', color: 'white' }}>
         <p style={{ margin: '0', fontSize: '9pt', textAlign: 'center', lineHeight: '1.5' }}>
           Ce document constitue une spécification technique officielle pour la production B2B.<br/>
@@ -202,18 +195,14 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
             ))}
         </div>
 
-        {/* Modale Industrielle de Personnalisation */}
         {selectedSponge && (
           <div className="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="bg-white w-full max-w-6xl rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] animate-scale-in flex flex-col lg:flex-row max-h-[95vh]">
-                  
-                  {/* Colonne Gauche : Visuel & Tech Specs */}
+              <div className="bg-white w-full max-w-6xl rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row max-h-[95vh]">
                   <div className="lg:w-5/12 bg-slate-50 p-8 lg:p-12 flex flex-col border-r border-slate-100">
                       <div className="mb-8">
                         <span className="text-blue-600 font-black text-xs uppercase tracking-[0.3em]">Fiche Technique Produit</span>
                         <h3 className="text-3xl font-black text-slate-900 mt-2 uppercase tracking-tighter">{selectedSponge.name}</h3>
                       </div>
-
                       <div className="relative aspect-square rounded-[32px] overflow-hidden shadow-2xl bg-white mb-10 group">
                           <img src={selectedSponge.image} alt={selectedSponge.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
                           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
@@ -224,7 +213,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                             </div>
                           </div>
                       </div>
-                      
                       <div className="grid grid-cols-2 gap-4">
                           <div className="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm">
                               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Durabilité</div>
@@ -236,8 +224,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                           </div>
                       </div>
                   </div>
-
-                  {/* Colonne Droite : Configuration Flexible Packaging */}
                   <div className="lg:w-7/12 p-8 lg:p-12 overflow-y-auto">
                       <div className="flex justify-between items-center mb-10">
                           <div>
@@ -251,9 +237,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                               <i className="fas fa-times text-xl"></i>
                           </button>
                       </div>
-
                       <div className="space-y-10">
-                          {/* 1. Unités par Carton */}
                           <div>
                               <div className="flex justify-between items-end mb-4">
                                 <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Unités par Carton</label>
@@ -283,74 +267,27 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                                   ))}
                               </div>
                           </div>
-
-                          {/* 2. Taille de packaging (Dimensions) */}
                           <div>
                               <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Ajuster la taille de packaging (Longueur, Largeur, Hauteur en cm)</label>
                               <div className="grid grid-cols-3 gap-4">
                                   <div className="space-y-2">
                                       <label className="text-[9px] font-black text-slate-400 uppercase">Longueur</label>
-                                      <input 
-                                          type="number" 
-                                          value={cartonLength} 
-                                          onChange={(e) => setCartonLength(e.target.value)}
-                                          className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                                      />
+                                      <input type="number" value={cartonLength} onChange={(e) => setCartonLength(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-500" />
                                   </div>
                                   <div className="space-y-2">
                                       <label className="text-[9px] font-black text-slate-400 uppercase">Largeur</label>
-                                      <input 
-                                          type="number" 
-                                          value={cartonWidth} 
-                                          onChange={(e) => setCartonWidth(e.target.value)}
-                                          className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                                      />
+                                      <input type="number" value={cartonWidth} onChange={(e) => setCartonWidth(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-500" />
                                   </div>
                                   <div className="space-y-2">
                                       <label className="text-[9px] font-black text-slate-400 uppercase">Hauteur</label>
-                                      <input 
-                                          type="number" 
-                                          value={cartonHeight} 
-                                          onChange={(e) => setCartonHeight(e.target.value)}
-                                          className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 focus:bg-white transition-all outline-none focus:ring-2 focus:ring-blue-500"
-                                      />
+                                      <input type="number" value={cartonHeight} onChange={(e) => setCartonHeight(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-500" />
                                   </div>
                               </div>
                           </div>
-
-                          {/* 3. Type de Packaging */}
-                          <div>
-                              <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Type de Packaging (Flexible)</label>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                  {["Packaging sur-mesure"].map(type => (
-                                      <button 
-                                          key={type}
-                                          onClick={() => setPackagingOption(type)}
-                                          className={`flex items-center gap-4 p-5 rounded-3xl border-2 text-left transition-all ${
-                                            packagingOption === type 
-                                            ? 'border-blue-600 bg-blue-50/50 shadow-inner' 
-                                            : 'border-slate-100 hover:border-blue-200'
-                                          }`}
-                                      >
-                                          <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${packagingOption === type ? 'border-blue-600' : 'border-slate-300'}`}>
-                                            {packagingOption === type && <div className="w-2.5 h-2.5 bg-blue-600 rounded-full"></div>}
-                                          </div>
-                                          <span className={`font-bold text-sm ${packagingOption === type ? 'text-blue-700' : 'text-slate-600'}`}>{type}</span>
-                                      </button>
-                                  ))}
-                              </div>
-                          </div>
-
-                          {/* Résumé Technique Interactif */}
                           <div className="p-8 bg-blue-600 rounded-[32px] text-white shadow-2xl relative overflow-hidden group">
-                              <div className="absolute top-0 right-0 p-8 opacity-10 text-8xl rotate-12 group-hover:rotate-45 transition-transform duration-1000">
-                                <i className="fas fa-box-open"></i>
-                              </div>
-                              
                               <h5 className="text-xs font-black uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
                                 <i className="fas fa-clipboard-list"></i> Résumé de la configuration
                               </h5>
-                              
                               <div className="grid grid-cols-2 gap-y-6 text-sm">
                                   <div>
                                       <div className="opacity-60 text-[10px] font-black uppercase tracking-widest mb-1">Produit de base</div>
@@ -366,18 +303,10 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                                   </div>
                                   <div className="pt-4 border-t border-white/20 text-right">
                                       <div className="opacity-60 text-[10px] font-black uppercase tracking-widest mb-1">Dimensions du Carton</div>
-                                      <div className="font-bold text-xl">
-                                          {cartonLength}x{cartonWidth}x{cartonHeight} cm
-                                      </div>
+                                      <div className="font-bold text-xl">{cartonLength}x{cartonWidth}x{cartonHeight} cm</div>
                                   </div>
                               </div>
-                              
-                              <button 
-                                  onClick={() => setShowDownloadPopup(true)}
-                                  className="w-full mt-10 py-5 bg-white text-blue-700 hover:bg-blue-50 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl active:scale-95"
-                              >
-                                  Confirmer cette Spécification
-                              </button>
+                              <button onClick={() => setShowDownloadPopup(true)} className="w-full mt-10 py-5 bg-white text-blue-700 hover:bg-blue-50 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl active:scale-95">Confirmer cette Spécification</button>
                           </div>
                       </div>
                   </div>
@@ -385,40 +314,19 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
           </div>
         )}
 
-        {/* Pop-up de téléchargement PDF */}
         {showDownloadPopup && (
           <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-scale-in">
+            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter">Confirmation Spécification</h3>
-                <button onClick={() => setShowDownloadPopup(false)} className="text-slate-400 hover:text-slate-900">
-                  <i className="fas fa-times"></i>
-                </button>
+                <button onClick={() => setShowDownloadPopup(false)} className="text-slate-400 hover:text-slate-900"><i className="fas fa-times"></i></button>
               </div>
-              
-              <div className="mb-8 p-4 bg-blue-50 rounded-2xl border border-blue-100">
-                <p className="text-xs text-blue-700 font-medium leading-relaxed">
-                  Veuillez saisir le nom du client pour personnaliser le fichier technique.
-                </p>
-              </div>
-
               <div className="space-y-5">
                 <div>
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom du Client / Société</label>
-                  <input 
-                    type="text" 
-                    value={clientName}
-                    onChange={(e) => setClientName(e.target.value)}
-                    placeholder="Ex: Marjane, BIM..."
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all"
-                  />
+                  <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Ex: Marjane, BIM..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
                 </div>
-                
-                <button 
-                  onClick={handleDownloadPDF}
-                  disabled={isGeneratingPDF || !clientName.trim()}
-                  className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-3 disabled:opacity-50 active:scale-95"
-                >
+                <button onClick={handleDownloadPDF} disabled={isGeneratingPDF || !clientName.trim()} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-3 disabled:opacity-50 active:scale-95">
                   {isGeneratingPDF ? <i className="fas fa-spinner animate-spin"></i> : <i className="fas fa-file-pdf"></i>}
                   {isGeneratingPDF ? "Génération en cours..." : "Télécharger PDF"}
                 </button>
@@ -427,7 +335,6 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
           </div>
         )}
 
-        {/* Contenu PDF caché (rendu hors écran pour html2pdf) */}
         <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
           <TechnicalSpecPDF />
         </div>

@@ -1,4 +1,4 @@
-import { Product, CompanyStat } from './types';
+import { Product, CompanyStat } from './types.ts';
 
 export const COMPANY_STATS: CompanyStat[] = [
   { label: 'Fondée en', value: '2013', icon: 'fa-calendar-days' },
