@@ -22,46 +22,45 @@ const LandingView: React.FC<Props> = ({ onStart }) => {
       <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-600/10 blur-[120px] rounded-full"></div>
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-cyan-600/10 blur-[120px] rounded-full"></div>
       
-      <div className="max-w-4xl text-center z-10 animate-fade-in-up mt-12 mb-20">
-        {/* Logo Container */}
-        <div className="mb-12 flex flex-col items-center">
-            <div className="w-28 h-28 bg-blue-600 rounded-[32px] flex items-center justify-center shadow-[0_20px_50px_rgba(37,99,235,0.3)] mb-6 animate-float">
-              <i className="fas fa-globe-americas text-white text-5xl"></i>
+      <div className="max-w-5xl text-center z-10 animate-fade-in-up mt-4 mb-8">
+        {/* Logo Container - Taille réduite */}
+        <div className="mb-6 flex flex-col items-center">
+            <div className="w-20 h-20 bg-blue-600 rounded-[24px] flex items-center justify-center shadow-[0_20px_50px_rgba(37,99,235,0.3)] mb-4 animate-float">
+              <i className="fas fa-globe-americas text-white text-4xl"></i>
             </div>
             <div className="text-white">
-                <h2 className="text-5xl md:text-6xl font-black tracking-tighter mb-1">LEADER PAK</h2>
-                <div className="h-1.5 w-full bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full mb-2"></div>
-                <div className="text-blue-400 font-bold tracking-[0.4em] uppercase text-xs">Sourcing & Production Industriel</div>
+                <h2 className="text-4xl font-black tracking-tighter mb-0.5">LEADER PAK</h2>
+                <div className="h-1 w-48 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full mb-1"></div>
+                <div className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[10px]">Sourcing & Production Industriel</div>
             </div>
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
-          Votre partenaire global pour les <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">produits ménagers de haute performance.</span>
+        {/* Headline - Taille de police réduite et margin réduit */}
+        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">
+          La référence en produits ménagers <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">de haute performance</span>
         </h1>
         
-        <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-          Savoir-faire historique depuis 2013. Nous accompagnons les leaders de la distribution avec des solutions de sourcing sur-mesure et une qualité industrielle garantie.
+        {/* Paragraph - Taille de police réduite et margin réduit */}
+        <p className="text-lg text-slate-400 mb-6 max-w-3xl mx-auto leading-relaxed">
+          Solutions sur-mesure et qualité industrielle pour les leaders de la distribution.
         </p>
         
-        <div className="flex flex-col items-center gap-8 mb-16">
+        <div className="flex flex-col items-center gap-6 mb-8">
           <button 
             onClick={onStart}
-            className="group relative w-full sm:w-auto px-20 py-8 bg-blue-600 text-white rounded-[32px] font-black text-2xl uppercase tracking-[0.2em] shadow-[0_20px_80px_rgba(37,99,235,0.5),0_0_0_10px_rgba(37,99,235,0.1)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.6),0_0_0_15px_rgba(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-6 overflow-hidden"
+            className="group relative w-full sm:w-auto px-16 py-6 bg-blue-600 text-white rounded-[24px] font-black text-xl uppercase tracking-[0.2em] shadow-[0_20px_80px_rgba(37,99,235,0.5),0_0_0_10px_rgba(37,99,235,0.1)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.6),0_0_0_15px_rgba(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 overflow-hidden"
           >
-            <span className="relative z-10">Démarrer le Parcours</span>
-            <i className="fas fa-chevron-right relative z-10 group-hover:translate-x-3 transition-transform duration-300"></i>
+            <span className="relative z-10">Commencer l’expérience</span>
+            <i className="fas fa-chevron-right relative z-10 group-hover:translate-x-2 transition-transform duration-300"></i>
             
-            {/* Effet de brillance animé */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
-            
-            {/* Glow effect */}
             <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-20 blur-2xl transition-opacity"></div>
           </button>
         </div>
       </div>
 
       {/* Marquee des Marques */}
-      <div className="w-full bg-slate-800/50 backdrop-blur-sm border-y border-white/5 py-10 overflow-hidden relative z-20">
+      <div className="w-full bg-slate-800/50 backdrop-blur-sm border-y border-white/5 py-8 overflow-hidden relative z-20">
         <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-slate-900 to-transparent z-10"></div>
         <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-slate-900 to-transparent z-10"></div>
         
