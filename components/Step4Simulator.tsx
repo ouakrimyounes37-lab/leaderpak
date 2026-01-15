@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { HERO_SPONGES } from '../constants';
+import { submitPriceGridRequest } from '../supabaseService.ts';
 
 interface Props {
   onNext: () => void;
@@ -110,13 +111,26 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
     }, 1500);
   };
 
-  const handleFullPriceSubmit = (e: React.FormEvent) => {
+  const handleFullPriceSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const name = formData.get('userName') as string;
+    const email = formData.get('userEmail') as string;
+    const categories: string[] = [];
+    formData.getAll('categories').forEach(cat => categories.push(cat as string));
+
     setFullPriceFormSent(true);
-    setTimeout(() => {
-      setShowFullPriceModal(false);
+    try {
+      await submitPriceGridRequest({ name, email, categories });
+      setTimeout(() => {
+        setShowFullPriceModal(false);
+        setFullPriceFormSent(false);
+      }, 2500);
+    } catch (error) {
+      console.error(error);
+      alert("Erreur lors de l'enregistrement de votre demande.");
       setFullPriceFormSent(false);
-    }, 2500);
+    }
   };
 
   const QuoteTemplate = ({ forExport = false }: { forExport?: boolean }) => (
@@ -362,8 +376,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                           "Alum / Film Alimentaire", 
                           "Savon Beldi / Hygiène"
                         ].map(cat => (
-                          <label key={cat} className="flex items-center gap-3 text-xs font-bold text-slate-700 cursor-pointer group">
-                            <input type="checkbox" className="w-3.5 h-3.5 accent-blue-600 rounded border-slate-200" /> 
+                          <label key={cat} className="flex items-center gap-3 text-sm font-bold text-slate-700 cursor-pointer group">
+                            <input type="checkbox" name="categories" value={cat} className="w-3.5 h-3.5 accent-blue-600 rounded border-slate-200" /> 
                             <span className="group-hover:text-blue-600 transition-colors">{cat}</span>
                           </label>
                         ))}
@@ -371,8 +385,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                     </div>
 
                     <div className="grid grid-cols-1 gap-3">
-                      <input required type="text" placeholder="Votre Nom" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm" />
-                      <input required type="email" placeholder="Email Pro" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm" />
+                      <input required name="userName" type="text" placeholder="Votre Nom" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm" />
+                      <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm" />
                     </div>
 
                     <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-[16px] font-black uppercase tracking-[0.2em] text-[10px] shadow-xl hover:bg-blue-700 transition-all active:scale-95">

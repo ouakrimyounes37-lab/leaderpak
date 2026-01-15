@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { submitMeetingRequest, submitSampleRequest } from '../supabaseService.ts';
 
 interface Props {
   onPrev: () => void;
@@ -11,17 +12,37 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
   const [showSamplePopup, setShowSamplePopup] = useState(false);
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const name = formData.get('userName') as string;
+    const company = formData.get('company') as string;
+    const email = formData.get('userEmail') as string;
+    const message = formData.get('message') as string;
+
     setFormStatus('sending');
-    setTimeout(() => {
-        setFormStatus('success');
-        setTimeout(() => {
-            setShowPopup(false);
-            setShowSamplePopup(false);
-            setFormStatus('idle');
-        }, 2000);
-    }, 1500);
+    try {
+      if (showSamplePopup) {
+        const address = formData.get('address') as string;
+        const categories: string[] = [];
+        formData.getAll('categories').forEach(cat => categories.push(cat as string));
+        await submitSampleRequest({ name, company, email, address, categories, message });
+      } else {
+        const location = formData.get('meeting') as string;
+        await submitMeetingRequest({ name, company, email, location, message });
+      }
+
+      setFormStatus('success');
+      setTimeout(() => {
+          setShowPopup(false);
+          setShowSamplePopup(false);
+          setFormStatus('idle');
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+      alert("Erreur lors de l'enregistrement de votre demande.");
+      setFormStatus('idle');
+    }
   };
 
   return (
@@ -115,30 +136,30 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom & Prénom</label>
-                                    <input required type="text" placeholder="Khalid Alami" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
+                                    <input required name="userName" type="text" placeholder="Khalid Alami" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
                                 </div>
                                 <div>
                                     <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Société</label>
-                                    <input required type="text" placeholder="SARL / SA / Groupe" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
+                                    <input required name="company" type="text" placeholder="SARL / SA / Groupe" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
                                 </div>
                             </div>
                             <div>
                                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Email Professionnel</label>
-                                <input required type="email" placeholder="k.alami@groupe.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
+                                <input required name="userEmail" type="email" placeholder="k.alami@groupe.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
                             </div>
                             
                             {showSamplePopup ? (
                               <div className="space-y-4">
                                 <div>
                                     <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Adresse de livraison (Échantillons)</label>
-                                    <input required type="text" placeholder="Rue, Ville, Code Postal" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
+                                    <input required name="address" type="text" placeholder="Rue, Ville, Code Postal" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
                                 </div>
                                 <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100">
                                   <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Gammes à tester</label>
                                   <div className="grid grid-cols-2 gap-3">
                                     {["Éponges Pro-Shine", "Produits Plastiques", "Alum/Film Food", "Savon/Hygiène"].map(g => (
                                       <label key={g} className="flex items-center gap-3 text-sm font-bold text-slate-700 cursor-pointer group">
-                                        <input type="checkbox" className="w-5 h-5 accent-blue-600 rounded border-slate-300" /> 
+                                        <input type="checkbox" name="categories" value={g} className="w-5 h-5 accent-blue-600 rounded border-slate-300" /> 
                                         <span className="group-hover:text-blue-600 transition-colors">{g}</span>
                                       </label>
                                     ))}
@@ -150,11 +171,11 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
                                   <label className="block text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3">Lieu souhaité de rencontre</label>
                                   <div className="flex gap-6">
                                       <label className="flex items-center gap-2 cursor-pointer group">
-                                          <input type="radio" name="meeting" defaultChecked className="w-4 h-4 accent-blue-600" />
+                                          <input type="radio" name="meeting" value="Bureaux LeaderPak (CASA)" defaultChecked className="w-4 h-4 accent-blue-600" />
                                           <span className="text-sm font-bold text-blue-900 group-hover:text-blue-700">Nos Bureaux (CASA)</span>
                                       </label>
                                       <label className="flex items-center gap-2 cursor-pointer group">
-                                          <input type="radio" name="meeting" className="w-4 h-4 accent-blue-600" />
+                                          <input type="radio" name="meeting" value="Locaux Client" className="w-4 h-4 accent-blue-600" />
                                           <span className="text-sm font-bold text-blue-900 group-hover:text-blue-700">Vos Locaux</span>
                                       </label>
                                   </div>
@@ -163,7 +184,7 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
 
                             <div>
                                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Précisions ou Message</label>
-                                <textarea placeholder="Décrivez vos besoins volumétriques..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold h-24 resize-none"></textarea>
+                                <textarea name="message" placeholder="Décrivez vos besoins volumétriques..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold h-24 resize-none"></textarea>
                             </div>
                             
                             <button 

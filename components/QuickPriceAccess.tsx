@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { submitPriceGridRequest } from '../supabaseService.ts';
 
 interface Props {
   onBack: () => void;
@@ -7,14 +8,30 @@ interface Props {
 
 const QuickPriceAccess: React.FC<Props> = ({ onBack, onSample }) => {
   const [sent, setSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      onBack();
-    }, 3000);
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const name = formData.get('userName') as string;
+    const email = formData.get('userEmail') as string;
+    const categories: string[] = [];
+    formData.getAll('categories').forEach(cat => categories.push(cat as string));
+
+    setIsSubmitting(true);
+    try {
+      await submitPriceGridRequest({ name, email, categories });
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        onBack();
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      alert("Erreur lors de l'envoi de votre demande.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -48,7 +65,7 @@ const QuickPriceAccess: React.FC<Props> = ({ onBack, onSample }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {["Éponges Inox", "Plastiques HD", "Alu / Film Pro", "Hygiène Sol"].map(cat => (
                     <label key={cat} className="flex items-center gap-3 text-sm font-bold text-slate-700 cursor-pointer group">
-                      <input type="checkbox" className="w-5 h-5 accent-blue-600 rounded-lg border-slate-200" /> 
+                      <input type="checkbox" name="categories" value={cat} className="w-5 h-5 accent-blue-600 rounded-lg border-slate-200" /> 
                       <span className="group-hover:text-blue-600 transition-colors">{cat}</span>
                     </label>
                   ))}
@@ -56,12 +73,12 @@ const QuickPriceAccess: React.FC<Props> = ({ onBack, onSample }) => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input required type="text" placeholder="Nom Complet" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
-                <input required type="email" placeholder="Email Pro" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
+                <input required name="userName" type="text" placeholder="Nom Complet" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
+                <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
               </div>
 
-              <button type="submit" className="w-full py-6 bg-blue-600 text-white rounded-[20px] font-black uppercase tracking-[0.2em] text-sm shadow-2xl shadow-blue-900/20 hover:bg-blue-700 transition-all active:scale-95 flex items-center justify-center gap-4">
-                Recevoir la Grille
+              <button type="submit" disabled={isSubmitting} className="w-full py-6 bg-blue-600 text-white rounded-[20px] font-black uppercase tracking-[0.2em] text-sm shadow-2xl shadow-blue-900/20 hover:bg-blue-700 transition-all active:scale-95 flex items-center justify-center gap-4">
+                {isSubmitting ? "Envoi..." : "Recevoir la Grille"}
                 <i className="fas fa-paper-plane"></i>
               </button>
             </form>
