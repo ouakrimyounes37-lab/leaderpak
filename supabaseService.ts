@@ -27,12 +27,13 @@ const handleResponse = async (response: Response) => {
 };
 
 /**
- * Enregistre une demande d'accès à la grille tarifaire
+ * Enregistre une demande d'accès à la grille tarifaire (Table: price_grid_requests)
  */
 export const submitPriceGridRequest = async (data: { name: string, email: string, categories: string[] }) => {
   const payload = {
-    ...data,
-    categories: data.categories.join(', ') // Conversion en chaîne pour compatibilité maximale
+    name: data.name,
+    email: data.email,
+    categories: data.categories.join(', ') // Conversion du tableau en string pour la colonne TEXT
   };
   
   const response = await fetch(`${SUPABASE_URL}/rest/v1/price_grid_requests`, {
@@ -44,7 +45,7 @@ export const submitPriceGridRequest = async (data: { name: string, email: string
 };
 
 /**
- * Enregistre une demande de rendez-vous
+ * Enregistre une demande de rendez-vous (Table: meeting_requests)
  */
 export const submitMeetingRequest = async (data: { name: string, company: string, email: string, location: string, message: string }) => {
   const response = await fetch(`${SUPABASE_URL}/rest/v1/meeting_requests`, {
@@ -56,12 +57,16 @@ export const submitMeetingRequest = async (data: { name: string, company: string
 };
 
 /**
- * Enregistre une demande d'échantillons
+ * Enregistre une demande d'échantillons (Table: sample_requests)
  */
 export const submitSampleRequest = async (data: { name: string, company: string, email: string, address: string, categories: string[], message: string }) => {
   const payload = {
-    ...data,
-    categories: data.categories.join(', ') // Conversion en chaîne
+    name: data.name,
+    company: data.company,
+    email: data.email,
+    address: data.address,
+    categories: data.categories.join(', '), // Conversion du tableau en string
+    message: data.message
   };
   
   const response = await fetch(`${SUPABASE_URL}/rest/v1/sample_requests`, {
