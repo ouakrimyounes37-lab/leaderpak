@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { TourStep } from './types.ts';
 import LandingView from './components/LandingView.tsx';
 import Step1ValueProp from './components/Step1ValueProp.tsx';
+// Fix: remove space between Step2 and HeroProduct in the import identifier
 import Step2HeroProduct from './components/Step2HeroProduct.tsx';
 import Step3Catalog from './components/Step3Catalog.tsx';
 import Step4Simulator from './components/Step4Simulator.tsx';
@@ -94,9 +94,8 @@ const App: React.FC = () => {
     ? (currentStep / totalTourSteps) * 100 
     : 0;
 
-  // Libellés pour la barre du bas
-  const tourLabels = ["Accueil", "Vision LeaderPak", "Éponge Héros", "Nos Catalogues", "Devis Interactif", "Nos Garanties", "Contact"];
-  const nextStepLabel = currentStep < TourStep.CONVERSION ? tourLabels[currentStep + 1] : "";
+  // Libellés pour la barre du bas - Mis à jour en mots uniques
+  const tourLabels = ["Accueil", "Vision", "Produits", "Catalogue", "Tarifs", "Confiance", "Contact"];
 
   return (
     <div className="min-h-screen w-screen bg-white text-slate-900 flex flex-col relative overflow-x-hidden">
@@ -151,9 +150,8 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* VERSION MOBILE - Hauteur réduite à 85px et padding bas diminué à pb-2 */}
+          {/* VERSION MOBILE */}
           <div className="flex md:hidden items-center justify-between px-4 h-[85px] w-full pb-2">
-            {/* Bouton Sommaire - À GAUCHE */}
             <button 
               onClick={() => setIsSidebarOpen(true)}
               className="w-10 h-10 flex items-center justify-center bg-slate-50 text-slate-600 rounded-xl active:bg-slate-100 transition-colors shrink-0"
@@ -161,12 +159,10 @@ const App: React.FC = () => {
               <i className="fas fa-bars text-sm"></i>
             </button>
 
-            {/* Progression & Titre - AU CENTRE */}
             <div className="flex-1 flex justify-center px-2 overflow-visible">
               {!isAltPage && <TourProgress currentStep={currentStep} onStepClick={goToStep} />}
             </div>
 
-            {/* Bouton Suivant - À DROITE */}
             <div className="w-10 h-10 shrink-0">
               {currentStep < TourStep.CONVERSION && !isAltPage ? (
                 <button 
@@ -193,24 +189,6 @@ const App: React.FC = () => {
             </div>
           )}
         </nav>
-      )}
-
-      {/* Barre de navigation basse épinglée (Mobile seulement) */}
-      {currentStep >= 1 && currentStep < TourStep.CONVERSION && !isAltPage && (
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-slate-100 p-4 shadow-[0_-10px_30px_rgba(0,0,0,0.08)] animate-slide-up">
-            <button 
-                onClick={nextStep}
-                className="w-full bg-blue-600 active:bg-blue-700 text-white h-14 rounded-2xl flex items-center justify-between px-6 font-black text-xs uppercase tracking-[0.1em] shadow-xl shadow-blue-200 transition-all active:scale-[0.98]"
-            >
-                <div className="flex flex-col items-start gap-0.5">
-                    <span className="text-[8px] opacity-60 font-bold tracking-[0.2em]">Étape suivante</span>
-                    <span className="text-white text-sm tracking-tight">{nextStepLabel}</span>
-                </div>
-                <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <i className="fas fa-arrow-right text-white"></i>
-                </div>
-            </button>
-        </div>
       )}
 
       {/* Contenu principal - pt-[85px] sur mobile pour matcher la hauteur du header */}
