@@ -10,9 +10,9 @@ const Step5Credibility: React.FC<Props> = ({ onNext, onPrev }) => {
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-5xl mx-auto">
         <div className="mb-12">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Étape 05 — Confiance & Crédibilité</span>
-            <h2 className="text-4xl font-bold mt-2">Une Tradition de Qualité</h2>
-            <p className="text-slate-500 mt-2 text-lg">Nous ne vendons pas seulement des produits ; nous bâtissons des partenariats d'approvisionnement.</p>
+            <span className="text-blue-600 font-bold tracking-widest uppercase text-[10px]">Étape 05 — Confiance & Crédibilité</span>
+            <h2 className="text-xl font-bold mt-2">Une Tradition de Qualité</h2>
+            <p className="text-slate-500 mt-2 text-sm">Nous ne vendons pas seulement des produits ; nous bâtissons des partenariats d'approvisionnement.</p>
         </div>
 
         <div className="space-y-16">

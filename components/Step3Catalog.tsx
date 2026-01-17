@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
@@ -28,9 +27,9 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Étape 03 — Catalogue</span>
-            <h2 className="text-4xl font-bold mt-2">Gamme Complète</h2>
-            <p className="text-slate-500 mt-2 text-lg">Diversifiez votre offre avec nos produits essentiels certifiés.</p>
+            <span className="text-blue-600 font-bold tracking-widest uppercase text-[10px]">Étape 03 — Catalogue</span>
+            <h2 className="text-xl font-bold mt-2">Gamme Complète</h2>
+            <p className="text-slate-500 mt-2 text-sm">Diversifiez votre offre avec nos produits essentiels certifiés.</p>
         </div>
 
         {/* Barre de Filtres */}

@@ -242,9 +242,9 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
     <div className="p-6 md:p-12 animate-fade-in relative">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 no-print">
-          <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Étape 04 — Devis & Tarifs</span>
-          <h2 className="text-4xl font-bold mt-2">Simulateur Commercial</h2>
-          <p className="text-slate-500 mt-2 text-lg">Gérez vos volumes et générez votre devis officiel (Format A4 - 1 page).</p>
+          <span className="text-blue-600 font-bold tracking-widest uppercase text-[10px]">Étape 04 — Devis & Tarifs</span>
+          <h2 className="text-xl font-bold mt-2">Simulateur Commercial</h2>
+          <p className="text-slate-500 mt-2 text-sm">Gérez vos volumes et générez votre devis officiel (Format A4 - 1 page).</p>
         </div>
 
         <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -100, opacity: 0, pointerEvents: 'none', overflow: 'hidden', height: 0, width: 0 }}>
@@ -363,7 +363,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                     <div className="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
                       <i className="fas fa-check text-xl"></i>
                     </div>
-                    <h4 className="text-base font-bold mb-1">Demande Envoyée !</h4>
+                    <h4 className="text-base font-bold mb-1">Demande EnvoyÉE !</h4>
                   </div>
                 ) : (
                   <form onSubmit={handleFullPriceSubmit} className="space-y-4">
