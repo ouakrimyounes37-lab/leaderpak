@@ -1,62 +1,29 @@
+
 import React from 'react';
 import { TourStep } from '../types';
 
 interface Props {
   currentStep: TourStep;
   onStepClick: (step: TourStep) => void;
+  showLabelOnly?: boolean;
+  showIconsOnly?: boolean;
 }
 
-const TourProgress: React.FC<Props> = ({ currentStep, onStepClick }) => {
+const TourProgress: React.FC<Props> = ({ currentStep, onStepClick, showLabelOnly, showIconsOnly }) => {
   const steps = [
-    { step: TourStep.VALUE_PROP, icon: 'fa-star', label: 'VALEUR' },
-    { step: TourStep.HERO_PRODUCT, icon: 'fa-gem', label: 'HÉROS' },
-    { step: TourStep.CATALOG, icon: 'fa-list', label: 'CATALOGUE' },
-    { step: TourStep.TERMS, icon: 'fa-calculator', label: 'TARIFS' },
-    { step: TourStep.CREDIBILITY, icon: 'fa-shield-halved', label: 'CONFIANCE' },
-    { step: TourStep.CONVERSION, icon: 'fa-handshake', label: 'CONTACT' }
+    { step: TourStep.VALUE_PROP, icon: 'fa-star', label: 'Vision' },
+    { step: TourStep.HERO_PRODUCT, icon: 'fa-gem', label: 'Héros' },
+    { step: TourStep.CATALOG, icon: 'fa-list', label: 'Catalogue' },
+    { step: TourStep.TERMS, icon: 'fa-calculator', label: 'Tarifs' },
+    { step: TourStep.CREDIBILITY, icon: 'fa-shield-halved', label: 'Confiance' },
+    { step: TourStep.CONVERSION, icon: 'fa-handshake', label: 'Contact' }
   ];
 
   const currentIndex = steps.findIndex(s => s.step === currentStep);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      {/* VERSION MOBILE : Bloc Empilé (Stack) */}
-      <div className="md:hidden flex flex-col items-center">
-        {/* Titre Micro-Typo en haut */}
-        <span className="text-[10px] font-black text-blue-600 tracking-[0.25em] mb-1">
-          {steps[currentIndex]?.label || 'NAVIGUER'}
-        </span>
-        
-        {/* Ligne d'icônes avec focus central */}
-        <div className="flex items-center gap-6">
-          {/* Précédent (Faded) */}
-          {currentIndex > 0 ? (
-            <button 
-              onClick={() => onStepClick(steps[currentIndex - 1].step)}
-              className="opacity-30 scale-[0.6] text-slate-400"
-            >
-              <i className={`fas ${steps[currentIndex - 1].icon}`}></i>
-            </button>
-          ) : <div className="w-4"></div>}
-
-          {/* Actif (Blue Highlight) */}
-          <div className="w-9 h-9 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg ring-4 ring-blue-100 scale-110">
-            <i className={`fas ${steps[currentIndex]?.icon || 'fa-info'} text-xs`}></i>
-          </div>
-
-          {/* Suivant (Faded) */}
-          {currentIndex < steps.length - 1 ? (
-            <button 
-              onClick={() => onStepClick(steps[currentIndex + 1].step)}
-              className="opacity-30 scale-[0.6] text-slate-400"
-            >
-              <i className={`fas ${steps[currentIndex + 1].icon}`}></i>
-            </button>
-          ) : <div className="w-4"></div>}
-        </div>
-      </div>
-
-      {/* VERSION DESKTOP : Barre de progression horizontale classique */}
+    <>
+      {/* VERSION DESKTOP - Inchangée conformément aux instructions */}
       <div className="hidden md:flex items-center gap-2 md:gap-4">
         {steps.map((s, i) => {
           const isActive = currentStep === s.step;
@@ -89,7 +56,38 @@ const TourProgress: React.FC<Props> = ({ currentStep, onStepClick }) => {
           );
         })}
       </div>
-    </div>
+
+      {/* VERSION MOBILE - Style actif aligné sur desktop (sans glow), inactifs conservés */}
+      <div className="flex md:hidden items-center justify-center gap-2.5">
+        {steps.map((s) => {
+          const isActive = currentStep === s.step;
+          const isCompleted = currentStep > s.step;
+          
+          return (
+            <div key={s.step} className="relative flex items-center justify-center">
+              <button
+                onClick={() => onStepClick(s.step)}
+                className={`flex items-center justify-center transition-all duration-300 rounded-full ${
+                  isActive 
+                    ? 'w-9 h-9 bg-blue-600 text-white shadow-lg ring-4 ring-blue-100 scale-110 z-10' 
+                    : isCompleted
+                      ? 'w-6 h-6 bg-blue-50 text-blue-600 border border-blue-100/50'
+                      : 'w-6 h-6 bg-slate-100/30 text-slate-500 border border-slate-100/50'
+                }`}
+              >
+                <i className={`fas ${isCompleted ? 'fa-check' : s.icon} ${isActive ? 'text-[11px]' : 'text-[9px]'}`}></i>
+              </button>
+              
+              {isActive && (
+                <span className="absolute top-11 left-1/2 -translate-x-1/2 text-[8px] font-black uppercase tracking-[0.2em] text-blue-700 whitespace-nowrap z-0 pointer-events-none">
+                  {s.label}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
