@@ -35,9 +35,9 @@ const LandingView: React.FC<Props> = ({ onStart }) => {
             </div>
         </div>
         
-        {/* Headline - Taille de police réduite et margin réduit */}
+        {/* Headline - Mise à jour selon demande utilisateur */}
         <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">
-          La référence en produits ménagers <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">de haute performance</span>
+          Excellence et performance pour <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">des produits ménagers innovants</span>
         </h1>
         
         {/* Paragraph - Taille de police réduite et margin réduit */}
