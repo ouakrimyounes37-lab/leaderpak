@@ -51,7 +51,7 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
                                 </h3>
                             </div>
                             
-                            <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                            <p className="hidden md:block text-slate-500 text-sm leading-relaxed mb-6">
                                 {cat.description}
                             </p>
                             <button 
@@ -71,13 +71,13 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
             ))}
         </div>
 
-        {/* 2. Grille des Engagements (Stats) - Remontée ici */}
+        {/* 2. Grille des Engagements (Stats) - Optimisée Mobile */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             {COMPANY_STATS.map((stat, i) => (
-                <div key={i} className="text-center p-8 bg-slate-50 border border-slate-100 rounded-3xl group hover:bg-white hover:shadow-lg transition-all">
-                    <i className={`fas ${stat.icon} text-2xl text-blue-600 mb-4 group-hover:scale-110 transition-transform`}></i>
-                    <div className="text-3xl font-bold text-slate-900">{stat.value}</div>
-                    <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{stat.label}</div>
+                <div key={i} className="text-center px-2 py-6 md:p-8 bg-slate-50 border border-slate-100 rounded-3xl group hover:bg-white hover:shadow-lg transition-all">
+                    <i className={`fas ${stat.icon} text-xl md:text-2xl text-blue-600 mb-2 md:mb-4 group-hover:scale-110 transition-transform`}></i>
+                    <div className="text-xl md:text-3xl font-bold text-slate-900">{stat.value}</div>
+                    <div className="text-[8px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">{stat.label}</div>
                 </div>
             ))}
         </div>
