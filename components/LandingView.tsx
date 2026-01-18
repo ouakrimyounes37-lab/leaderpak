@@ -32,7 +32,7 @@ const LandingView: React.FC<Props> = ({ onStart }) => {
             <div className="text-white">
                 <h2 className="text-4xl font-black tracking-tighter mb-0.5">LEADER PAK</h2>
                 <div className="h-1 w-48 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full mb-1"></div>
-                <div className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[10px]">Sourcing & Production Industriel</div>
+                <div className="text-blue-400 font-bold tracking-[0.4em] uppercase text-[8px] md:text-[10px]">Sourcing & Production Industriel</div>
             </div>
         </div>
         
@@ -49,7 +49,7 @@ const LandingView: React.FC<Props> = ({ onStart }) => {
         <div className="flex flex-col items-center gap-6 mb-8">
           <button 
             onClick={onStart}
-            className="group relative w-full sm:w-auto px-10 md:px-16 py-6 bg-blue-600 text-white rounded-[24px] font-black text-sm md:text-xl uppercase tracking-[0.2em] shadow-[0_20px_80px_rgba(37,99,235,0.5),0_0_0_10px_rgba(37,99,235,0.1)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.6),0_0_0_15px_rgba(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 overflow-hidden"
+            className="group relative w-full sm:w-auto px-10 md:px-16 py-6 bg-blue-600 text-white rounded-[24px] font-black text-xs md:text-xl uppercase tracking-[0.2em] shadow-[0_20px_80px_rgba(37,99,235,0.5),0_0_0_10px_rgba(37,99,235,0.1)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.6),0_0_0_15px_rgba(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 overflow-hidden"
           >
             <span className="relative z-10">Commencer l’expérience</span>
             <i className="fas fa-chevron-right relative z-10 group-hover:translate-x-2 transition-transform duration-300"></i>
