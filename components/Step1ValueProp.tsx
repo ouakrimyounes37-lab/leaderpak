@@ -41,10 +41,16 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
                             <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
                         <div className="p-8 md:w-3/5 flex flex-col justify-center">
-                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
-                                <i className={`fas ${cat.icon} text-xl`}></i>
+                            {/* Layout Icon + Titre: Row sur mobile, Stack sur desktop */}
+                            <div className="flex items-center gap-4 md:block mb-4 md:mb-0">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 md:mb-4 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
+                                    <i className={`fas ${cat.icon} text-xl`}></i>
+                                </div>
+                                <h3 className={`text-lg md:text-xl font-bold md:mb-2 ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors`}>
+                                    {cat.name}
+                                </h3>
                             </div>
-                            <h3 className={`text-xl font-bold mb-2 ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors`}>{cat.name}</h3>
+                            
                             <p className="text-slate-500 text-sm leading-relaxed mb-6">
                                 {cat.description}
                             </p>

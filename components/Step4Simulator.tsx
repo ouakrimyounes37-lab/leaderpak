@@ -261,26 +261,28 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
               <table className="w-full text-left">
                 <thead className="bg-slate-50 border-b border-slate-100">
                   <tr>
-                    <th className="p-6 text-xs font-bold uppercase text-slate-400">Variante</th>
-                    <th className="p-6 text-xs font-bold uppercase text-slate-400 text-center">Prix (HT)</th>
-                    <th className="p-6 text-xs font-bold uppercase text-slate-400 text-center">Qté</th>
-                    <th className="p-6 text-xs font-bold uppercase text-slate-400 text-right">Total HT</th>
+                    <th className="p-4 md:p-6 text-xs font-bold uppercase text-slate-400">Variante</th>
+                    <th className="p-4 md:p-6 text-xs font-bold uppercase text-slate-400 text-center">Prix (HT)</th>
+                    <th className="p-4 md:p-6 text-xs font-bold uppercase text-slate-400 text-center">Qté</th>
+                    <th className="p-4 md:p-6 text-xs font-bold uppercase text-slate-400 text-right">Total HT</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {HERO_SPONGES.map(s => (
                     <tr key={s.id} className="hover:bg-slate-50/50 transition-colors">
-                      <td className="p-6">
-                        <div className="font-bold text-slate-900">{s.name}</div>
-                        <div className="text-[10px] text-slate-400 font-medium uppercase mt-0.5">{s.usage}</div>
+                      <td className="p-4 md:p-6">
+                        {/* Taille de police réduite sur mobile pour le titre de variante */}
+                        <div className="font-bold text-slate-900 text-[11px] md:text-base leading-tight">{s.name}</div>
+                        {/* Description masquée sur mobile */}
+                        <div className="hidden md:block text-[10px] text-slate-400 font-medium uppercase mt-0.5">{s.usage}</div>
                       </td>
-                      <td className="p-6 text-center font-bold text-slate-600">
+                      <td className="p-4 md:p-6 text-center font-bold text-slate-600 text-xs md:text-base">
                         {(s.price / 1.2).toFixed(2)} Dh
                       </td>
-                      <td className="p-6">
-                        <input type="number" min="0" value={quantities[s.id]} onChange={(e) => updateQty(s.id, e.target.value)} className="w-24 mx-auto block px-4 py-2 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 outline-none font-bold text-center" />
+                      <td className="p-4 md:p-6">
+                        <input type="number" min="0" value={quantities[s.id]} onChange={(e) => updateQty(s.id, e.target.value)} className="w-16 md:w-24 mx-auto block px-2 md:px-4 py-2 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 outline-none font-bold text-center text-xs md:text-base" />
                       </td>
-                      <td className="p-6 text-right font-black text-blue-600">{((quantities[s.id] * s.price) / 1.2).toFixed(2)} Dh</td>
+                      <td className="p-4 md:p-6 text-right font-black text-blue-600 text-xs md:text-base">{((quantities[s.id] * s.price) / 1.2).toFixed(2)} Dh</td>
                     </tr>
                   ))}
                 </tbody>
