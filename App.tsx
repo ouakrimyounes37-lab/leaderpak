@@ -95,16 +95,23 @@ const App: React.FC = () => {
     ? (currentStep / totalTourSteps) * 100 
     : 0;
 
-  // Libellés pour la barre du bas - Mis à jour en mots uniques
-  const tourLabels = ["Accueil", "Vision", "Produits", "Catalogue", "Tarifs", "Confiance", "Contact"];
-
   return (
     <div className="min-h-screen w-screen bg-white text-slate-900 flex flex-col relative overflow-x-hidden">
-      {/* Header Épinglé */}
+      {/* Header Épinglé - Mobile: Bas, Desktop: Haut */}
       {currentStep !== TourStep.LANDING && (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm flex flex-col">
+        <nav className="fixed bottom-0 md:top-0 md:bottom-auto left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t md:border-t-0 md:border-b border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:shadow-sm flex flex-col">
           
-          {/* VERSION DESKTOP - Inchangée */}
+          {/* LIGNE DE PROGRESSION HEADER - Placée en haut sur mobile pour la visibilité en bottom nav */}
+          {!isAltPage && (
+            <div className="w-full h-[2px] bg-slate-100 relative overflow-hidden md:hidden">
+                <div 
+                  className="absolute top-0 left-0 h-full bg-blue-600 transition-all duration-1000 ease-out"
+                  style={{ width: `${progressPercent}%` }}
+                />
+            </div>
+          )}
+
+          {/* VERSION DESKTOP */}
           <div className="hidden md:flex px-8 py-3 items-center justify-between h-20">
             <div className="flex items-center gap-4">
               <button 
@@ -179,22 +186,14 @@ const App: React.FC = () => {
               ) : null}
             </div>
           </div>
-
-          {/* LIGNE DE PROGRESSION HEADER - Masquée sur desktop (md:hidden) */}
-          {!isAltPage && (
-            <div className="w-full h-[2px] bg-slate-100 relative overflow-hidden md:hidden">
-                <div 
-                  className="absolute top-0 left-0 h-full bg-blue-600 transition-all duration-1000 ease-out"
-                  style={{ width: `${progressPercent}%` }}
-                />
-            </div>
-          )}
         </nav>
       )}
 
-      {/* Contenu principal - pt-[85px] sur mobile pour matcher la hauteur du header */}
-      <main className={`flex-1 w-full ${currentStep !== TourStep.LANDING ? `pt-[85px] md:pt-24 ${currentStep < TourStep.CONVERSION && !isAltPage ? 'pb-28' : 'pb-8'} md:pb-8` : ''}`}>
-        {renderStep()}
+      {/* Contenu principal - pt-0 pb-[85px] sur mobile car nav en bas */}
+      <main className={`flex-1 w-full ${currentStep !== TourStep.LANDING ? `pt-0 md:pt-24 pb-[85px] md:pb-8` : ''}`}>
+        <div className={`${currentStep !== TourStep.LANDING && currentStep < TourStep.CONVERSION && !isAltPage ? 'pb-20 md:pb-0' : ''}`}>
+           {renderStep()}
+        </div>
       </main>
 
       {/* Sidebar Mobile */}
