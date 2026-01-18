@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { HERO_SPONGES } from '../constants';
 import { submitPriceGridRequest } from '../supabaseService.ts';
@@ -242,17 +243,20 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
     <div className="p-6 md:p-12 animate-fade-in relative">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 no-print">
-          <span className="text-blue-600 font-bold tracking-widest uppercase text-[10px]">Étape 04 — Devis & Tarifs</span>
-          <h2 className="text-xl font-bold mt-2">Simulateur Commercial</h2>
-          <p className="text-slate-500 mt-2 text-sm">Gérez vos volumes et générez votre devis officiel (Format A4 - 1 page).</p>
+          <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 04 — Devis & Tarifs</span>
+          <h2 className="text-xl md:text-3xl font-bold mt-2">Simulateur Commercial</h2>
+          <p className="text-slate-500 mt-2 text-sm md:text-base">Gérez vos volumes et générez votre devis officiel (Format A4 - 1 page).</p>
         </div>
 
         <div style={{ position: 'fixed', top: 0, left: 0, zIndex: -100, opacity: 0, pointerEvents: 'none', overflow: 'hidden', height: 0, width: 0 }}>
            <QuoteTemplate forExport={true} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16 no-print">
-          <div className="lg:col-span-2 space-y-6">
+        {/* Grille principale avec réorganisation de l'ordre pour mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16 no-print items-start">
+          
+          {/* 1. BLOC SIMULATEUR - order-1 sur mobile */}
+          <div className="lg:col-span-2 order-1">
             <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-sm">
               <table className="w-full text-left">
                 <thead className="bg-slate-50 border-b border-slate-100">
@@ -282,19 +286,11 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                 </tbody>
               </table>
             </div>
-
-            <div className="p-8 bg-gradient-to-br from-blue-50 to-white rounded-[40px] border border-blue-100 flex flex-col md:flex-row items-center gap-8 shadow-sm">
-              <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0 shadow-xl shadow-blue-200"><i className="fas fa-file-invoice-dollar"></i></div>
-              <div className="flex-1 text-center md:text-left">
-                <h4 className="text-xl font-bold text-slate-900 mb-1">Catalogue Tarifaire Intégral</h4>
-                <p className="text-sm text-slate-500 leading-relaxed mb-6">Accédez aux prix de toutes nos autres gammes.</p>
-                <button onClick={() => setShowFullPriceModal(true)} className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95">Demander les tarifs complets <i className="fas fa-arrow-right"></i></button>
-              </div>
-            </div>
           </div>
 
-          <div className="lg:col-span-1">
-            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl sticky top-24">
+          {/* 2. BLOC SYNTHÈSE - order-2 sur mobile (Sticky on Desktop) */}
+          <div className="lg:col-span-1 order-2 lg:order-2 lg:row-span-2 sticky top-24">
+            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl">
               <h3 className="text-xl font-bold mb-8 flex items-center gap-3"><i className="fas fa-shopping-cart text-blue-400"></i>Synthèse</h3>
               <div className="space-y-6 mb-10">
                 <div>
@@ -337,14 +333,25 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
               </div>
             </div>
           </div>
+
+          {/* 3. BLOC DEMANDE TARIFS - order-3 sur mobile (Positionné sous le tableau sur Desktop) */}
+          <div className="lg:col-span-2 order-3 lg:order-3">
+            <div className="p-8 bg-gradient-to-br from-blue-50 to-white rounded-[40px] border border-blue-100 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+              <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0 shadow-xl shadow-blue-200"><i className="fas fa-file-invoice-dollar"></i></div>
+              <div className="flex-1 text-center md:text-left">
+                <h4 className="text-xl font-bold text-slate-900 mb-1">Catalogue Tarifaire Intégral</h4>
+                <p className="text-sm text-slate-500 leading-relaxed mb-6">Accédez aux prix de toutes nos autres gammes.</p>
+                <button onClick={() => setShowFullPriceModal(true)} className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95">Demander les tarifs complets <i className="fas fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* MODALE TARIFS COMPLETS - CONDENSÉE & DARK BLUE */}
+        {/* MODALE TARIFS COMPLETS */}
         {showFullPriceModal && (
           <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
             <div className="bg-white w-full max-w-3xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in flex flex-col lg:flex-row min-h-[420px]">
               
-              {/* Colonne Gauche : Formulaire (50%) */}
               <div className="lg:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-white">
                 <div className="mb-6">
                   <div className="flex justify-between items-center mb-3">
@@ -396,7 +403,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                 )}
               </div>
 
-              {/* Colonne Droite : Responsable Commercial (50%) - BLEU SLATE-900 & SIMPLE */}
               <div className="lg:w-1/2 bg-slate-900 relative flex flex-col text-white">
                 <button onClick={() => setShowFullPriceModal(false)} className="absolute top-6 right-6 z-20 bg-white/10 hover:bg-white/20 w-8 h-8 rounded-full hidden lg:flex items-center justify-center transition-all">
                   <i className="fas fa-times text-xs"></i>
@@ -409,7 +415,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                       alt="Younes OUAKRIM" 
                       className="relative w-28 h-28 object-cover rounded-full shadow-2xl grayscale transition-all duration-700 group-hover:grayscale-0 border-4 border-white/10" 
                     />
-                    {/* Indicateur d'état En Ligne */}
                     <div className="absolute bottom-1 right-2 bg-green-500 w-5 h-5 rounded-full border-2 border-slate-900 animate-pulse flex items-center justify-center" title="Disponible">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>

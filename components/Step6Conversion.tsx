@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { submitMeetingRequest, submitSampleRequest } from '../supabaseService.ts';
 
@@ -52,8 +53,8 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
             <i className="fas fa-paper-plane text-4xl"></i>
         </div>
         
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Prêt à booster vos marges ?</h2>
-        <p className="text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
+        <h2 className="text-2xl md:text-5xl font-extrabold mb-6">Prêt à booster vos marges ?</h2>
+        <p className="text-base md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
             L'excellence opérationnelle LeaderPak est à votre portée. Choisissez l'option qui convient à votre cycle d'achat.
         </p>
 

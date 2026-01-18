@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
@@ -11,6 +12,7 @@ interface Props {
 const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [activeFilter, setActiveFilter] = useState(initialFilter);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Sync with initialFilter from props (navigation from Step 1)
   useEffect(() => {
@@ -27,13 +29,13 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-            <span className="text-blue-600 font-bold tracking-widest uppercase text-[10px]">Étape 03 — Catalogue</span>
-            <h2 className="text-xl font-bold mt-2">Gamme Complète</h2>
-            <p className="text-slate-500 mt-2 text-sm">Diversifiez votre offre avec nos produits essentiels certifiés.</p>
+            <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 03 — Catalogue</span>
+            <h2 className="text-xl md:text-3xl font-bold mt-2">Gamme Complète</h2>
+            <p className="text-slate-500 mt-2 text-sm md:text-base">Diversifiez votre offre avec nos produits essentiels certifiés.</p>
         </div>
 
-        {/* Barre de Filtres */}
-        <div className="flex flex-wrap gap-2 mb-12 bg-slate-50 p-2 rounded-2xl border border-slate-100">
+        {/* Barre de Filtres - VERSION DESKTOP */}
+        <div className="hidden md:flex flex-wrap gap-2 mb-12 bg-slate-50 p-2 rounded-2xl border border-slate-100">
             {categories.map((cat) => (
                 <button
                     key={cat}
@@ -47,6 +49,41 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                     {cat}
                 </button>
             ))}
+        </div>
+
+        {/* Barre de Filtres - VERSION MOBILE AMÉLIORÉE */}
+        <div className="flex flex-col md:hidden mb-10 gap-2">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="w-full flex items-center justify-between bg-white border border-slate-200 rounded-[24px] px-6 py-4 font-bold text-slate-700 shadow-sm active:scale-[0.98] transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <i className="fas fa-filter text-blue-600 text-xs"></i>
+              <span>{activeFilter === 'Tous' ? 'Toutes les catégories' : activeFilter}</span>
+            </div>
+            <i className={`fas fa-chevron-down text-blue-600 transition-transform duration-300 ${isMenuOpen ? 'rotate-180' : ''}`}></i>
+          </button>
+
+          {isMenuOpen && (
+            <div className="flex flex-col gap-2 bg-slate-50/50 p-2 rounded-[24px] border border-slate-100 animate-slide-up">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setActiveFilter(cat);
+                    setIsMenuOpen(false);
+                  }}
+                  className={`w-full text-left px-6 py-4 rounded-[18px] text-sm font-bold transition-all ${
+                    activeFilter === cat 
+                    ? 'bg-blue-600 text-white shadow-md' 
+                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-transparent'
+                  }`}
+                >
+                  {cat === 'Tous' ? 'Toutes les catégories' : cat}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {filteredProducts.length > 0 ? (

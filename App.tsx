@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { TourStep } from './types.ts';
 import LandingView from './components/LandingView.tsx';
@@ -179,9 +180,9 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* LIGNE DE PROGRESSION HEADER */}
+          {/* LIGNE DE PROGRESSION HEADER - Masquée sur desktop (md:hidden) */}
           {!isAltPage && (
-            <div className="w-full h-[2px] bg-slate-100 relative overflow-hidden">
+            <div className="w-full h-[2px] bg-slate-100 relative overflow-hidden md:hidden">
                 <div 
                   className="absolute top-0 left-0 h-full bg-blue-600 transition-all duration-1000 ease-out"
                   style={{ width: `${progressPercent}%` }}

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { OUR_BRANDS } from '../constants';
 
@@ -35,20 +36,20 @@ const LandingView: React.FC<Props> = ({ onStart }) => {
             </div>
         </div>
         
-        {/* Headline - Mise à jour selon demande utilisateur */}
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-3 leading-tight">
+        {/* Headline - Taille réduite sur mobile : text-xl */}
+        <h1 className="text-xl md:text-5xl font-extrabold text-white mb-3 leading-tight">
           Excellence et performance pour <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">des produits ménagers innovants</span>
         </h1>
         
-        {/* Paragraph - Taille de police réduite et margin réduit */}
-        <p className="text-lg text-slate-400 mb-6 max-w-3xl mx-auto leading-relaxed">
+        {/* Paragraph - Taille réduite sur mobile : text-xs */}
+        <p className="text-xs md:text-lg text-slate-400 mb-6 max-w-3xl mx-auto leading-relaxed">
           Solutions sur-mesure et qualité industrielle pour les leaders de la distribution.
         </p>
         
         <div className="flex flex-col items-center gap-6 mb-8">
           <button 
             onClick={onStart}
-            className="group relative w-full sm:w-auto px-16 py-6 bg-blue-600 text-white rounded-[24px] font-black text-xl uppercase tracking-[0.2em] shadow-[0_20px_80px_rgba(37,99,235,0.5),0_0_0_10px_rgba(37,99,235,0.1)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.6),0_0_0_15px_rgba(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 overflow-hidden"
+            className="group relative w-full sm:w-auto px-10 md:px-16 py-6 bg-blue-600 text-white rounded-[24px] font-black text-sm md:text-xl uppercase tracking-[0.2em] shadow-[0_20px_80px_rgba(37,99,235,0.5),0_0_0_10px_rgba(37,99,235,0.1)] hover:shadow-[0_30px_100px_rgba(37,99,235,0.6),0_0_0_15px_rgba(37,99,235,0.15)] transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-4 overflow-hidden"
           >
             <span className="relative z-10">Commencer l’expérience</span>
             <i className="fas fa-chevron-right relative z-10 group-hover:translate-x-2 transition-transform duration-300"></i>
