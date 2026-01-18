@@ -10,27 +10,27 @@ const Step5Credibility: React.FC<Props> = ({ onNext, onPrev }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-12">
+        <div className="mb-12 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 05 — Confiance & Crédibilité</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2">Une Tradition de Qualité</h2>
             <p className="text-slate-500 mt-2 text-sm md:text-base">Nous ne vendons pas seulement des produits ; nous bâtissons des partenariats d'approvisionnement.</p>
         </div>
 
         <div className="space-y-16">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div className="order-2 md:order-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-center md:text-left">
+                <div className="order-2 md:order-1 flex flex-col items-center md:items-start">
                     <h3 className="text-2xl font-bold mb-4">Double Expertise Industrielle</h3>
                     <p className="text-slate-600 leading-relaxed mb-6">
                         Notre position de producteur et importateur nous permet d’assurer stabilité, régularité et conformité des produits proposés au marché.
                     </p>
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-4">
+                    <div className="space-y-4 w-full">
+                        <div className="flex items-center justify-center md:justify-start gap-4">
                             <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
                                 <i className="fas fa-industry"></i>
                             </div>
                             <span className="font-semibold text-slate-700">Fabrication interne maîtrisée</span>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center justify-center md:justify-start gap-4">
                             <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600">
                                 <i className="fas fa-ship"></i>
                             </div>
@@ -43,8 +43,8 @@ const Step5Credibility: React.FC<Props> = ({ onNext, onPrev }) => {
                 </div>
             </div>
 
-            <div className="bg-slate-50 rounded-3xl p-10 border border-slate-100">
-                <h3 className="text-2xl font-bold mb-8 text-center">Pipeline Logistique de Précision</h3>
+            <div className="bg-slate-50 rounded-3xl p-10 border border-slate-100 text-center">
+                <h3 className="text-2xl font-bold mb-8">Pipeline Logistique de Précision</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="text-center">
                         <div className="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center mx-auto mb-4 text-2xl text-blue-600">

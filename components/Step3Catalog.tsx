@@ -28,7 +28,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
+        <div className="mb-8 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 03 — Catalogue</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2">Gamme Complète</h2>
             <p className="text-slate-500 mt-2 text-sm md:text-base">Diversifiez votre offre avec nos produits essentiels certifiés.</p>
@@ -91,7 +91,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
               {filteredProducts.map((product) => (
                   <div 
                       key={product.id}
-                      className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                      className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 text-center md:text-left"
                   >
                       <div className="relative h-48 overflow-hidden">
                           <img 
@@ -105,14 +105,14 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                               </span>
                           </div>
                       </div>
-                      <div className="p-6">
+                      <div className="p-6 flex flex-col items-center md:items-start">
                           <h3 className="text-xl font-bold mb-2">{product.name}</h3>
                           <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed">
                               {product.description}
                           </p>
                           
-                          <div className="flex items-center justify-between mb-6 pt-4 border-t border-slate-50">
-                              <div>
+                          <div className="flex items-center justify-between w-full mb-6 pt-4 border-t border-slate-50">
+                              <div className="text-center md:text-left">
                                   <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">Marge Distr.</div>
                                   <div className="text-green-600 font-bold">{product.margin}</div>
                               </div>
@@ -140,16 +140,16 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
           </div>
         )}
 
-        <div className="bg-slate-900 rounded-3xl p-10 text-white relative overflow-hidden mb-16">
+        <div className="bg-slate-900 rounded-3xl p-10 text-white relative overflow-hidden mb-16 text-center md:text-left">
              <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]"></div>
              <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div>
+                <div className="flex flex-col items-center md:items-start">
                     <div className="inline-block px-3 py-1 bg-blue-600 rounded-lg text-[10px] font-bold uppercase mb-4 tracking-widest">Cross-Sell Stratégique</div>
                     <h3 className="text-3xl font-bold mb-4">Optimisez vos conteneurs</h3>
                     <p className="text-slate-400 leading-relaxed mb-6">
                         Mixer nos catégories (Éponges + Plastiques + Alu) permet d'amortir vos frais de transport et de bénéficier de remises de volume cumulées.
                     </p>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 justify-center md:justify-start">
                         <div className="flex -space-x-3">
                             {[1, 2, 3].map(i => (
                               <div key={i} className="w-10 h-10 rounded-full bg-slate-700 border-2 border-slate-900 overflow-hidden">
@@ -175,22 +175,22 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
 
         {selectedProduct && (
             <div className="fixed inset-0 z-[100] bg-slate-900/80 backdrop-blur flex items-center justify-center p-4">
-                <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-scale-in">
+                <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-scale-in text-center md:text-left">
                     <div className="p-8 flex flex-col md:flex-row gap-8">
                         <div className="md:w-1/2">
                             <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full rounded-2xl shadow-lg" />
                         </div>
-                        <div className="md:w-1/2">
-                            <div className="flex justify-between items-start mb-4">
+                        <div className="md:w-1/2 flex flex-col items-center md:items-start">
+                            <div className="flex justify-between items-start mb-4 w-full">
                                 <h3 className="text-2xl font-bold">{selectedProduct.name}</h3>
                                 <button onClick={() => setSelectedProduct(null)} className="text-slate-400 hover:text-slate-900">
                                     <i className="fas fa-times text-xl"></i>
                                 </button>
                             </div>
                             <p className="text-slate-500 mb-6">{selectedProduct.description}</p>
-                            <div className="space-y-3 mb-8">
+                            <div className="space-y-3 mb-8 w-full">
                                 {selectedProduct.highlights.map((h, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-sm text-slate-700">
+                                    <div key={i} className="flex items-center justify-center md:justify-start gap-3 text-sm text-slate-700">
                                         <i className="fas fa-circle-check text-blue-500"></i>
                                         {h}
                                     </div>

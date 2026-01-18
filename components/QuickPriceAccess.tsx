@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { submitPriceGridRequest } from '../supabaseService.ts';
 
@@ -39,29 +40,29 @@ const QuickPriceAccess: React.FC<Props> = ({ onBack, onSample }) => {
       <div className="bg-white w-full max-w-6xl rounded-[48px] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col lg:flex-row min-h-[750px]">
         
         {/* SECTION FORMULAIRE (50%) */}
-        <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-white">
-          <div className="mb-12">
+        <div className="lg:w-1/2 p-10 md:p-16 flex flex-col justify-center bg-white text-center md:text-left">
+          <div className="mb-12 flex flex-col items-center md:items-start">
             <button onClick={onBack} className="text-slate-400 hover:text-slate-900 mb-8 flex items-center gap-2 font-bold text-xs uppercase tracking-widest transition-colors">
               <i className="fas fa-arrow-left"></i> Retour
             </button>
             <h3 className="text-4xl font-black text-slate-900 tracking-tighter uppercase leading-tight">
               Demande de <br /><span className="text-blue-600 text-5xl">Grille Tarifaire</span>
             </h3>
-            <p className="text-slate-500 text-lg mt-4 max-w-sm">Détail complet de nos prix industriels et conditions logistiques.</p>
+            <p className="text-slate-500 text-lg mt-4 max-w-sm mx-auto md:mx-0">Détail complet de nos prix industriels et conditions logistiques.</p>
           </div>
 
           {sent ? (
-            <div className="py-20 animate-scale-in">
-              <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-8">
+            <div className="py-20 animate-scale-in text-center">
+              <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-8 mx-auto">
                 <i className="fas fa-check text-3xl"></i>
               </div>
               <h4 className="text-2xl font-black mb-4 uppercase">Demande Reçue</h4>
               <p className="text-slate-500">M. Younes OUAKRIM reviendra vers vous par email sous 24h.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-8 text-left">
               <div className="p-8 bg-slate-50 rounded-[32px] border border-slate-100">
-                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6">Catégories stratégiques</label>
+                <label className="block text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-6 text-center md:text-left">Catégories stratégiques</label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {["Éponges Inox", "Plastiques HD", "Alu / Film Pro", "Hygiène Sol"].map(cat => (
                     <label key={cat} className="flex items-center gap-3 text-sm font-bold text-slate-700 cursor-pointer group">
@@ -73,8 +74,8 @@ const QuickPriceAccess: React.FC<Props> = ({ onBack, onSample }) => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input required name="userName" type="text" placeholder="Nom Complet" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
-                <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
+                <input required name="userName" type="text" placeholder="Nom Complet" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all text-center md:text-left" />
+                <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all text-center md:text-left" />
               </div>
 
               <button type="submit" disabled={isSubmitting} className="w-full py-6 bg-blue-600 text-white rounded-[20px] font-black uppercase tracking-[0.2em] text-sm shadow-2xl shadow-blue-900/20 hover:bg-blue-700 transition-all active:scale-95 flex items-center justify-center gap-4">
@@ -94,7 +95,7 @@ const QuickPriceAccess: React.FC<Props> = ({ onBack, onSample }) => {
           </div>
 
           <div className="flex-1 flex flex-col p-12 md:p-20 relative z-10 justify-center">
-            <div className="mb-12">
+            <div className="mb-12 text-center md:text-left flex flex-col items-center md:items-start">
               <div className="w-16 h-1 bg-white/30 rounded-full mb-8"></div>
               <h4 className="text-3xl font-black uppercase tracking-tighter leading-none mb-2">Service Client</h4>
               <p className="text-blue-100 font-medium opacity-80 uppercase text-[10px] tracking-[0.4em]">Expertise & Proximité</p>

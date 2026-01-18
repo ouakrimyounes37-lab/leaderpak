@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { HERO_SPONGES } from '../constants';
 
@@ -43,8 +44,8 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
       <div className="max-w-7xl mx-auto">
         
         {/* Header Dashboard */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
-          <div>
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-center mb-10 gap-6 text-center md:text-left">
+          <div className="flex flex-col items-center md:items-start">
             <div className="text-blue-600 font-black text-xs uppercase tracking-[0.4em] mb-2">Espace Décideur</div>
             <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-4 leading-none">
               <i className="fas fa-gauge-high text-blue-600"></i>
@@ -58,9 +59,9 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
 
         {/* SECTION A: POURQUOI NOUS RÉFÉRENCER ? (New Design) */}
         <div className="mb-12">
-          <div className="bg-white p-10 md:p-14 rounded-[48px] border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.03)]">
+          <div className="bg-white p-10 md:p-14 rounded-[48px] border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.03)] text-center md:text-left">
             {/* Titre de section horizontal avec icône ampoule */}
-            <div className="flex items-center gap-6 mb-12 border-b border-slate-50 pb-8">
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-12 border-b border-slate-50 pb-8">
               <div className="w-16 h-16 bg-yellow-400 text-white rounded-[24px] flex items-center justify-center text-3xl shadow-lg shadow-yellow-100">
                 <i className="fas fa-lightbulb"></i>
               </div>
@@ -104,7 +105,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
           {/* SECTION B: Simulateur orienté MARGE */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-[40px] border border-slate-100 p-8 md:p-12 shadow-sm">
-              <div className="flex justify-between items-center mb-10">
+              <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4 text-center md:text-left">
                 <h2 className="text-2xl font-black text-slate-900 flex items-center gap-4 uppercase tracking-tighter">
                   <i className="fas fa-calculator text-blue-600"></i>
                   Simulateur de Marge
@@ -113,8 +114,8 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-                <div className="space-y-8">
-                  <div>
+                <div className="space-y-8 text-center md:text-left flex flex-col items-center md:items-start">
+                  <div className="w-full">
                     <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Gamme Produit</label>
                     <select 
                       value={selectedProductId}
@@ -124,13 +125,13 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                       {HERO_SPONGES.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                     </select>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4 w-full">
                     <div>
                       <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Prix Vente (TTC)</label>
                       <input 
                         type="number" step="0.01" value={sellPrice}
                         onChange={(e) => setSellPrice(parseFloat(e.target.value) || 0)}
-                        className="w-full px-6 py-4 bg-white border-2 border-blue-600/20 rounded-2xl font-black text-blue-600 text-xl outline-none"
+                        className="w-full px-6 py-4 bg-white border-2 border-blue-600/20 rounded-2xl font-black text-blue-600 text-xl outline-none text-center md:text-left"
                       />
                     </div>
                     <div>
@@ -138,13 +139,13 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                       <input 
                         type="number" value={monthlyQty}
                         onChange={(e) => setMonthlyQty(parseInt(e.target.value) || 0)}
-                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl font-bold outline-none"
+                        className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl font-bold outline-none text-center md:text-left"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-8">
+                <div className="space-y-8 text-center md:text-left">
                   <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
                     <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Impact Promotionnel (%)</label>
                     <input 
@@ -158,7 +159,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                         <span>Max -50%</span>
                     </div>
                   </div>
-                  <div className="bg-slate-900 p-6 rounded-3xl text-white shadow-xl shadow-slate-200">
+                  <div className="bg-slate-900 p-6 rounded-3xl text-white shadow-xl shadow-slate-200 text-center">
                       <div className="text-[10px] font-black uppercase text-slate-500 mb-1 tracking-widest">Vente Nette Unitaire</div>
                       <div className="text-3xl font-black">{effectiveSellPrice.toFixed(2)} <span className="text-sm font-bold text-blue-400">Dh</span></div>
                   </div>
@@ -175,19 +176,19 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                 </div>
                 
                 <div className="grid grid-cols-1 gap-6">
-                    <div className="p-8 rounded-[32px] bg-blue-600 text-white shadow-xl shadow-blue-200 flex justify-between items-center">
-                        <div>
+                    <div className="p-8 rounded-[32px] bg-blue-600 text-white shadow-xl shadow-blue-200 flex justify-between items-center text-center md:text-left">
+                        <div className="flex flex-col items-center md:items-start w-full md:w-auto">
                             <div className="text-[10px] font-black uppercase opacity-70 mb-1 tracking-widest">Marge Mensuelle</div>
                             <div className="text-3xl font-black tracking-tighter">{monthlyMargin.toLocaleString()} Dh</div>
                         </div>
-                        <i className="fas fa-sack-dollar text-4xl opacity-20"></i>
+                        <i className="fas fa-sack-dollar text-4xl opacity-20 hidden md:block"></i>
                     </div>
-                    <div className="p-8 rounded-[32px] bg-slate-100 border border-slate-200 flex justify-between items-center">
-                        <div>
+                    <div className="p-8 rounded-[32px] bg-slate-100 border border-slate-200 flex justify-between items-center text-center md:text-left">
+                        <div className="flex flex-col items-center md:items-start w-full md:w-auto">
                             <div className="text-[10px] font-black uppercase text-slate-400 mb-1 tracking-widest">Rentabilité Linéaire</div>
                             <div className="text-2xl font-black text-slate-900">{linearRentability} Dh <span className="text-sm font-bold opacity-30">/ m</span></div>
                         </div>
-                        <i className="fas fa-arrows-left-right text-3xl text-slate-300"></i>
+                        <i className="fas fa-arrows-left-right text-3xl text-slate-300 hidden md:block"></i>
                     </div>
                 </div>
               </div>
@@ -196,10 +197,10 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
 
           {/* SECTION C: Personnalisation du packaging */}
           <div className="lg:col-span-1">
-            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl sticky top-24 overflow-hidden h-full">
+            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl sticky top-24 overflow-hidden h-full text-center md:text-left">
               <div className="absolute top-0 right-0 p-8 opacity-5 text-8xl rotate-45"><i className="fas fa-box-open"></i></div>
               
-              <h2 className="text-2xl font-black mb-10 flex items-center gap-4 uppercase tracking-tighter relative z-10">
+              <h2 className="text-2xl font-black mb-10 flex items-center justify-center md:justify-start gap-4 uppercase tracking-tighter relative z-10">
                 <i className="fas fa-layer-group text-blue-400"></i>
                 Personnalisation
               </h2>
@@ -225,7 +226,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                     <input 
                       type="text" value={packagingConfig.dimensions}
                       onChange={(e) => setPackagingConfig(p => ({...p, dimensions: e.target.value}))}
-                      className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-sm font-bold outline-none focus:border-blue-500 transition-colors"
+                      className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-sm font-bold outline-none focus:border-blue-500 transition-colors text-center md:text-left"
                     />
                   </div>
 
@@ -249,7 +250,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                         {['Marque LeaderPak', 'Marque Distributeur (MDD)'].map(m => (
                             <button 
                                 key={m} onClick={() => setPackagingConfig(p => ({...p, brand: m}))}
-                                className={`px-5 py-4 rounded-xl text-xs font-bold text-left transition-all border ${packagingConfig.brand === m ? 'bg-white text-slate-900 shadow-xl' : 'border-white/10 text-slate-400 hover:bg-white/5'}`}
+                                className={`px-5 py-4 rounded-xl text-xs font-bold text-center md:text-left transition-all border ${packagingConfig.brand === m ? 'bg-white text-slate-900 shadow-xl' : 'border-white/10 text-slate-400 hover:bg-white/5'}`}
                             >
                                 {m}
                             </button>
@@ -258,7 +259,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                   </div>
                 </div>
 
-                <div className="p-8 bg-blue-600 rounded-[32px] shadow-xl">
+                <div className="p-8 bg-blue-600 rounded-[32px] shadow-xl text-center">
                     <p className="text-sm font-medium leading-relaxed italic opacity-90">
                         “Nous adaptons le packaging aux contraintes de votre rayon et à vos objectifs de rotation.”
                     </p>

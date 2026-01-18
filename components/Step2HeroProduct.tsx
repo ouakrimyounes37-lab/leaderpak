@@ -151,7 +151,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-10">
+        <div className="mb-10 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 02 — Focus Produit</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2">La Gamme VEDAL Métal</h2>
             <p className="text-slate-500 mt-2 text-sm md:text-base">Nos éponges métalliques sont conçues pour répondre à vos exigences professionnelles et s’adapter à vos standards logistiques.</p>
@@ -159,14 +159,14 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {HERO_SPONGES.map((sponge) => (
-                <div key={sponge.id} className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl transition-all flex flex-col">
+                <div key={sponge.id} className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-2xl transition-all flex flex-col text-center md:text-left">
                     <div className="h-52 overflow-hidden relative">
                         <img src={sponge.image} alt={sponge.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full font-bold text-blue-600 text-xs shadow-sm">
                             Vedal
                         </div>
                     </div>
-                    <div className="p-6 flex-1 flex flex-col">
+                    <div className="p-6 flex-1 flex flex-col items-center md:items-start">
                         <h3 className="font-bold text-xl mb-2">{sponge.name}</h3>
                         <p className="text-xs text-slate-500 mb-6 flex-1 leading-relaxed">{sponge.description}</p>
                         
@@ -184,7 +184,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         {selectedSponge && (
           <div className="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4">
               <div className="bg-white w-full max-w-6xl rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row max-h-[95vh]">
-                  <div className="lg:w-5/12 bg-slate-50 p-8 lg:p-12 flex flex-col border-r border-slate-100">
+                  <div className="lg:w-5/12 bg-slate-50 p-8 lg:p-12 flex flex-col border-r border-slate-100 text-center md:text-left">
                       <div className="mb-8">
                         <span className="text-blue-600 font-black text-xs uppercase tracking-[0.3em]">Fiche Technique Produit</span>
                         <h3 className="text-3xl font-black text-slate-900 mt-2 uppercase tracking-tighter">{selectedSponge.name}</h3>
@@ -210,8 +210,8 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                           </div>
                       </div>
                   </div>
-                  <div className="lg:w-7/12 p-8 lg:p-12 overflow-y-auto">
-                      <div className="flex justify-between items-center mb-10">
+                  <div className="lg:w-7/12 p-8 lg:p-12 overflow-y-auto text-center md:text-left">
+                      <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
                           <div>
                               <h4 className="text-2xl font-bold text-slate-900">Configuration Logistique</h4>
                               <p className="text-slate-500 text-sm mt-1 italic">Personnalisez chaque aspect de votre commande B2B.</p>
@@ -225,7 +225,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                       </div>
                       <div className="space-y-10">
                           <div>
-                              <div className="flex justify-between items-end mb-4">
+                              <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
                                 <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Unités par Carton</label>
                                 <div className="flex items-center gap-2">
                                   <span className="text-xs font-bold text-slate-400 italic">Saisie libre :</span>
@@ -271,7 +271,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                               </div>
                           </div>
                           <div className="p-8 bg-blue-600 rounded-[32px] text-white shadow-2xl relative overflow-hidden group">
-                              <h5 className="text-xs font-black uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
+                              <h5 className="text-xs font-black uppercase tracking-[0.2em] mb-6 flex items-center justify-center md:justify-start gap-2">
                                 <i className="fas fa-clipboard-list"></i> Résumé de la configuration
                               </h5>
                               <div className="grid grid-cols-2 gap-y-6 text-sm">
@@ -302,7 +302,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
 
         {showDownloadPopup && (
           <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl">
+            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl text-center md:text-left">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter">Confirmation Spécification</h3>
                 <button onClick={() => setShowDownloadPopup(false)} className="text-slate-400 hover:text-slate-900"><i className="fas fa-times"></i></button>
@@ -310,7 +310,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
               <div className="space-y-5">
                 <div>
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom du Client / Société</label>
-                  <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Ex: Marjane, BIM..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all" />
+                  <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Ex: Marjane, BIM..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all text-center md:text-left" />
                 </div>
                 <button onClick={handleDownloadPDF} disabled={isGeneratingPDF || !clientName.trim()} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-3 disabled:opacity-50 active:scale-95">
                   {isGeneratingPDF ? <i className="fas fa-spinner animate-spin"></i> : <i className="fas fa-file-pdf"></i>}

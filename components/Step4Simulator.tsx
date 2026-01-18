@@ -242,7 +242,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in relative">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12 no-print">
+        <div className="mb-12 no-print text-center md:text-left">
           <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 04 — Devis & Tarifs</span>
           <h2 className="text-xl md:text-3xl font-bold mt-2">Simulateur Commercial</h2>
           <p className="text-slate-500 mt-2 text-sm md:text-base">Gérez vos volumes et générez votre devis officiel (Format A4 - 1 page).</p>
@@ -292,10 +292,10 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
 
           {/* 2. BLOC SYNTHÈSE - order-2 sur mobile (Sticky on Desktop) */}
           <div className="lg:col-span-1 order-2 lg:order-2 lg:row-span-2 sticky top-24">
-            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl">
-              <h3 className="text-xl font-bold mb-8 flex items-center gap-3"><i className="fas fa-shopping-cart text-blue-400"></i>Synthèse</h3>
+            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl text-center md:text-left">
+              <h3 className="text-xl font-bold mb-8 flex items-center justify-center md:justify-start gap-3"><i className="fas fa-shopping-cart text-blue-400"></i>Synthèse</h3>
               <div className="space-y-6 mb-10">
-                <div>
+                <div className="flex flex-col items-center md:items-start">
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Identification Société <span className="text-red-500">*</span></label>
                   <input 
                     type="text" 
@@ -305,7 +305,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                       setCompanyName(e.target.value);
                       if (e.target.value.trim()) setShowNameError(false);
                     }} 
-                    className={`w-full px-4 py-3 bg-white/10 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm font-bold text-white transition-all ${
+                    className={`w-full px-4 py-3 bg-white/10 border rounded-xl outline-none focus:ring-2 focus:ring-blue-500 text-sm font-bold text-white transition-all text-center md:text-left ${
                       showNameError ? 'border-red-500 ring-2 ring-red-500/20' : 'border-white/20'
                     }`} 
                     required 
@@ -314,7 +314,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                     <p className="text-red-500 text-[10px] mt-1 font-bold">Veuillez renseigner le nom de la société</p>
                   )}
                 </div>
-                <div className="pt-6 border-t border-white/10 flex flex-col gap-1">
+                <div className="pt-6 border-t border-white/10 flex flex-col gap-1 items-center md:items-start">
                   <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">Total HT Estimé</span>
                   <span className="text-4xl font-black">{totalHT.toFixed(2)} Dh</span>
                 </div>
@@ -338,9 +338,9 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
 
           {/* 3. BLOC DEMANDE TARIFS - order-3 sur mobile (Positionné sous le tableau sur Desktop) */}
           <div className="lg:col-span-2 order-3 lg:order-3">
-            <div className="p-8 bg-gradient-to-br from-blue-50 to-white rounded-[40px] border border-blue-100 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+            <div className="p-8 bg-gradient-to-br from-blue-50 to-white rounded-[40px] border border-blue-100 flex flex-col md:flex-row items-center gap-8 shadow-sm text-center md:text-left">
               <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0 shadow-xl shadow-blue-200"><i className="fas fa-file-invoice-dollar"></i></div>
-              <div className="flex-1 text-center md:text-left">
+              <div className="flex-1 flex flex-col items-center md:items-start">
                 <h4 className="text-xl font-bold text-slate-900 mb-1">Catalogue Tarifaire Intégral</h4>
                 <p className="text-sm text-slate-500 leading-relaxed mb-6">Accédez aux prix de toutes nos autres gammes.</p>
                 <button onClick={() => setShowFullPriceModal(true)} className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95">Demander les tarifs complets <i className="fas fa-arrow-right"></i></button>
@@ -352,11 +352,11 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
         {/* MODALE TARIFS COMPLETS */}
         {showFullPriceModal && (
           <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-3xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in flex flex-col lg:flex-row min-h-[420px]">
+            <div className="bg-white w-full max-w-3xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in flex flex-col lg:flex-row min-h-[420px] text-center md:text-left">
               
               <div className="lg:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-white">
-                <div className="mb-6">
-                  <div className="flex justify-between items-center mb-3">
+                <div className="mb-6 flex flex-col items-center md:items-start">
+                  <div className="flex justify-between items-center mb-3 w-full">
                     <h3 className="text-2xl font-black text-slate-900 tracking-tighter uppercase leading-tight">
                       Accès Grille <br /><span className="text-blue-600 text-3xl">Tarifaire</span>
                     </h3>
@@ -375,9 +375,9 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                     <h4 className="text-base font-bold mb-1">Demande EnvoyÉE !</h4>
                   </div>
                 ) : (
-                  <form onSubmit={handleFullPriceSubmit} className="space-y-4">
+                  <form onSubmit={handleFullPriceSubmit} className="space-y-4 text-left">
                     <div className="p-5 bg-slate-50 rounded-[20px] border border-slate-100">
-                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Catégories d'intérêt</label>
+                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3 text-center md:text-left">Catégories d'intérêt</label>
                       <div className="grid grid-cols-1 gap-2">
                         {[
                           "Éponge Métallique", 
@@ -394,8 +394,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                     </div>
 
                     <div className="grid grid-cols-1 gap-3">
-                      <input required name="userName" type="text" placeholder="Votre Nom" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm" />
-                      <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm" />
+                      <input required name="userName" type="text" placeholder="Votre Nom" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
+                      <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
                     </div>
 
                     <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-[16px] font-black uppercase tracking-[0.2em] text-[10px] shadow-xl hover:bg-blue-700 transition-all active:scale-95">
@@ -478,7 +478,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
 
         {showEmailModal && (
           <div className="fixed inset-0 z-[120] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-scale-in">
+            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-scale-in text-center md:text-left">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-slate-900">Envoi par Email</h3>
                 <button onClick={() => setShowEmailModal(false)} className="text-slate-400 hover:text-slate-900"><i className="fas fa-times"></i></button>
@@ -486,7 +486,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
               <form onSubmit={handleEmailRequest} className="space-y-5">
                 <div>
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Email Professionnel</label>
-                  <input required type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="votre@entreprise.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold" />
+                  <input required type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="votre@entreprise.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
                 </div>
                 <div className="p-4 bg-blue-50 rounded-xl text-blue-700 text-xs font-medium">
                   Le devis pour <strong>{companyName}</strong> d'un montant de <strong>{totalHT.toFixed(2)} Dh (HT)</strong> sera envoyé.

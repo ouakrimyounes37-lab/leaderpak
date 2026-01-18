@@ -220,7 +220,7 @@ const App: React.FC = () => {
                             <button
                                 key={stepNum}
                                 onClick={() => goToStep(stepNum)}
-                                className={`text-left px-4 py-3 rounded-xl transition-all font-medium ${
+                                className={`px-4 py-3 rounded-xl transition-all font-medium text-center md:text-left ${
                                     currentStep === stepNum ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-100'
                                 }`}
                             >

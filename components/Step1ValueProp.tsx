@@ -12,10 +12,10 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
   return (
     <div className="p-6 md:p-12 animate-slide-up">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
+        <div className="mb-12 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 01 — Vision LeaderPak</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2 text-slate-900">Expertise Industrielle Diversifiée</h2>
-            <p className="text-slate-500 mt-4 text-sm md:text-base max-w-3xl">
+            <p className="text-slate-500 mt-4 text-sm md:text-base max-w-3xl mx-auto md:mx-0">
                 Producteur et importateur de référence depuis 2013, nous articulons notre savoir-faire autour de 4 piliers stratégiques.
             </p>
         </div>
@@ -40,10 +40,10 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
                         <div className="md:w-2/5 h-48 md:h-auto overflow-hidden">
                             <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
-                        <div className="p-8 md:w-3/5 flex flex-col justify-center">
-                            {/* Layout Icon + Titre: Row sur mobile, Stack sur desktop */}
-                            <div className="flex items-center gap-4 md:block mb-4 md:mb-0">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 md:mb-4 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
+                        <div className="p-8 md:w-3/5 flex flex-col justify-center text-center md:text-left">
+                            {/* Layout Icon + Titre: Row & centré sur mobile, Stack sur desktop */}
+                            <div className="flex flex-row md:block items-center md:items-start justify-center gap-4 mb-4 md:mb-0">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mb-0 md:mb-4 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
                                     <i className={`fas ${cat.icon} text-xl`}></i>
                                 </div>
                                 <h3 className={`text-lg md:text-xl font-bold md:mb-2 ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors`}>

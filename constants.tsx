@@ -1,10 +1,11 @@
+
 import { Product, CompanyStat } from './types.ts';
 
 export const COMPANY_STATS: CompanyStat[] = [
   { label: 'Fondée en', value: '2013', icon: 'fa-calendar-days' },
   { label: 'Approvisionnement sûr', value: 'Fiabilité', icon: 'fa-shield-halved' },
   { label: 'Normes contrôlées', value: 'Qualité', icon: 'fa-award' },
-  { label: 'Partenaire durable', value: 'Engagement', icon: 'fa-handshake' }
+  { label: 'Partenaire durable', value: 'Innovation', icon: 'fa-handshake' }
 ];
 
 export const OUR_BRANDS = [
