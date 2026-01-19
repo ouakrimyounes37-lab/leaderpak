@@ -60,7 +60,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.40,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     usage: 'Nettoyage intensif cuisine',
-    image: './assets/Éponge à spirale (Pack 3+1).webp',
+    image: './assets/1.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '20g',
