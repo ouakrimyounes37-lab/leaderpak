@@ -60,7 +60,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.40,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     usage: 'Nettoyage intensif cuisine',
-    image: 'assets/1.webp',
+    image: 'https://media.licdn.com/dms/image/v2/D4E03AQFDd7CZlUM6tQ/profile-displayphoto-crop_800_800/B4EZlEKcxoKkAI-/0/1757785215774?e=1770249600&v=beta&t=tK0_FLiFovytNIrT_2xTRa3KKfz--G-Yw-WWSirIfpA',
     tech: {
       material: 'Acier Inoxydable',
       weight: '20g',
