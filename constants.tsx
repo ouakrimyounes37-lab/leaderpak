@@ -27,7 +27,7 @@ export const VISION_CATEGORIES = [
     name: 'Éponge Métallique',
     description: 'Expertise historique : notre gamme Pro-Shine en inox 410, adaptable à tous les formats.',
     icon: 'fa-soap',
-    image: '/photo-1584622650111-993a426fbf0a.avif',
+    image: '/abfe7402f1e59d431aab365b51777f55.jpg',
     isHighlight: true
   },
   {
