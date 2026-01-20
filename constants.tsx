@@ -27,7 +27,7 @@ export const VISION_CATEGORIES = [
     name: 'Éponge Métallique',
     description: 'Expertise historique : notre gamme Pro-Shine en inox 410, adaptable à tous les formats.',
     icon: 'fa-soap',
-    image: '/abfe7402f1e59d431aab365b51777f55.jpg',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     isHighlight: true
   },
   {
@@ -60,7 +60,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.40,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     usage: 'Nettoyage intensif cuisine',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '20g',
