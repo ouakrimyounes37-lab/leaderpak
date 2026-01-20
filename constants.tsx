@@ -34,14 +34,14 @@ export const VISION_CATEGORIES = [
     name: 'Produits Plastiques',
     description: 'Seaux, pelles, et solutions d\'injection plastique haute densité pour usage domestique et pro.',
     icon: 'fa-box-archive',
-    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=400&auto=format&fit=crop'
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp'
   },
   {
     id: 'cat3',
     name: 'Alum / Film Alimentaire',
     description: 'Conservation et cuisson : aluminium et film PVC qualité professionnelle pour la distribution.',
     icon: 'fa-film',
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143af7bf?q=80&w=400&auto=format&fit=crop'
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp'
   }
 ];
 
@@ -110,7 +110,7 @@ export const PRODUCTS: Product[] = [
     name: 'Éponge à spirale (Pack 3+1)',
     category: 'Éponge Métallique',
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     highlights: ['Pack économique', 'Inox pur', 'Usage intensif'],
     margin: '35%+',
     rotation: 'Haute'
@@ -120,7 +120,7 @@ export const PRODUCTS: Product[] = [
     name: 'Éponge Power Inox (Pack 1+1)',
     category: 'Éponge Métallique',
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
-    image: 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=800&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     highlights: ['Ultra-puissant', 'Longue durée', 'Qualité Pro'],
     margin: '35%+',
     rotation: 'Stable'
@@ -130,7 +130,7 @@ export const PRODUCTS: Product[] = [
     name: 'Lavettes Mailles Inox (x5)',
     category: 'Éponge Métallique',
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
-    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=800&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     highlights: ['Souplesse acier', 'Anti-odeur', 'Lavable'],
     margin: '35%+',
     rotation: 'Haute'
@@ -140,7 +140,7 @@ export const PRODUCTS: Product[] = [
     name: 'Éponges À Récurer avec Poignée (x3)',
     category: 'Éponge Métallique',
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
-    image: 'https://images.unsplash.com/photo-1550966841-39145908001e?q=80&w=800&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     highlights: ['Poignée ergonomique', 'Zéro contact', 'Pack de 3'],
     margin: '35%+',
     rotation: 'Haute'
@@ -150,7 +150,7 @@ export const PRODUCTS: Product[] = [
     name: 'Seau Gradué 10L Renforcé',
     category: 'Produits Plastiques',
     description: 'Seau industriel en polypropylène haute densité avec graduation interne.',
-    image: 'https://images.unsplash.com/photo-1590422443681-643f803f2613?q=80&w=800&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
     highlights: ['PP-HD incassable', 'Anse métal anticorrosion', 'Graduation précise'],
     margin: '40%+',
     rotation: 'Très Haute'
