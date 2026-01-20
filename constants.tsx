@@ -74,7 +74,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.55,
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
     usage: 'Usage professionnel / Collectivités',
-    image: 'https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=400&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905403748-9e27a4a3-bc29-44fa-896f-07fa8b7e7a52.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '40g',
@@ -88,7 +88,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.48,
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
     usage: 'Céramique et vitrocéramique',
-    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=400&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905375783-8ea61cd5-37e8-4fd2-b963-735d90ceeca4.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '18g',
@@ -102,7 +102,7 @@ export const HERO_SPONGES: any[] = [
     price: 1.10,
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
     usage: 'Consommation domestique',
-    image: 'https://images.unsplash.com/photo-1550966841-39145908001e?q=400&auto=format&fit=crop',
+    image: 'https://image2url.com/r2/default/images/1768905375783-8ea61cd5-37e8-4fd2-b963-735d90ceeca4.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '15g x 3',
