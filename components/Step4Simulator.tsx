@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { HERO_SPONGES } from '../constants';
 import { submitPriceGridRequest } from '../supabaseService.ts';
@@ -117,12 +116,13 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const name = formData.get('userName') as string;
     const email = formData.get('userEmail') as string;
+    const phone = formData.get('userPhone') as string;
     const categories: string[] = [];
     formData.getAll('categories').forEach(cat => categories.push(cat as string));
 
     setFullPriceFormSent(true);
     try {
-      await submitPriceGridRequest({ name, email, categories });
+      await submitPriceGridRequest({ name, email, phone, categories });
       setTimeout(() => {
         setShowFullPriceModal(false);
         setFullPriceFormSent(false);
@@ -252,10 +252,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
            <QuoteTemplate forExport={true} />
         </div>
 
-        {/* Grille principale avec réorganisation de l'ordre pour mobile */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16 no-print items-start">
           
-          {/* 1. BLOC SIMULATEUR - order-1 sur mobile */}
           <div className="lg:col-span-2 order-1">
             <div className="bg-white border border-slate-100 rounded-[32px] overflow-hidden shadow-sm">
               <table className="w-full text-left">
@@ -271,9 +269,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                   {HERO_SPONGES.map(s => (
                     <tr key={s.id} className="hover:bg-slate-50/50 transition-colors">
                       <td className="p-4 md:p-6">
-                        {/* Taille de police réduite sur mobile pour le titre de variante */}
                         <div className="font-bold text-slate-900 text-[11px] md:text-base leading-tight">{s.name}</div>
-                        {/* Description masquée sur mobile */}
                         <div className="hidden md:block text-[10px] text-slate-400 font-medium uppercase mt-0.5">{s.usage}</div>
                       </td>
                       <td className="p-4 md:p-6 text-center font-bold text-slate-600 text-xs md:text-base">
@@ -290,7 +286,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
             </div>
           </div>
 
-          {/* 2. BLOC SYNTHÈSE - order-2 sur mobile (Sticky on Desktop) */}
           <div className="lg:col-span-1 order-2 lg:order-2 lg:row-span-2 sticky top-24">
             <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl text-center md:text-left">
               <h3 className="text-xl font-bold mb-8 flex items-center justify-center md:justify-start gap-3"><i className="fas fa-shopping-cart text-blue-400"></i>Synthèse</h3>
@@ -299,7 +294,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Identification Société <span className="text-red-500">*</span></label>
                   <input 
                     type="text" 
-                    placeholder="Ex: Marjane / BIM..." 
                     value={companyName} 
                     onChange={(e) => {
                       setCompanyName(e.target.value);
@@ -336,7 +330,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
             </div>
           </div>
 
-          {/* 3. BLOC DEMANDE TARIFS - order-3 sur mobile (Positionné sous le tableau sur Desktop) */}
           <div className="lg:col-span-2 order-3 lg:order-3">
             <div className="p-8 bg-gradient-to-br from-blue-50 to-white rounded-[40px] border border-blue-100 flex flex-col md:flex-row items-center gap-8 shadow-sm text-center md:text-left">
               <div className="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-3xl shrink-0 shadow-xl shadow-blue-200"><i className="fas fa-file-invoice-dollar"></i></div>
@@ -351,8 +344,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
 
         {/* MODALE TARIFS COMPLETS */}
         {showFullPriceModal && (
-          <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-3xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in flex flex-col lg:flex-row min-h-[420px] text-center md:text-left">
+          <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md overflow-y-auto flex justify-center p-4 py-8 md:items-center">
+            <div className="bg-white w-full max-w-3xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in flex flex-col lg:flex-row min-h-[420px] text-center md:text-left my-auto">
               
               <div className="lg:w-1/2 p-6 md:p-10 flex flex-col justify-center bg-white">
                 <div className="mb-6 flex flex-col items-center md:items-start">
@@ -377,16 +370,15 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                 ) : (
                   <form onSubmit={handleFullPriceSubmit} className="space-y-4 text-left">
                     <div className="p-5 bg-slate-50 rounded-[20px] border border-slate-100">
-                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3 text-center md:text-left">Catégories d'intérêt</label>
+                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3 text-center md:text-left">CATEGORIES</label>
                       <div className="grid grid-cols-1 gap-2">
                         {[
                           "Éponge Métallique", 
                           "Produits Plastiques", 
-                          "Alum / Film Alimentaire", 
-                          "Savon Beldi / Hygiène"
+                          "Alum / Film Alimentaire"
                         ].map(cat => (
                           <label key={cat} className="flex items-center gap-3 text-sm font-bold text-slate-700 cursor-pointer group">
-                            <input type="checkbox" name="categories" value={cat} className="w-3.5 h-3.5 accent-blue-600 rounded border-slate-200" /> 
+                            <input type="checkbox" name="categories" value={cat} defaultChecked={true} className="w-3.5 h-3.5 accent-blue-600 rounded border-slate-200" /> 
                             <span className="group-hover:text-blue-600 transition-colors">{cat}</span>
                           </label>
                         ))}
@@ -394,8 +386,9 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                     </div>
 
                     <div className="grid grid-cols-1 gap-3">
-                      <input required name="userName" type="text" placeholder="Votre Nom" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
-                      <input required name="userEmail" type="email" placeholder="Email Pro" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
+                      <input required name="userName" type="text" placeholder="NOM COMPLET" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
+                      <input required name="userEmail" type="email" placeholder="EMAIL" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
+                      <input required name="userPhone" type="tel" placeholder="TELEPHONE" className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-sm text-center md:text-left" />
                     </div>
 
                     <button type="submit" className="w-full py-4 bg-blue-600 text-white rounded-[16px] font-black uppercase tracking-[0.2em] text-[10px] shadow-xl hover:bg-blue-700 transition-all active:scale-95">
@@ -411,33 +404,17 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                 </button>
                 
                 <div className="flex-1 flex flex-col p-8 relative z-10 justify-center items-center text-center">
-                  <div className="relative mb-6 group">
-                    <img 
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop" 
-                      alt="Younes OUAKRIM" 
-                      className="relative w-28 h-28 object-cover rounded-full shadow-2xl grayscale transition-all duration-700 group-hover:grayscale-0 border-4 border-white/10" 
-                    />
-                    <div className="absolute bottom-1 right-2 bg-green-500 w-5 h-5 rounded-full border-2 border-slate-900 animate-pulse flex items-center justify-center" title="Disponible">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                  
+                  <div className="mb-8">
+                    <h5 className="text-xl font-black uppercase tracking-tighter leading-none mb-4 text-blue-500">SERVICE COMMERCIAL</h5>
+                    <div className="space-y-2 text-[11px] font-bold uppercase tracking-widest text-slate-300">
+                      <div className="flex items-center justify-center gap-2"><i className="fas fa-phone-alt text-blue-400"></i> 06 82 33 08 20</div>
+                      <div className="flex items-center justify-center gap-2"><i className="fas fa-phone-alt text-blue-400"></i> 05 23 32 60 48</div>
+                      <div className="flex items-center justify-center gap-2"><i className="fas fa-envelope text-blue-400"></i> Contact@leaderpak.ma</div>
+                      <div className="flex items-center justify-center gap-2 mt-4 opacity-80 leading-relaxed max-w-[220px]">
+                        <i className="fas fa-map-marker-alt text-blue-400"></i> 43, zone industrielle sud-ouest Mohammedia
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="flex items-center justify-center gap-2 mb-1">
-                      <h5 className="text-xl font-black uppercase tracking-tighter leading-none">M. Younes OUAKRIM</h5>
-                    </div>
-                    <div className="text-blue-400 font-bold uppercase text-[8px] tracking-[0.3em] opacity-80 flex items-center justify-center gap-2">
-                      <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                      Responsable commercial
-                      <span className="w-1 h-1 bg-blue-400 rounded-full"></span>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/5 border border-white/10 p-5 rounded-[24px] relative max-w-[240px] mb-8 group-hover:bg-white/10 transition-colors">
-                    <i className="fas fa-quote-left absolute -top-3 left-4 text-blue-500/30 text-2xl"></i>
-                    <p className="text-xs italic font-medium leading-relaxed">
-                      "Nous garantissons une réponse personnalisée sous 24h avec nos meilleures conditions."
-                    </p>
                   </div>
 
                   <button 
@@ -454,7 +431,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
         )}
 
         {showPreviewModal && (
-          <div className="fixed inset-0 z-[180] bg-slate-900/95 backdrop-blur-md flex flex-col items-center justify-center p-4">
+          <div className="fixed inset-0 z-[180] bg-slate-900/95 backdrop-blur-md overflow-y-auto flex flex-col items-center p-4 py-8 md:justify-center">
               <div className="w-full max-w-5xl flex justify-between items-center mb-6 text-white px-2">
                   <h3 className="text-xl md:text-2xl font-black flex items-center gap-3"><i className="fas fa-eye text-blue-400"></i>Aperçu A4 (Page Unique)</h3>
                   <div className="flex gap-4">
@@ -468,7 +445,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                   </div>
               </div>
               
-              <div className="bg-slate-700 p-2 md:p-10 rounded-[20px] md:rounded-[40px] shadow-2xl overflow-auto w-full max-w-[850px] max-h-[85vh] flex justify-center">
+              <div className="bg-slate-700 p-2 md:p-10 rounded-[20px] md:rounded-[40px] shadow-2xl overflow-auto w-full max-w-[850px] max-h-[85vh] flex justify-center my-auto">
                   <div className="bg-white shadow-2xl origin-top" style={{ margin: '0 auto' }}>
                     <QuoteTemplate />
                   </div>
@@ -477,8 +454,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
         )}
 
         {showEmailModal && (
-          <div className="fixed inset-0 z-[120] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-scale-in text-center md:text-left">
+          <div className="fixed inset-0 z-[120] bg-slate-900/80 backdrop-blur-md overflow-y-auto flex justify-center p-4 py-8 md:items-center">
+            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-scale-in text-center md:text-left my-auto">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-slate-900">Envoi par Email</h3>
                 <button onClick={() => setShowEmailModal(false)} className="text-slate-400 hover:text-slate-900"><i className="fas fa-times"></i></button>
@@ -486,7 +463,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
               <form onSubmit={handleEmailRequest} className="space-y-5">
                 <div>
                   <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Email Professionnel</label>
-                  <input required type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="votre@entreprise.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                  <input required type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
                 </div>
                 <div className="p-4 bg-blue-50 rounded-xl text-blue-700 text-xs font-medium">
                   Le devis pour <strong>{companyName}</strong> d'un montant de <strong>{totalHT.toFixed(2)} Dh (HT)</strong> sera envoyé.

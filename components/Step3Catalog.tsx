@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
@@ -14,7 +13,6 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
   const [activeFilter, setActiveFilter] = useState(initialFilter);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Sync with initialFilter from props (navigation from Step 1)
   useEffect(() => {
     setActiveFilter(initialFilter);
   }, [initialFilter]);
@@ -51,7 +49,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
             ))}
         </div>
 
-        {/* Barre de Filtres - VERSION MOBILE AMÉLIORÉE */}
+        {/* Barre de Filtres - VERSION MOBILE */}
         <div className="flex flex-col md:hidden mb-10 gap-2">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -91,7 +89,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
               {filteredProducts.map((product) => (
                   <div 
                       key={product.id}
-                      className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 text-center md:text-left"
+                      className="group bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 text-center md:text-left flex flex-col"
                   >
                       <div className="relative h-48 overflow-hidden">
                           <img 
@@ -105,9 +103,9 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                               </span>
                           </div>
                       </div>
-                      <div className="p-6 flex flex-col items-center md:items-start">
+                      <div className="p-6 flex flex-col items-center md:items-start flex-1">
                           <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                          <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed">
+                          <p className="text-slate-500 text-sm mb-6 line-clamp-2 leading-relaxed flex-1">
                               {product.description}
                           </p>
                           
@@ -140,69 +138,64 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
           </div>
         )}
 
-        <div className="bg-slate-900 rounded-3xl p-10 text-white relative overflow-hidden mb-16 text-center md:text-left">
-             <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]"></div>
-             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                <div className="flex flex-col items-center md:items-start">
-                    <div className="inline-block px-3 py-1 bg-blue-600 rounded-lg text-[10px] font-bold uppercase mb-4 tracking-widest">Cross-Sell Stratégique</div>
-                    <h3 className="text-3xl font-bold mb-4">Optimisez vos conteneurs</h3>
-                    <p className="text-slate-400 leading-relaxed mb-6">
-                        Mixer nos catégories (Éponges + Plastiques + Alu) permet d'amortir vos frais de transport et de bénéficier de remises de volume cumulées.
-                    </p>
-                    <div className="flex items-center gap-4 justify-center md:justify-start">
-                        <div className="flex -space-x-3">
-                            {[1, 2, 3].map(i => (
-                              <div key={i} className="w-10 h-10 rounded-full bg-slate-700 border-2 border-slate-900 overflow-hidden">
-                                  <img src={`https://i.pravatar.cc/100?u=${i}`} alt="Buyer" />
-                              </div>
+        {/* MODALE FICHE TECHNIQUE SANS IMAGE */}
+        {selectedProduct && (
+            <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-xl overflow-y-auto flex justify-center p-4 md:items-center">
+                <div className="bg-white w-full max-w-2xl rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.4)] animate-scale-in p-8 md:p-12">
+                    
+                    <div className="flex justify-between items-start mb-8">
+                        <div>
+                            <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 block mb-2">Fiche Technique</span>
+                            <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase leading-none">{selectedProduct.name}</h3>
+                        </div>
+                        <button onClick={() => setSelectedProduct(null)} className="w-10 h-10 bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-xl flex items-center justify-center transition-all">
+                            <i className="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div className="mb-10">
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em] mb-4">Description du produit</h4>
+                        <p className="text-slate-600 text-lg leading-relaxed font-medium">
+                            {selectedProduct.description}
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4 mb-10">
+                        <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                            <div className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Potentiel Marge</div>
+                            <div className="text-2xl font-black text-green-600">{selectedProduct.margin}</div>
+                        </div>
+                        <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                            <div className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Rotation Rayon</div>
+                            <div className="text-2xl font-black text-blue-600">{selectedProduct.rotation}</div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-6 mb-12">
+                        <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em] border-b border-slate-100 pb-2">Points Clés & Avantages</h4>
+                        <div className="grid grid-cols-1 gap-3">
+                            {selectedProduct.highlights.map((h, i) => (
+                                <div key={i} className="flex items-center gap-4 text-sm font-bold text-slate-700 bg-white p-4 rounded-2xl border border-slate-50 shadow-sm">
+                                    <i className="fas fa-check-circle text-blue-600 text-lg"></i>
+                                    {h}
+                                </div>
                             ))}
                         </div>
-                        <span className="text-sm text-slate-400">Plus de 150 enseignes nous font confiance</span>
                     </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm group hover:bg-white/10 transition-all">
-                        <div className="text-3xl font-bold mb-1 text-blue-400">15%</div>
-                        <div className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Gain Logistique</div>
-                    </div>
-                    <div className="bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm group hover:bg-white/10 transition-all">
-                        <div className="text-3xl font-bold mb-1 text-blue-400">1 SKC</div>
-                        <div className="text-[10px] text-slate-400 font-black uppercase tracking-widest">Stock Consolidé</div>
-                    </div>
-                </div>
-             </div>
-        </div>
 
-        {selectedProduct && (
-            <div className="fixed inset-0 z-[100] bg-slate-900/80 backdrop-blur flex items-center justify-center p-4">
-                <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl animate-scale-in text-center md:text-left">
-                    <div className="p-8 flex flex-col md:flex-row gap-8">
-                        <div className="md:w-1/2">
-                            <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full rounded-2xl shadow-lg" />
-                        </div>
-                        <div className="md:w-1/2 flex flex-col items-center md:items-start">
-                            <div className="flex justify-between items-start mb-4 w-full">
-                                <h3 className="text-2xl font-bold">{selectedProduct.name}</h3>
-                                <button onClick={() => setSelectedProduct(null)} className="text-slate-400 hover:text-slate-900">
-                                    <i className="fas fa-times text-xl"></i>
-                                </button>
-                            </div>
-                            <p className="text-slate-500 mb-6">{selectedProduct.description}</p>
-                            <div className="space-y-3 mb-8 w-full">
-                                {selectedProduct.highlights.map((h, i) => (
-                                    <div key={i} className="flex items-center justify-center md:justify-start gap-3 text-sm text-slate-700">
-                                        <i className="fas fa-circle-check text-blue-500"></i>
-                                        {h}
-                                    </div>
-                                ))}
-                            </div>
-                            <button 
-                                onClick={() => setSelectedProduct(null)}
-                                className="w-full py-4 bg-slate-900 text-white rounded-xl font-bold"
-                            >
-                                Fermer
-                            </button>
-                        </div>
+                    <div className="grid grid-cols-2 gap-4 pt-8 border-t border-slate-100">
+                        <button 
+                            onClick={() => setSelectedProduct(null)}
+                            className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-slate-800 transition-all shadow-xl active:scale-95"
+                        >
+                            Fermer la fiche
+                        </button>
+                        <button 
+                            onClick={onNext}
+                            className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                        >
+                            <i className="fas fa-calculator"></i> Simuler Prix
+                        </button>
                     </div>
                 </div>
             </div>

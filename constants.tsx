@@ -1,4 +1,3 @@
-
 import { Product, CompanyStat } from './types.ts';
 
 export const COMPANY_STATS: CompanyStat[] = [
@@ -43,13 +42,6 @@ export const VISION_CATEGORIES = [
     description: 'Conservation et cuisson : aluminium et film PVC qualité professionnelle pour la distribution.',
     icon: 'fa-film',
     image: 'https://images.unsplash.com/photo-1620916566398-39f1143af7bf?q=80&w=400&auto=format&fit=crop'
-  },
-  {
-    id: 'cat4',
-    name: 'Savon Beldi / Nettoyant sol',
-    description: 'Hygiène traditionnelle et moderne : formulations performantes pour une propreté impeccable.',
-    icon: 'fa-pump-medical',
-    image: 'https://images.unsplash.com/photo-1550966841-39145908001e?q=80&w=400&auto=format&fit=crop'
   }
 ];
 
@@ -151,6 +143,96 @@ export const PRODUCTS: Product[] = [
     image: 'https://images.unsplash.com/photo-1550966841-39145908001e?q=80&w=800&auto=format&fit=crop',
     highlights: ['Poignée ergonomique', 'Zéro contact', 'Pack de 3'],
     margin: '35%+',
+    rotation: 'Haute'
+  },
+  {
+    id: 'p-plast-1',
+    name: 'Seau Gradué 10L Renforcé',
+    category: 'Produits Plastiques',
+    description: 'Seau industriel en polypropylène haute densité avec graduation interne.',
+    image: 'https://images.unsplash.com/photo-1590422443681-643f803f2613?q=80&w=800&auto=format&fit=crop',
+    highlights: ['PP-HD incassable', 'Anse métal anticorrosion', 'Graduation précise'],
+    margin: '40%+',
+    rotation: 'Très Haute'
+  },
+  {
+    id: 'p-plast-2',
+    name: 'Bassine Ronde 15L Premium',
+    category: 'Produits Plastiques',
+    description: 'Bassine multifonction ergonomique pour usage domestique ou professionnel.',
+    image: 'https://images.unsplash.com/photo-1590422443857-45607b30c6a3?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Bords arrondis', 'Finition lisse', 'Coloris assortis'],
+    margin: '38%+',
+    rotation: 'Haute'
+  },
+  {
+    id: 'p-plast-3',
+    name: 'Pelle à Poussière Pro',
+    category: 'Produits Plastiques',
+    description: 'Pelle rigide avec lèvre en caoutchouc pour une récupération parfaite.',
+    image: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Lèvre souple', 'Fixation manche', 'Plastique antichoc'],
+    margin: '45%+',
+    rotation: 'Stable'
+  },
+  {
+    id: 'p-plast-4',
+    name: 'Corbeille à Papier Aérée',
+    category: 'Produits Plastiques',
+    description: 'Design moderne et aéré pour bureaux et espaces collectifs.',
+    image: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Design mesh', 'Légère et robuste', 'Facile à nettoyer'],
+    margin: '42%+',
+    rotation: 'Moyenne'
+  },
+  {
+    id: 'p-plast-5',
+    name: 'Caisse de Rangement 30L',
+    category: 'Produits Plastiques',
+    description: 'Solution de stockage empilable avec couvercle clipsable sécurisé.',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143af7bf?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Empilable', 'Transparent / Opaque', 'Couvercle inclus'],
+    margin: '35%+',
+    rotation: 'Haute'
+  },
+  {
+    id: 'p-alu-1',
+    name: 'Rouleau Aluminium 30m Pro',
+    category: 'Alum / Film Alimentaire',
+    description: 'Aluminium haute résistance pour cuisson et conservation longue durée.',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143af7bf?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Épaisseur renforcée', 'Boîte distributrice', '100% Recyclable'],
+    margin: '30%+',
+    rotation: 'Très Haute'
+  },
+  {
+    id: 'p-alu-2',
+    name: 'Film Étirable 50m Auto-Adhésif',
+    category: 'Alum / Film Alimentaire',
+    description: 'Film PVC qualité contact alimentaire avec système de découpe facile.',
+    image: 'https://images.unsplash.com/photo-1590422443681-643f803f2613?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Anti-buée', 'Forte adhérence', 'Sans phtalates'],
+    margin: '35%+',
+    rotation: 'Haute'
+  },
+  {
+    id: 'p-alu-3',
+    name: 'Papier Cuisson Anti-Adhésif 20m',
+    category: 'Alum / Film Alimentaire',
+    description: 'Papier sulfurisé double face siliconé pour une cuisson sans graissage.',
+    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Résiste à 220°C', 'Biodégradable', 'Format standard'],
+    margin: '40%+',
+    rotation: 'Stable'
+  },
+  {
+    id: 'p-alu-4',
+    name: 'Papier Aluminium 10m Usage Quotidien',
+    category: 'Alum / Film Alimentaire',
+    description: 'Version compacte idéale pour les besoins domestiques rapides.',
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143af7bf?q=80&w=800&auto=format&fit=crop',
+    highlights: ['Économique', 'Souple', 'Protège des odeurs'],
+    margin: '25%+',
     rotation: 'Haute'
   }
 ];

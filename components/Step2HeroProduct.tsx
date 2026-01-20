@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { HERO_SPONGES } from '../constants.tsx';
 
@@ -10,12 +9,12 @@ interface Props {
 const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
   const [selectedSponge, setSelectedSponge] = useState<any>(null);
   
-  const [customUnits, setCustomUnits] = useState<number>(240);
+  const [customUnits, setCustomUnits] = useState<number | string>("");
   const [packagingOption, setPackagingOption] = useState<string>("Packaging sur-mesure");
   
-  const [cartonLength, setCartonLength] = useState<string>("60");
-  const [cartonWidth, setCartonWidth] = useState<string>("40");
-  const [cartonHeight, setCartonHeight] = useState<string>("30");
+  const [cartonLength, setCartonLength] = useState<string>("");
+  const [cartonWidth, setCartonWidth] = useState<string>("");
+  const [cartonHeight, setCartonHeight] = useState<string>("");
 
   const [showDownloadPopup, setShowDownloadPopup] = useState(false);
   const [clientName, setClientName] = useState("");
@@ -24,15 +23,13 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
 
   useEffect(() => {
     if (selectedSponge) {
-      setCustomUnits(240);
+      setCustomUnits("");
       setPackagingOption("Packaging sur-mesure");
-      setCartonLength("60");
-      setCartonWidth("40");
-      setCartonHeight("30");
+      setCartonLength("");
+      setCartonWidth("");
+      setCartonHeight("");
     }
   }, [selectedSponge]);
-
-  const unitsPerBox = [48, 96, 120, 240, 480];
 
   const handleDownloadPDF = async () => {
     if (!clientName.trim()) {
@@ -182,117 +179,145 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         </div>
 
         {selectedSponge && (
-          <div className="fixed inset-0 z-[100] bg-slate-900/95 backdrop-blur-md flex items-center justify-center p-4">
-              <div className="bg-white w-full max-w-6xl rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] flex flex-col lg:flex-row max-h-[95vh]">
-                  <div className="lg:w-5/12 bg-slate-50 p-8 lg:p-12 flex flex-col border-r border-slate-100 text-center md:text-left">
-                      <div className="mb-8">
-                        <span className="text-blue-600 font-black text-xs uppercase tracking-[0.3em]">Fiche Technique Produit</span>
-                        <h3 className="text-3xl font-black text-slate-900 mt-2 uppercase tracking-tighter">{selectedSponge.name}</h3>
-                      </div>
-                      <div className="relative aspect-square rounded-[32px] overflow-hidden shadow-2xl bg-white mb-10 group">
-                          <img src={selectedSponge.image} alt={selectedSponge.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
-                          <div className="absolute bottom-6 left-6 right-6">
-                            <div className="bg-white/20 backdrop-blur-xl border border-white/30 p-4 rounded-2xl text-white">
-                                <div className="text-[10px] font-bold uppercase tracking-widest mb-1 opacity-70">Qualité Matériau</div>
-                                <div className="font-bold text-lg">{selectedSponge.tech.material}</div>
-                            </div>
+          <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-xl overflow-y-auto flex justify-center p-0 md:p-8 items-start md:items-center">
+              <div className="bg-white w-full max-w-7xl h-fit md:rounded-[48px] shadow-[0_0_100px_rgba(0,0,0,0.4)] flex flex-col lg:flex-row my-0 md:my-8 overflow-hidden">
+                  
+                  {/* Left Hero Section (Produit) */}
+                  <div className="lg:w-[45%] bg-slate-50 relative flex flex-col shrink-0 border-r border-slate-100">
+                      <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-white to-transparent opacity-50 z-10"></div>
+                      
+                      <div className="p-6 md:p-10 relative z-20 flex flex-col h-full">
+                          <div className="flex justify-between items-start mb-6 md:mb-10">
+                              <div>
+                                  <span className="inline-block px-3 py-1 bg-blue-600 text-white rounded-lg text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-2 md:mb-3">LeaderPak</span>
+                                  <h3 className="text-2xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9]">{selectedSponge.name}</h3>
+                              </div>
+                              <button 
+                                  onClick={() => setSelectedSponge(null)}
+                                  className="lg:hidden bg-white/80 backdrop-blur w-10 h-10 rounded-full flex items-center justify-center shadow-lg text-slate-400 hover:text-slate-900"
+                              >
+                                  <i className="fas fa-times"></i>
+                              </button>
                           </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                          <div className="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm">
-                              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Durabilité</div>
-                              <div className="font-bold text-slate-900">Haute Performance</div>
+
+                          <div className="flex-1 flex items-center justify-center py-4 md:py-10">
+                              <div className="relative group w-full max-w-[200px] md:max-w-sm aspect-square">
+                                  <div className="absolute inset-0 bg-blue-600/5 rounded-[32px] md:rounded-[48px] rotate-6 group-hover:rotate-3 transition-transform duration-700"></div>
+                                  <img 
+                                      src={selectedSponge.image} 
+                                      alt={selectedSponge.name} 
+                                      className="relative w-full h-full object-cover rounded-[32px] md:rounded-[48px] transition-transform duration-1000 group-hover:scale-105" 
+                                  />
+                                  <div className="absolute -bottom-4 -right-4 bg-white p-3 md:p-6 rounded-[18px] md:rounded-[28px] shadow-xl border border-slate-100 hidden md:block animate-float">
+                                      <div className="text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5 md:mb-1">Qualité Inox</div>
+                                      <div className="text-blue-600 font-bold text-sm md:text-xl uppercase tracking-tighter">VEDAL Inox 410</div>
+                                  </div>
+                              </div>
                           </div>
-                          <div className="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm">
-                              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Traitement</div>
-                              <div className="font-bold text-slate-900">Anti-Corrosion</div>
+
+                          <div className="grid grid-cols-2 gap-3 md:gap-4 mt-auto">
+                              <div className="bg-white p-4 md:p-6 rounded-[20px] md:rounded-[28px] border border-slate-100 shadow-sm flex items-center gap-3 md:gap-4">
+                                  <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0">
+                                      <i className="fas fa-shield-halved text-sm md:text-xl"></i>
+                                  </div>
+                                  <div>
+                                      <div className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Durabilité</div>
+                                      <div className="font-bold text-slate-900 text-[10px] md:text-sm">Renforcée</div>
+                                  </div>
+                              </div>
+                              <div className="bg-white p-4 md:p-6 rounded-[20px] md:rounded-[28px] border border-slate-100 shadow-sm flex items-center gap-3 md:gap-4">
+                                  <div className="w-8 h-8 md:w-12 md:h-12 bg-blue-50 text-blue-600 rounded-xl md:rounded-2xl flex items-center justify-center shrink-0">
+                                      <i className="fas fa-microchip text-sm md:text-xl"></i>
+                                  </div>
+                                  <div>
+                                      <div className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-0.5">Traitement</div>
+                                      <div className="font-bold text-slate-900 text-[10px] md:text-sm">Anti-Corrosion</div>
+                                  </div>
+                              </div>
                           </div>
                       </div>
                   </div>
-                  <div className="lg:w-7/12 p-8 lg:p-12 overflow-y-auto text-center md:text-left">
-                      <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+
+                  {/* Right Configuration Section */}
+                  <div className="lg:w-[55%] flex flex-col bg-white">
+                      {/* Header Desktop */}
+                      <div className="hidden lg:flex justify-between items-center p-8 border-b border-slate-50">
                           <div>
-                              <h4 className="text-2xl font-bold text-slate-900">Configuration Logistique</h4>
-                              <p className="text-slate-500 text-sm mt-1 italic">Personnalisez chaque aspect de votre commande B2B.</p>
+                              <h4 className="text-xl font-black text-slate-900 uppercase tracking-tighter">Configuration Logistique</h4>
+                              <p className="text-slate-500 text-xs mt-1">Établissez vos standards pour la production industrielle.</p>
                           </div>
                           <button 
                               onClick={() => setSelectedSponge(null)}
-                              className="bg-slate-100 hover:bg-red-50 hover:text-red-500 text-slate-400 w-12 h-12 rounded-full flex items-center justify-center transition-all"
+                              className="w-12 h-12 rounded-2xl bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 transition-all flex items-center justify-center"
                           >
                               <i className="fas fa-times text-xl"></i>
                           </button>
                       </div>
-                      <div className="space-y-10">
-                          <div>
-                              <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-2">
-                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest">Unités par Carton</label>
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs font-bold text-slate-400 italic">Saisie libre :</span>
-                                  <input 
-                                    type="number" 
-                                    value={customUnits} 
-                                    onChange={(e) => setCustomUnits(parseInt(e.target.value) || 0)}
-                                    className="w-20 px-3 py-1 bg-white border border-slate-200 rounded-lg text-sm font-bold text-blue-600 focus:ring-2 focus:ring-blue-100 outline-none"
-                                  />
-                                </div>
+
+                      <div className="p-6 md:p-12 space-y-8 md:space-y-12">
+                          
+                          {/* Info Box */}
+                          <div className="p-5 md:p-8 bg-blue-50/50 border-2 border-dashed border-blue-100 rounded-[24px] md:rounded-[32px] flex items-center gap-4 md:gap-6">
+                              <div className="w-10 h-10 md:w-16 md:h-16 bg-blue-600 text-white rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-blue-200">
+                                  <i className="fas fa-box-open text-xl md:text-2xl"></i>
                               </div>
-                              <div className="grid grid-cols-5 gap-3">
-                                  {unitsPerBox.map(u => (
-                                      <button 
-                                          key={u}
-                                          onClick={() => setCustomUnits(u)}
-                                          className={`py-4 rounded-2xl text-xs font-bold transition-all border-2 ${
-                                              customUnits === u 
-                                              ? 'bg-slate-900 border-slate-900 text-white shadow-xl scale-105' 
-                                              : 'bg-white border-slate-100 text-slate-500 hover:border-slate-200'
-                                          }`}
-                                      >
-                                          {u}
-                                      </button>
-                                  ))}
-                              </div>
+                              <p className="text-blue-900 text-xs md:text-base font-semibold leading-tight md:leading-relaxed">
+                                  Configuration sur-mesure adaptée à vos linéaires.
+                              </p>
                           </div>
-                          <div>
-                              <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Ajuster la taille de packaging (Longueur, Largeur, Hauteur en cm)</label>
-                              <div className="grid grid-cols-3 gap-4">
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] font-black text-slate-400 uppercase">Longueur</label>
-                                      <input type="number" value={cartonLength} onChange={(e) => setCartonLength(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-500" />
+
+                          <div className="space-y-8 md:space-y-12">
+                              {/* Unit input */}
+                              <div className="group">
+                                  <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+                                      <div className="w-1 h-5 md:w-1.5 md:h-6 bg-blue-600 rounded-full"></div>
+                                      <label className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-widest">Unités / Carton Master</label>
                                   </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] font-black text-slate-400 uppercase">Largeur</label>
-                                      <input type="number" value={cartonWidth} onChange={(e) => setCartonWidth(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-500" />
-                                  </div>
-                                  <div className="space-y-2">
-                                      <label className="text-[9px] font-black text-slate-400 uppercase">Hauteur</label>
-                                      <input type="number" value={cartonHeight} onChange={(e) => setCartonHeight(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-500" />
+                                  <div className="relative max-w-md">
+                                      <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 text-slate-400">
+                                          <i className="fas fa-boxes"></i>
+                                      </div>
+                                      <input 
+                                          type="number" 
+                                          value={customUnits}
+                                          onChange={(e) => setCustomUnits(e.target.value)}
+                                          placeholder="Ex: 240"
+                                          className="w-full pl-12 md:pl-16 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all text-center md:text-left"
+                                      />
                                   </div>
                               </div>
-                          </div>
-                          <div className="p-8 bg-blue-600 rounded-[32px] text-white shadow-2xl relative overflow-hidden group">
-                              <h5 className="text-xs font-black uppercase tracking-[0.2em] mb-6 flex items-center justify-center md:justify-start gap-2">
-                                <i className="fas fa-clipboard-list"></i> Résumé de la configuration
-                              </h5>
-                              <div className="grid grid-cols-2 gap-y-6 text-sm">
+
+                              {/* Dimensions inputs */}
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                   <div>
-                                      <div className="opacity-60 text-[10px] font-black uppercase tracking-widest mb-1">Produit de base</div>
-                                      <div className="font-bold text-lg">{selectedSponge.name}</div>
+                                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Longueur (cm)</label>
+                                      <input type="number" value={cartonLength} onChange={(e) => setCartonLength(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-center md:text-left" />
                                   </div>
-                                  <div className="text-right">
-                                      <div className="opacity-60 text-[10px] font-black uppercase tracking-widest mb-1">Packaging choisi</div>
-                                      <div className="font-bold text-lg">{packagingOption}</div>
+                                  <div>
+                                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Largeur (cm)</label>
+                                      <input type="number" value={cartonWidth} onChange={(e) => setCartonWidth(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-center md:text-left" />
                                   </div>
-                                  <div className="pt-4 border-t border-white/20">
-                                      <div className="opacity-60 text-[10px] font-black uppercase tracking-widest mb-1">Unités / Carton</div>
-                                      <div className="font-bold text-xl">{customUnits}</div>
-                                  </div>
-                                  <div className="pt-4 border-t border-white/20 text-right">
-                                      <div className="opacity-60 text-[10px] font-black uppercase tracking-widest mb-1">Dimensions du Carton</div>
-                                      <div className="font-bold text-xl">{cartonLength}x{cartonWidth}x{cartonHeight} cm</div>
+                                  <div>
+                                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">Hauteur (cm)</label>
+                                      <input type="number" value={cartonHeight} onChange={(e) => setCartonHeight(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-center md:text-left" />
                                   </div>
                               </div>
-                              <button onClick={() => setShowDownloadPopup(true)} className="w-full mt-10 py-5 bg-white text-blue-700 hover:bg-blue-50 rounded-2xl font-black uppercase tracking-widest transition-all shadow-xl active:scale-95">Confirmer cette Spécification</button>
+
+                          </div>
+
+                          <div className="mt-12 pt-8 border-t border-slate-50 flex gap-4">
+                              <button 
+                                  onClick={() => setShowDownloadPopup(true)}
+                                  className="flex-1 py-5 bg-blue-600 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3"
+                              >
+                                  <i className="fas fa-file-pdf"></i> Générer Fiche Technique
+                              </button>
+                              <button 
+                                  onClick={() => setSelectedSponge(null)}
+                                  className="px-8 py-5 bg-slate-100 text-slate-500 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-slate-200 transition-all"
+                              >
+                                  Fermer
+                              </button>
                           </div>
                       </div>
                   </div>
@@ -301,28 +326,38 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
         )}
 
         {showDownloadPopup && (
-          <div className="fixed inset-0 z-[150] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl text-center md:text-left">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-slate-900 uppercase tracking-tighter">Confirmation Spécification</h3>
-                <button onClick={() => setShowDownloadPopup(false)} className="text-slate-400 hover:text-slate-900"><i className="fas fa-times"></i></button>
-              </div>
-              <div className="space-y-5">
-                <div>
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom du Client / Société</label>
-                  <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Ex: Marjane, BIM..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold transition-all text-center md:text-left" />
+            <div className="fixed inset-0 z-[200] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
+                <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center md:text-left">Finaliser le document</h3>
+                    <div className="space-y-4 mb-8">
+                        <div>
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2 text-center md:text-left">Nom de l'enseigne / Client</label>
+                            <input 
+                                type="text" 
+                                value={clientName}
+                                onChange={(e) => setClientName(e.target.value)}
+                                placeholder="Ex: CARREFOUR"
+                                className="w-full px-5 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 font-bold text-center md:text-left"
+                            />
+                        </div>
+                    </div>
+                    <div className="flex gap-3">
+                        <button 
+                            onClick={handleDownloadPDF}
+                            disabled={isGeneratingPDF}
+                            className="flex-1 py-4 bg-blue-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 disabled:opacity-50"
+                        >
+                            {isGeneratingPDF ? <i className="fas fa-spinner animate-spin"></i> : <i className="fas fa-download"></i>}
+                            Télécharger le PDF
+                        </button>
+                        <button onClick={() => setShowDownloadPopup(false)} className="px-6 py-4 bg-slate-100 text-slate-500 rounded-xl font-bold hover:bg-slate-200">Annuler</button>
+                    </div>
                 </div>
-                <button onClick={handleDownloadPDF} disabled={isGeneratingPDF || !clientName.trim()} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-3 disabled:opacity-50 active:scale-95">
-                  {isGeneratingPDF ? <i className="fas fa-spinner animate-spin"></i> : <i className="fas fa-file-pdf"></i>}
-                  {isGeneratingPDF ? "Génération en cours..." : "Télécharger PDF"}
-                </button>
-              </div>
             </div>
-          </div>
         )}
 
-        <div style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}>
-          <TechnicalSpecPDF />
+        <div style={{ display: 'none' }}>
+            <TechnicalSpecPDF />
         </div>
 
         <div className="flex justify-between items-center pt-8 border-t border-slate-100">

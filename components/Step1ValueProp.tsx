@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { COMPANY_STATS, VISION_CATEGORIES, OUR_BRANDS } from '../constants';
 
@@ -20,58 +19,55 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
             </p>
         </div>
 
-        {/* 1. Grille des Catégories de Vision */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
+        {/* 1. Grille des Catégories de Vision - Design 3 colonnes sur desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {VISION_CATEGORIES.map((cat) => (
                 <div 
                     key={cat.id} 
-                    className={`group relative bg-white border rounded-[32px] p-1 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden ${
+                    className={`group relative bg-white border rounded-[32px] p-1 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden flex flex-col ${
                       cat.isHighlight ? 'border-blue-600 ring-4 ring-blue-50' : 'border-slate-100'
                     }`}
                 >
                     {cat.isHighlight && (
                         <div className="absolute top-4 right-4 z-10">
-                            <span className="bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
-                                Expertise Historique
+                            <span className="bg-blue-600 text-white text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                                Expertise
                             </span>
                         </div>
                     )}
-                    <div className="flex flex-col md:flex-row h-full">
-                        <div className="md:w-2/5 h-48 md:h-auto overflow-hidden">
-                            <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                        </div>
-                        <div className="p-8 md:w-3/5 flex flex-col justify-center text-center md:text-left">
-                            {/* Layout Icon + Titre: Row & centré sur mobile, Stack sur desktop */}
-                            <div className="flex flex-row md:block items-center md:items-start justify-center gap-4 mb-4 md:mb-0">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 mb-0 md:mb-4 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
-                                    <i className={`fas ${cat.icon} text-xl`}></i>
-                                </div>
-                                <h3 className={`text-lg md:text-xl font-bold md:mb-2 ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors`}>
-                                    {cat.name}
-                                </h3>
+                    <div className="h-44 overflow-hidden shrink-0">
+                        <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1 text-center">
+                        <div className="flex flex-col items-center gap-3 mb-4">
+                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
+                                <i className={`fas ${cat.icon} text-xl`}></i>
                             </div>
-                            
-                            <p className="hidden md:block text-slate-500 text-sm leading-relaxed mb-6">
-                                {cat.description}
-                            </p>
-                            <button 
-                                onClick={() => onCategorySelect(cat.name)}
-                                className={`mt-auto flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-widest py-3 px-6 rounded-xl transition-all ${
-                                    cat.isHighlight 
-                                    ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200' 
-                                    : 'bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white'
-                                }`}
-                            >
-                                Découvrir les produits
-                                <i className="fas fa-arrow-right"></i>
-                            </button>
+                            <h3 className={`text-lg font-bold ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors leading-tight`}>
+                                {cat.name}
+                            </h3>
                         </div>
+                        
+                        <p className="text-slate-500 text-xs leading-relaxed mb-6 flex-1">
+                            {cat.description}
+                        </p>
+                        <button 
+                            onClick={() => onCategorySelect(cat.name)}
+                            className={`mt-auto flex items-center justify-center gap-2 font-bold text-[10px] uppercase tracking-widest py-3 px-4 rounded-xl transition-all ${
+                                cat.isHighlight 
+                                ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-200' 
+                                : 'bg-slate-100 text-slate-600 hover:bg-blue-600 hover:text-white'
+                            }`}
+                        >
+                            Découvrir
+                            <i className="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             ))}
         </div>
 
-        {/* 2. Grille des Engagements (Stats) - Optimisée Mobile */}
+        {/* 2. Grille des Engagements (Stats) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             {COMPANY_STATS.map((stat, i) => (
                 <div key={i} className="text-center px-2 py-6 md:p-8 bg-slate-50 border border-slate-100 rounded-3xl group hover:bg-white hover:shadow-lg transition-all">
@@ -82,15 +78,13 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
             ))}
         </div>
 
-        {/* 3. Section Nos Marques - Version Marquee (Placée après les engagements) */}
+        {/* 3. Section Nos Marques */}
         <div className="mb-20">
             <div className="w-full bg-white border border-slate-100 rounded-[32px] py-10 overflow-hidden relative group cursor-default">
-                {/* Gradients pour cacher les bords */}
                 <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10"></div>
                 <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10"></div>
                 
                 <div className="flex animate-marquee whitespace-nowrap gap-16 items-center">
-                    {/* Doublement pour effet infini */}
                     {[...OUR_BRANDS, ...OUR_BRANDS].map((brand, i) => (
                         <div key={i} className="flex flex-col items-center gap-3 px-4 group/item">
                             <div className={`w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center text-slate-300 group-hover/item:bg-blue-50 group-hover/item:text-blue-600 transition-all duration-300 shadow-sm group-hover/item:shadow-lg group-hover/item:scale-110`}>

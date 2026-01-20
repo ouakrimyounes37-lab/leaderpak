@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { TourStep } from './types.ts';
 import LandingView from './components/LandingView.tsx';
@@ -203,7 +202,7 @@ const App: React.FC = () => {
             onClick={() => setIsSidebarOpen(false)}
         >
             <div 
-                className="w-72 h-full bg-white shadow-2xl p-6 flex flex-col gap-8"
+                className="w-72 h-full bg-white shadow-2xl p-6 flex flex-col gap-8 overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-center justify-between">

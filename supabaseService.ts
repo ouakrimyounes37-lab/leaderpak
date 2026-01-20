@@ -1,3 +1,4 @@
+
 const SUPABASE_URL = 'https://iiiethnswnxjpdrnyzem.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_nPgK5VmY8WJFKj-nsP4RgQ_tSssKYNn';
 
@@ -29,10 +30,11 @@ const handleResponse = async (response: Response) => {
 /**
  * Enregistre une demande d'accès à la grille tarifaire (Table: price_grid_requests)
  */
-export const submitPriceGridRequest = async (data: { name: string, email: string, categories: string[] }) => {
+export const submitPriceGridRequest = async (data: { name: string, email: string, phone: string, categories: string[] }) => {
   const payload = {
     name: data.name,
     email: data.email,
+    phone: data.phone,
     categories: data.categories.join(', ') // Conversion du tableau en string pour la colonne TEXT
   };
   
@@ -47,7 +49,7 @@ export const submitPriceGridRequest = async (data: { name: string, email: string
 /**
  * Enregistre une demande de rendez-vous (Table: meeting_requests)
  */
-export const submitMeetingRequest = async (data: { name: string, company: string, email: string, location: string, message: string }) => {
+export const submitMeetingRequest = async (data: { name: string, company: string, email: string, phone: string, meeting_date: string, message: string }) => {
   const response = await fetch(`${SUPABASE_URL}/rest/v1/meeting_requests`, {
     method: 'POST',
     headers,
@@ -59,11 +61,12 @@ export const submitMeetingRequest = async (data: { name: string, company: string
 /**
  * Enregistre une demande d'échantillons (Table: sample_requests)
  */
-export const submitSampleRequest = async (data: { name: string, company: string, email: string, address: string, categories: string[], message: string }) => {
+export const submitSampleRequest = async (data: { name: string, company: string, email: string, phone: string, address: string, categories: string[], message: string }) => {
   const payload = {
     name: data.name,
     company: data.company,
     email: data.email,
+    phone: data.phone,
     address: data.address,
     categories: data.categories.join(', '), // Conversion du tableau en string
     message: data.message

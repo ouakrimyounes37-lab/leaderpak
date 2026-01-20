@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { submitMeetingRequest, submitSampleRequest } from '../supabaseService.ts';
 
@@ -19,18 +18,18 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
     const name = formData.get('userName') as string;
     const company = formData.get('company') as string;
     const email = formData.get('userEmail') as string;
+    const phone = formData.get('userPhone') as string;
     const message = formData.get('message') as string;
 
     setFormStatus('sending');
     try {
       if (showSamplePopup) {
         const address = formData.get('address') as string;
-        const categories: string[] = [];
-        formData.getAll('categories').forEach(cat => categories.push(cat as string));
-        await submitSampleRequest({ name, company, email, address, categories, message });
+        // Envoi d'un tableau vide de catégories car supprimé du formulaire par instruction utilisateur
+        await submitSampleRequest({ name, company, email, phone, address, categories: [], message });
       } else {
-        const location = formData.get('meeting') as string;
-        await submitMeetingRequest({ name, company, email, location, message });
+        const dateTime = formData.get('meetingDateTime') as string;
+        await submitMeetingRequest({ name, company, email, phone, meeting_date: dateTime, message });
       }
 
       setFormStatus('success');
@@ -67,13 +66,13 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
 
             <button onClick={() => setShowPopup(true)} className="p-8 bg-blue-600 hover:bg-blue-700 text-white rounded-[32px] shadow-xl transition-all hover:scale-105 group">
                 <i className="fas fa-calendar-check text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                <div className="font-bold text-lg">Prendre RDV</div>
+                <div className="font-bold text-lg">Fixer une Rencontre</div>
                 <div className="text-[10px] opacity-80 uppercase font-black tracking-widest mt-1">Visite Usine / Locaux</div>
             </button>
 
             <button onClick={() => setShowSamplePopup(true)} className="p-8 bg-slate-900 hover:bg-slate-800 text-white rounded-[32px] shadow-xl transition-all hover:scale-105 group">
                 <i className="fas fa-vial text-4xl mb-4 group-hover:scale-110 transition-transform"></i>
-                <div className="font-bold text-lg">Échantillons</div>
+                <div className="font-bold text-lg">Demander des Échantillons</div>
                 <div className="text-[10px] opacity-80 uppercase font-black tracking-widest mt-1">Tester la Qualité</div>
             </button>
 
@@ -107,10 +106,9 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
         </div>
       </div>
 
-      {/* MODALE DE CONTACT / ÉCHANTILLON */}
       {(showPopup || showSamplePopup) && (
-        <div className="fixed inset-0 z-[130] bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
-            <div className="bg-white w-full max-w-xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in text-center md:text-left">
+        <div className="fixed inset-0 z-[130] bg-slate-900/70 backdrop-blur-md overflow-y-auto flex justify-center p-4 py-8 md:items-center">
+            <div className="bg-white w-full max-w-xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in text-center md:text-left my-auto">
                 <div className="p-10">
                     <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                         <div className="flex flex-col items-center md:items-start">
@@ -136,56 +134,44 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex flex-col items-center md:items-start">
-                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom & Prénom</label>
-                                    <input required name="userName" type="text" placeholder="Khalid Alami" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom COMPLET</label>
+                                    <input required name="userName" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
                                 </div>
                                 <div className="flex flex-col items-center md:items-start">
                                     <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Société</label>
-                                    <input required name="company" type="text" placeholder="SARL / SA / Groupe" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                    <input required name="company" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
                                 </div>
                             </div>
-                            <div className="flex flex-col items-center md:items-start">
-                                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Email Professionnel</label>
-                                <input required name="userEmail" type="email" placeholder="k.alami@groupe.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="flex flex-col items-center md:items-start">
+                                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">EMAIL</label>
+                                  <input required name="userEmail" type="email" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                              </div>
+                              <div className="flex flex-col items-center md:items-start">
+                                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">TELEPHONE</label>
+                                  <input required name="userPhone" type="tel" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                              </div>
                             </div>
                             
                             {showSamplePopup ? (
                               <div className="space-y-4">
                                 <div className="flex flex-col items-center md:items-start">
                                     <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Adresse de livraison (Échantillons)</label>
-                                    <input required name="address" type="text" placeholder="Rue, Ville, Code Postal" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
-                                </div>
-                                <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-left">
-                                  <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3 text-center md:text-left">Gammes à tester</label>
-                                  <div className="grid grid-cols-2 gap-3">
-                                    {["Éponges Pro-Shine", "Produits Plastiques", "Alum/Film Food", "Savon/Hygiène"].map(g => (
-                                      <label key={g} className="flex items-center gap-3 text-sm font-bold text-slate-700 cursor-pointer group">
-                                        <input type="checkbox" name="categories" value={g} className="w-5 h-5 accent-blue-600 rounded border-slate-300" /> 
-                                        <span className="group-hover:text-blue-600 transition-colors">{g}</span>
-                                      </label>
-                                    ))}
-                                  </div>
+                                    <input required name="address" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
                                 </div>
                               </div>
                             ) : (
-                              <div className="p-5 bg-blue-50 rounded-2xl border border-blue-100 text-left">
-                                  <label className="block text-[10px] font-black text-blue-700 uppercase tracking-widest mb-3 text-center md:text-left">Lieu souhaité de rencontre</label>
-                                  <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start">
-                                      <label className="flex items-center gap-2 cursor-pointer group">
-                                          <input type="radio" name="meeting" value="Bureaux LeaderPak (CASA)" defaultChecked className="w-4 h-4 accent-blue-600" />
-                                          <span className="text-sm font-bold text-blue-900 group-hover:text-blue-700">Nos Bureaux (CASA)</span>
-                                      </label>
-                                      <label className="flex items-center gap-2 cursor-pointer group">
-                                          <input type="radio" name="meeting" value="Locaux Client" className="w-4 h-4 accent-blue-600" />
-                                          <span className="text-sm font-bold text-blue-900 group-hover:text-blue-700">Vos Locaux</span>
-                                      </label>
-                                  </div>
+                              <div className="space-y-4">
+                                <div className="flex flex-col items-center md:items-start">
+                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">SELECTIONNER DATE HEURE</label>
+                                    <input required name="meetingDateTime" type="datetime-local" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                </div>
                               </div>
                             )}
 
                             <div className="flex flex-col items-center md:items-start">
                                 <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Précisions ou Message</label>
-                                <textarea name="message" placeholder="Décrivez vos besoins volumétriques..." className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold h-24 resize-none text-center md:text-left"></textarea>
+                                <textarea name="message" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold h-24 resize-none text-center md:text-left"></textarea>
                             </div>
                             
                             <button 
