@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { submitMeetingRequest, submitSampleRequest } from '../supabaseService.ts';
 
@@ -25,7 +26,6 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
     try {
       if (showSamplePopup) {
         const address = formData.get('address') as string;
-        // Envoi d'un tableau vide de catégories car supprimé du formulaire par instruction utilisateur
         await submitSampleRequest({ name, company, email, phone, address, categories: [], message });
       } else {
         const dateTime = formData.get('meetingDateTime') as string;
@@ -107,81 +107,77 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
       </div>
 
       {(showPopup || showSamplePopup) && (
-        <div className="fixed inset-0 z-[130] bg-slate-900/70 backdrop-blur-md overflow-y-auto flex justify-center p-4 py-8 md:items-center">
-            <div className="bg-white w-full max-w-xl rounded-[40px] overflow-hidden shadow-2xl animate-scale-in text-center md:text-left my-auto">
-                <div className="p-10">
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <div className="fixed inset-0 z-[130] bg-slate-900/70 backdrop-blur-md overflow-y-auto flex justify-center md:p-4 md:items-center">
+            <div className="bg-white w-full h-full md:h-auto md:max-w-xl md:rounded-[40px] overflow-y-auto shadow-2xl animate-scale-in text-center md:text-left flex flex-col">
+                <div className="p-6 md:p-10 flex flex-col flex-1">
+                    <div className="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8 gap-4 shrink-0">
                         <div className="flex flex-col items-center md:items-start">
-                            <h3 className="text-3xl font-black text-slate-900 tracking-tighter">
+                            <h3 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter">
                                 {showSamplePopup ? "Demander des Échantillons" : "Fixer une Rencontre"}
                             </h3>
-                            <p className="text-slate-500 text-sm mt-1">Réponse de notre équipe sous 24h ouvrées.</p>
+                            <p className="text-slate-500 text-[11px] md:text-sm mt-1">Réponse garantie sous 24h.</p>
                         </div>
-                        <button onClick={() => { setShowPopup(false); setShowSamplePopup(false); }} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors">
+                        <button onClick={() => { setShowPopup(false); setShowSamplePopup(false); }} className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-900 transition-colors shrink-0">
                             <i className="fas fa-times"></i>
                         </button>
                     </div>
 
                     {formStatus === 'success' ? (
-                        <div className="py-16 text-center animate-fade-in">
-                            <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <i className="fas fa-check text-3xl"></i>
+                        <div className="py-16 text-center animate-fade-in flex-1 flex flex-col justify-center">
+                            <div className="w-16 h-16 md:w-20 md:h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i className="fas fa-check text-2xl md:text-3xl"></i>
                             </div>
-                            <h4 className="text-xl font-bold mb-2">Demande enregistrée !</h4>
-                            <p className="text-slate-500 max-w-xs mx-auto">Un responsable LeaderPak va vous contacter personnellement.</p>
+                            <h4 className="text-lg md:text-xl font-bold mb-2">Demande enregistrée !</h4>
+                            <p className="text-slate-500 text-sm max-w-xs mx-auto">Un responsable va vous contacter.</p>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="space-y-5">
-                            <div className="grid grid-cols-2 gap-4">
+                        <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5 flex-1 overflow-y-auto px-1">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="flex flex-col items-center md:items-start">
-                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Nom COMPLET</label>
-                                    <input required name="userName" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                    <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">Nom COMPLET</label>
+                                    <input required name="userName" type="text" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-sm text-center md:text-left" />
                                 </div>
                                 <div className="flex flex-col items-center md:items-start">
-                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Société</label>
-                                    <input required name="company" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                    <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">Société</label>
+                                    <input required name="company" type="text" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-sm text-center md:text-left" />
                                 </div>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div className="flex flex-col items-center md:items-start">
-                                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">EMAIL</label>
-                                  <input required name="userEmail" type="email" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                  <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">EMAIL</label>
+                                  <input required name="userEmail" type="email" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-sm text-center md:text-left" />
                               </div>
                               <div className="flex flex-col items-center md:items-start">
-                                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">TELEPHONE</label>
-                                  <input required name="userPhone" type="tel" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
+                                  <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">TELEPHONE</label>
+                                  <input required name="userPhone" type="tel" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-sm text-center md:text-left" />
                               </div>
                             </div>
                             
                             {showSamplePopup ? (
-                              <div className="space-y-4">
-                                <div className="flex flex-col items-center md:items-start">
-                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Adresse de livraison (Échantillons)</label>
-                                    <input required name="address" type="text" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
-                                </div>
+                              <div className="flex flex-col items-center md:items-start">
+                                  <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">Adresse de livraison</label>
+                                  <input required name="address" type="text" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-sm text-center md:text-left" />
                               </div>
                             ) : (
-                              <div className="space-y-4">
-                                <div className="flex flex-col items-center md:items-start">
-                                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">SELECTIONNER DATE HEURE</label>
-                                    <input required name="meetingDateTime" type="datetime-local" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
-                                </div>
+                              <div className="flex flex-col items-center md:items-start">
+                                  <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">DATE & HEURE SOUHAITÉES</label>
+                                  <input required name="meetingDateTime" type="datetime-local" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-sm text-center md:text-left" />
                               </div>
                             )}
 
                             <div className="flex flex-col items-center md:items-start">
-                                <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Précisions ou Message</label>
-                                <textarea name="message" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold h-24 resize-none text-center md:text-left"></textarea>
+                                <label className="text-[9px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-1.5">Message (Optionnel)</label>
+                                <textarea name="message" className="w-full px-4 py-2.5 md:py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold h-20 md:h-24 resize-none text-sm text-center md:text-left"></textarea>
                             </div>
                             
                             <button 
                                 disabled={formStatus === 'sending'}
                                 type="submit" 
-                                className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs shadow-xl hover:bg-blue-700 disabled:opacity-50 transition-all flex items-center justify-center gap-3 active:scale-95"
+                                className="w-full py-4 md:py-5 bg-blue-600 text-white rounded-xl md:rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] md:text-xs shadow-xl hover:bg-blue-700 disabled:opacity-50 transition-all flex items-center justify-center gap-3 active:scale-95 shrink-0"
                             >
                                 {formStatus === 'sending' ? (
                                     <> <i className="fas fa-spinner animate-spin"></i> Traitement... </>
-                                ) : 'Envoyer ma demande officielle'}
+                                ) : 'Envoyer ma demande'}
                             </button>
                         </form>
                     )}

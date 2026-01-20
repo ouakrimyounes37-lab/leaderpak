@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
@@ -138,61 +139,61 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
           </div>
         )}
 
-        {/* MODALE FICHE TECHNIQUE SANS IMAGE */}
+        {/* MODALE FICHE TECHNIQUE PLEIN ECRAN MOBILE AVEC TEXTE REDUIT */}
         {selectedProduct && (
-            <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-xl overflow-y-auto flex justify-center p-4 md:items-center">
-                <div className="bg-white w-full max-w-2xl rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.4)] animate-scale-in p-8 md:p-12">
+            <div className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-xl overflow-y-auto flex justify-center md:p-4 md:items-center">
+                <div className="bg-white w-full h-full md:h-auto md:max-w-3xl md:rounded-[40px] overflow-y-auto shadow-[0_0_100px_rgba(0,0,0,0.4)] animate-scale-in p-6 md:p-12 flex flex-col">
                     
-                    <div className="flex justify-between items-start mb-8">
-                        <div>
-                            <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 block mb-2">Fiche Technique</span>
-                            <h3 className="text-3xl font-black text-slate-900 tracking-tighter uppercase leading-none">{selectedProduct.name}</h3>
+                    <div className="flex justify-between items-start mb-6 md:mb-8 shrink-0">
+                        <div className="pr-10">
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-blue-600 block mb-1 md:mb-2">Fiche Technique</span>
+                            <h3 className="text-xl md:text-3xl font-black text-slate-900 tracking-tighter uppercase leading-none">{selectedProduct.name}</h3>
                         </div>
-                        <button onClick={() => setSelectedProduct(null)} className="w-10 h-10 bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-xl flex items-center justify-center transition-all">
+                        <button onClick={() => setSelectedProduct(null)} className="w-10 h-10 bg-slate-50 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-xl flex items-center justify-center transition-all shrink-0">
                             <i className="fas fa-times"></i>
                         </button>
                     </div>
 
-                    <div className="mb-10">
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em] mb-4">Description du produit</h4>
-                        <p className="text-slate-600 text-lg leading-relaxed font-medium">
+                    <div className="mb-6 md:mb-8">
+                        <h4 className="text-[9px] font-black uppercase text-slate-400 tracking-[0.2em] mb-2 md:mb-4">Description</h4>
+                        <p className="text-slate-600 text-sm md:text-lg leading-relaxed font-medium">
                             {selectedProduct.description}
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 mb-10">
-                        <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                            <div className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Potentiel Marge</div>
-                            <div className="text-2xl font-black text-green-600">{selectedProduct.margin}</div>
+                    <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
+                            <div className="text-[8px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Potentiel Marge</div>
+                            <div className="text-lg md:text-2xl font-black text-green-600">{selectedProduct.margin}</div>
                         </div>
-                        <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                            <div className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Rotation Rayon</div>
-                            <div className="text-2xl font-black text-blue-600">{selectedProduct.rotation}</div>
+                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
+                            <div className="text-[8px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Rotation Rayon</div>
+                            <div className="text-lg md:text-2xl font-black text-blue-600">{selectedProduct.rotation}</div>
                         </div>
                     </div>
 
-                    <div className="space-y-6 mb-12">
-                        <h4 className="text-[10px] font-black uppercase text-slate-400 tracking-[0.3em] border-b border-slate-100 pb-2">Points Clés & Avantages</h4>
-                        <div className="grid grid-cols-1 gap-3">
+                    <div className="space-y-4 md:space-y-6 mb-10 flex-1">
+                        <h4 className="text-[9px] font-black uppercase text-slate-400 tracking-[0.2em] border-b border-slate-100 pb-2">Points Clés</h4>
+                        <div className="grid grid-cols-1 gap-2 md:gap-3">
                             {selectedProduct.highlights.map((h, i) => (
-                                <div key={i} className="flex items-center gap-4 text-sm font-bold text-slate-700 bg-white p-4 rounded-2xl border border-slate-50 shadow-sm">
-                                    <i className="fas fa-check-circle text-blue-600 text-lg"></i>
+                                <div key={i} className="flex items-center gap-3 text-xs md:text-sm font-bold text-slate-700 bg-white p-3 md:p-4 rounded-xl border border-slate-50 shadow-sm">
+                                    <i className="fas fa-check-circle text-blue-600 text-base md:text-lg"></i>
                                     {h}
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 pt-8 border-t border-slate-100">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 pt-6 border-t border-slate-100 shrink-0">
                         <button 
                             onClick={() => setSelectedProduct(null)}
-                            className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-slate-800 transition-all shadow-xl active:scale-95"
+                            className="w-full py-4 md:py-5 bg-slate-900 text-white rounded-xl md:rounded-2xl font-black uppercase text-[9px] md:text-[10px] tracking-widest hover:bg-slate-800 transition-all shadow-xl active:scale-95"
                         >
-                            Fermer la fiche
+                            Fermer
                         </button>
                         <button 
                             onClick={onNext}
-                            className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                            className="w-full py-4 md:py-5 bg-blue-600 text-white rounded-xl md:rounded-2xl font-black uppercase text-[9px] md:text-[10px] tracking-widest hover:bg-blue-700 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
                         >
                             <i className="fas fa-calculator"></i> Simuler Prix
                         </button>

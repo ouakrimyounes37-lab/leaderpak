@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { COMPANY_STATS, VISION_CATEGORIES, OUR_BRANDS } from '../constants';
 
@@ -38,17 +39,19 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
                     <div className="h-44 overflow-hidden shrink-0">
                         <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
-                    <div className="p-6 flex flex-col flex-1 text-center">
-                        <div className="flex flex-col items-center gap-3 mb-4">
-                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
-                                <i className={`fas ${cat.icon} text-xl`}></i>
+                    <div className="p-6 flex flex-col flex-1 text-center md:text-left">
+                        {/* Mise à jour : Centrage titre + icône sur une ligne sur mobile */}
+                        <div className="flex flex-row items-center justify-center md:justify-start gap-4 mb-4">
+                            <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shrink-0 ${cat.isHighlight ? 'bg-blue-600 text-white shadow-lg shadow-blue-200' : 'bg-blue-50 text-blue-600'}`}>
+                                <i className={`fas ${cat.icon} text-lg md:text-xl`}></i>
                             </div>
-                            <h3 className={`text-lg font-bold ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors leading-tight`}>
+                            <h3 className={`text-base md:text-lg font-bold ${cat.isHighlight ? 'text-blue-700' : 'text-slate-900 group-hover:text-blue-600'} transition-colors leading-tight`}>
                                 {cat.name}
                             </h3>
                         </div>
                         
-                        <p className="text-slate-500 text-xs leading-relaxed mb-6 flex-1">
+                        {/* Mise à jour : Centrage description sur mobile */}
+                        <p className="text-slate-500 text-[10px] md:text-xs leading-relaxed mb-6 flex-1 text-center md:text-left">
                             {cat.description}
                         </p>
                         <button 
