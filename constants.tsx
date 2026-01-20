@@ -60,7 +60,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.40,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     usage: 'Nettoyage intensif cuisine',
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
+    image: 'https://image2url.com/r2/default/images/1768906567857-857bb208-9ac8-4d1f-aafb-b14f1ae2b80e.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '20g',
@@ -74,7 +74,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.55,
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
     usage: 'Usage professionnel / Collectivités',
-    image: 'https://image2url.com/r2/default/images/1768905403748-9e27a4a3-bc29-44fa-896f-07fa8b7e7a52.webp',
+    image: 'https://image2url.com/r2/default/images/1768906609623-04caf814-42fe-4a4c-868d-8c3761fca138.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '40g',
@@ -102,7 +102,7 @@ export const HERO_SPONGES: any[] = [
     price: 1.10,
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
     usage: 'Consommation domestique',
-    image: 'https://image2url.com/r2/default/images/1768905375783-8ea61cd5-37e8-4fd2-b963-735d90ceeca4.webp',
+    image: 'https://image2url.com/r2/default/images/1768906635809-89c7f8ec-665c-4f8b-a4a9-875a3028976c.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '15g x 3',
