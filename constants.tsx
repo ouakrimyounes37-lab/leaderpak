@@ -157,7 +157,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'p-plast-7',
-    name: 'Lot de 4 Brosses de Massage',
+    name: 'Lot de 4 Brosses',
     category: 'Produits Plastiques',
     description: 'Brosses circulaires souples.',
     image: 'https://image2url.com/r2/default/images/1769011153366-3a212d52-3011-4d36-9680-4de6b01b0d09.webp',
