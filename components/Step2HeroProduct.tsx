@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { HERO_SPONGES } from '../constants.tsx';
 
@@ -148,7 +149,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-10 text-center md:text-left">
+        <div className="mb-6 md:mb-10 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 02 — Focus Produit</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2">La Gamme VEDAL Métal</h2>
             <p className="text-slate-500 mt-2 text-sm md:text-base">Nos éponges métalliques sont conçues pour répondre à vos exigences professionnelles et s’adapter à vos standards logistiques.</p>

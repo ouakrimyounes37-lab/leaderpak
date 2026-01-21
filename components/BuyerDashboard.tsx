@@ -37,7 +37,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
       <div className="max-w-7xl mx-auto">
         
         {/* Header Dashboard */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:items-center mb-10 gap-6 text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-center mb-6 md:mb-10 gap-6 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start">
             <div className="text-blue-600 font-black text-xs uppercase tracking-[0.4em] mb-2">Espace Décideur</div>
             <h1 className="text-4xl font-black text-slate-900 tracking-tighter uppercase flex items-center gap-4 leading-none">

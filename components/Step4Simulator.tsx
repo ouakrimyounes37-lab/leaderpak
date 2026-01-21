@@ -1,3 +1,4 @@
+
 import React, { useState, useRef } from 'react';
 import { HERO_SPONGES } from '../constants';
 import { submitPriceGridRequest } from '../supabaseService.ts';
@@ -242,7 +243,7 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in relative">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12 no-print text-center md:text-left">
+        <div className="mb-6 md:mb-12 no-print text-center md:text-left">
           <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 04 — Devis & Tarifs</span>
           <h2 className="text-xl md:text-3xl font-bold mt-2">Simulateur Commercial</h2>
           <p className="text-slate-500 mt-2 text-sm md:text-base">Gérez vos volumes et générez votre devis officiel (Format A4 - 1 page).</p>

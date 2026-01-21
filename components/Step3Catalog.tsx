@@ -27,7 +27,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-8 text-center md:text-left">
+        <div className="mb-4 md:mb-8 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 03 — Catalogue</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2">Gamme Complète</h2>
             <p className="text-slate-500 mt-2 text-sm md:text-base">Diversifiez votre offre avec nos produits essentiels certifiés.</p>

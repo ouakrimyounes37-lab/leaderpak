@@ -12,7 +12,7 @@ const Step1ValueProp: React.FC<Props> = ({ onNext, onPrev, onCategorySelect }) =
   return (
     <div className="p-6 md:p-12 animate-slide-up">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12 text-center md:text-left">
+        <div className="mb-6 md:mb-12 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 01 — Vision LeaderPak</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2 text-slate-900">Expertise Industrielle Diversifiée</h2>
             <p className="text-slate-500 mt-4 text-sm md:text-base max-w-3xl mx-auto md:mx-0">

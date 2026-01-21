@@ -48,12 +48,12 @@ const Step6Conversion: React.FC<Props> = ({ onPrev, onRestart, onDashboard }) =>
   return (
     <div className="p-6 md:p-12 animate-fade-in min-h-[80vh] flex flex-col items-center justify-center relative">
       <div className="max-w-5xl w-full text-center">
-        <div className="w-20 h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-float">
-            <i className="fas fa-paper-plane text-4xl"></i>
+        <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 md:mb-8 animate-float">
+            <i className="fas fa-paper-plane text-3xl md:text-4xl"></i>
         </div>
         
-        <h2 className="text-2xl md:text-5xl font-extrabold mb-6">Prêt à booster vos marges ?</h2>
-        <p className="text-base md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto">
+        <h2 className="text-2xl md:text-5xl font-extrabold mb-4 md:mb-6">Prêt à booster vos marges ?</h2>
+        <p className="text-base md:text-xl text-slate-500 mb-8 md:mb-12 max-w-2xl mx-auto">
             L'excellence opérationnelle LeaderPak est à votre portée. Choisissez l'option qui convient à votre cycle d'achat.
         </p>
 

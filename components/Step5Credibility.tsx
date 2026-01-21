@@ -10,7 +10,7 @@ const Step5Credibility: React.FC<Props> = ({ onNext, onPrev }) => {
   return (
     <div className="p-6 md:p-12 animate-fade-in">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-12 text-center md:text-left">
+        <div className="mb-6 md:mb-12 text-center md:text-left">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-xs">Étape 05 — Confiance & Crédibilité</span>
             <h2 className="text-xl md:text-3xl font-bold mt-2">Une Tradition de Qualité</h2>
             <p className="text-slate-500 mt-2 text-sm md:text-base">Nous ne vendons pas seulement des produits ; nous bâtissons des partenariats d'approvisionnement.</p>
