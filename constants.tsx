@@ -24,24 +24,24 @@ export const VISION_CATEGORIES = [
   {
     id: 'cat1',
     name: 'Éponge Métallique',
-    description: 'Expertise historique : notre gamme Pro-Shine en inox 410, adaptable à tous les formats.',
+    description: 'Expertise historique : notre gamme VEDAL, adaptable à tous les formats.',
     icon: 'fa-soap',
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
+    image: 'https://image2url.com/r2/default/images/1768990041264-3476a6b1-30db-46ed-ba7e-35c195527c9d.webp',
     isHighlight: true
   },
   {
     id: 'cat2',
     name: 'Produits Plastiques',
-    description: 'Seaux, pelles, et solutions d\'injection plastique haute densité pour usage domestique et pro.',
+    description: 'Solutions d\'injection plastique haute densité pour usage domestique et pro.',
     icon: 'fa-box-archive',
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp'
+    image: 'https://image2url.com/r2/default/images/1768986120446-814bdcba-5ea9-4476-b2f4-728f62ee2e13.webp'
   },
   {
     id: 'cat3',
     name: 'Alum / Film Alimentaire',
     description: 'Conservation et cuisson : aluminium et film PVC qualité professionnelle pour la distribution.',
     icon: 'fa-film',
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp'
+    image: 'https://image2url.com/r2/default/images/1768986114098-5ac13a93-2129-4ed5-a7a8-0689d3ffc261.webp'
   }
 ];
 

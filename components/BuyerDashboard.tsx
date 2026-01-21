@@ -11,7 +11,9 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
   const [selectedProductId, setSelectedProductId] = useState(HERO_SPONGES[0].id);
   const [sellPrice, setSellPrice] = useState(1.95);
   const [monthlyQty, setMonthlyQty] = useState(25000);
-  const [promoImpact, setPromoImpact] = useState(0);
+  
+  // Note: promoImpact removed as requested, keeping variable at 0 for calculations
+  const promoImpact = 0;
 
   const product = HERO_SPONGES.find(p => p.id === selectedProductId) || HERO_SPONGES[0];
   const buyPrice = product.price;
@@ -19,7 +21,6 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
   const effectiveSellPrice = sellPrice * (1 - promoImpact / 100);
   const marginRaw = effectiveSellPrice - buyPrice;
   const marginPercent = (marginRaw / effectiveSellPrice) * 100;
-  const monthlyCA = effectiveSellPrice * monthlyQty;
   const monthlyMargin = marginRaw * monthlyQty;
   
   const unitsPerShelf = 80;
@@ -30,14 +31,6 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
     if (percent >= 20) return 'text-orange-500 bg-orange-50 border-orange-200';
     return 'text-red-500 bg-red-50 border-red-200';
   };
-
-  const [packagingConfig, setPackagingConfig] = useState({
-    format: '20g',
-    dimensions: 'Standard (8x5x3cm)',
-    unitsPerBox: '240',
-    brand: 'Marque Distributeur (MDD)',
-    labeling: 'Français/Arabe'
-  });
 
   return (
     <div className="p-6 md:p-12 animate-fade-in bg-slate-50 min-h-screen">
@@ -100,11 +93,18 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="max-w-5xl mx-auto">
           
-          {/* SECTION B: Simulateur orienté MARGE */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-[40px] border border-slate-100 p-8 md:p-12 shadow-sm">
+          {/* SECTION B: Simulateur orienté MARGE - With Coming Soon Overlay */}
+          <div className="relative">
+            {/* Coming Soon Overlay */}
+            <div className="absolute inset-0 z-20 bg-white/60 backdrop-blur-[2px] rounded-[40px] flex items-center justify-center">
+              <div className="bg-slate-900 text-white px-10 py-5 rounded-[24px] font-black text-2xl uppercase tracking-[0.3em] shadow-2xl border-4 border-blue-600 animate-pulse">
+                Coming Soon
+              </div>
+            </div>
+
+            <div className="bg-white rounded-[40px] border border-slate-100 p-8 md:p-12 shadow-sm grayscale opacity-50">
               <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4 text-center md:text-left">
                 <h2 className="text-2xl font-black text-slate-900 flex items-center gap-4 uppercase tracking-tighter">
                   <i className="fas fa-calculator text-blue-600"></i>
@@ -118,9 +118,10 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                   <div className="w-full">
                     <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Gamme Produit</label>
                     <select 
+                      disabled
                       value={selectedProductId}
                       onChange={(e) => setSelectedProductId(e.target.value)}
-                      className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-100 font-bold"
+                      className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl outline-none font-bold"
                     >
                       {HERO_SPONGES.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                     </select>
@@ -129,6 +130,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                     <div>
                       <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Prix Vente (TTC)</label>
                       <input 
+                        disabled
                         type="number" step="0.01" value={sellPrice}
                         onChange={(e) => setSellPrice(parseFloat(e.target.value) || 0)}
                         className="w-full px-6 py-4 bg-white border-2 border-blue-600/20 rounded-2xl font-black text-blue-600 text-xl outline-none text-center md:text-left"
@@ -137,6 +139,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                     <div>
                       <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Volume / mois</label>
                       <input 
+                        disabled
                         type="number" value={monthlyQty}
                         onChange={(e) => setMonthlyQty(parseInt(e.target.value) || 0)}
                         className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl font-bold outline-none text-center md:text-left"
@@ -146,19 +149,6 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
                 </div>
 
                 <div className="space-y-8 text-center md:text-left">
-                  <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Impact Promotionnel (%)</label>
-                    <input 
-                      type="range" min="0" max="50" step="5" value={promoImpact}
-                      onChange={(e) => setPromoImpact(parseInt(e.target.value))}
-                      className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
-                    />
-                    <div className="flex justify-between mt-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                        <span>Plein tarif</span>
-                        <span className="text-blue-600">Promo: -{promoImpact}%</span>
-                        <span>Max -50%</span>
-                    </div>
-                  </div>
                   <div className="bg-slate-900 p-6 rounded-3xl text-white shadow-xl shadow-slate-200 text-center">
                       <div className="text-[10px] font-black uppercase text-slate-500 mb-1 tracking-widest">Vente Nette Unitaire</div>
                       <div className="text-3xl font-black">{effectiveSellPrice.toFixed(2)} <span className="text-sm font-bold text-blue-400">Dh</span></div>
@@ -194,80 +184,6 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
               </div>
             </div>
           </div>
-
-          {/* SECTION C: Personnalisation du packaging */}
-          <div className="lg:col-span-1">
-            <div className="bg-slate-900 rounded-[40px] p-10 text-white shadow-2xl sticky top-24 overflow-hidden h-full text-center md:text-left">
-              <div className="absolute top-0 right-0 p-8 opacity-5 text-8xl rotate-45"><i className="fas fa-box-open"></i></div>
-              
-              <h2 className="text-2xl font-black mb-10 flex items-center justify-center md:justify-start gap-4 uppercase tracking-tighter relative z-10">
-                <i className="fas fa-layer-group text-blue-400"></i>
-                Personnalisation
-              </h2>
-              
-              <div className="space-y-8 relative z-10">
-                <div className="space-y-6">
-                  <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-3">Format & Contenance</label>
-                    <div className="grid grid-cols-2 gap-2">
-                        {['15g', '20g', '25g', '40g'].map(f => (
-                            <button 
-                                key={f} onClick={() => setPackagingConfig(p => ({...p, format: f}))}
-                                className={`py-3 rounded-xl text-xs font-bold transition-all border ${packagingConfig.format === f ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'border-white/10 text-slate-400 hover:bg-white/5'}`}
-                            >
-                                {f}
-                            </button>
-                        ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-3">Dimensions Unité</label>
-                    <input 
-                      type="text" value={packagingConfig.dimensions}
-                      onChange={(e) => setPackagingConfig(p => ({...p, dimensions: e.target.value}))}
-                      className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-sm font-bold outline-none focus:border-blue-500 transition-colors text-center md:text-left"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-3">Unités par Carton</label>
-                    <select 
-                      value={packagingConfig.unitsPerBox}
-                      onChange={(e) => setPackagingConfig(p => ({...p, unitsPerBox: e.target.value}))}
-                      className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-sm font-bold outline-none"
-                    >
-                        <option value="48">48 unités</option>
-                        <option value="120">120 unités</option>
-                        <option value="240">240 unités</option>
-                        <option value="480">480 unités</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-3">Option Marque</label>
-                    <div className="grid grid-cols-1 gap-2">
-                        {['Marque LeaderPak', 'Marque Distributeur (MDD)'].map(m => (
-                            <button 
-                                key={m} onClick={() => setPackagingConfig(p => ({...p, brand: m}))}
-                                className={`px-5 py-4 rounded-xl text-xs font-bold text-center md:text-left transition-all border ${packagingConfig.brand === m ? 'bg-white text-slate-900 shadow-xl' : 'border-white/10 text-slate-400 hover:bg-white/5'}`}
-                            >
-                                {m}
-                            </button>
-                        ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-8 bg-blue-600 rounded-[32px] shadow-xl text-center">
-                    <p className="text-sm font-medium leading-relaxed italic opacity-90">
-                        “Nous adaptons le packaging aux contraintes de votre rayon et à vos objectifs de rotation.”
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* Footer Dashboard */}

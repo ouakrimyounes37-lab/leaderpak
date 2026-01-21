@@ -39,7 +39,7 @@ const Step5Credibility: React.FC<Props> = ({ onNext, onPrev }) => {
                     </div>
                 </div>
                 <div className="order-1 md:order-2">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop" alt="Factory" className="rounded-3xl shadow-xl" />
+                    <img src="https://image2url.com/r2/default/images/1768991117606-ad3960ab-80b5-44e9-8d46-599920b66f97.webp" alt="Factory" className="rounded-3xl shadow-xl" />
                 </div>
             </div>
 
@@ -75,7 +75,7 @@ const Step5Credibility: React.FC<Props> = ({ onNext, onPrev }) => {
                 <blockquote className="text-2xl font-medium text-slate-800 italic max-w-3xl mb-6">
                     "Vedal a révolutionné notre rayon entretien. La constance de la qualité produit est inégalée à ce niveau de prix."
                 </blockquote>
-                <div className="font-bold text-slate-900">Responsable Achats Senior, Supeco</div>
+                <div className="font-bold text-slate-900">Responsable Achats Senior</div>
             </div>
         </div>
 
