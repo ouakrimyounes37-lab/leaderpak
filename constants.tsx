@@ -34,14 +34,14 @@ export const VISION_CATEGORIES = [
     name: 'Produits Plastiques',
     description: 'Solutions d\'injection plastique haute densité pour usage domestique et pro.',
     icon: 'fa-box-archive',
-    image: 'https://image2url.com/r2/default/images/1768986120446-814bdcba-5ea9-4476-b2f4-728f62ee2e13.webp'
+    image: 'https://image2url.com/r2/default/images/1769011151854-98223fbe-bc5b-4d3d-be3b-162a87c7ebb9.webp'
   },
   {
     id: 'cat3',
     name: 'Alum / Film Alimentaire',
     description: 'Conservation et cuisson : aluminium et film PVC qualité professionnelle pour la distribution.',
     icon: 'fa-film',
-    image: 'https://image2url.com/r2/default/images/1768986114098-5ac13a93-2129-4ed5-a7a8-0689d3ffc261.webp'
+    image: 'https://image2url.com/r2/default/images/1769011154529-1a991eb3-62ed-416a-a1ee-72fa2364dec8.webp'
   }
 ];
 
@@ -66,7 +66,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.55,
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
     usage: 'Usage professionnel / Collectivités',
-    image: 'https://image2url.com/r2/default/images/1768986125616-27ba249b-d9d8-467b-81e1-385d5de83b24.webp',
+    image: 'https://image2url.com/r2/default/images/1769011150189-6e1fddd6-88cd-47b6-b80b-2a7b39cb38b7.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '40g',
@@ -120,7 +120,7 @@ export const PRODUCTS: Product[] = [
     name: 'Éponge Power Inox (Pack 1+1)',
     category: 'Éponge Métallique',
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
-    image: 'https://image2url.com/r2/default/images/1768986125616-27ba249b-d9d8-467b-81e1-385d5de83b24.webp',
+    image: 'https://image2url.com/r2/default/images/1769011150189-6e1fddd6-88cd-47b6-b80b-2a7b39cb38b7.webp',
     highlights: ['Ultra-puissant', 'Longue durée', 'Qualité Pro'],
     margin: '35%+',
     rotation: 'Stable'
@@ -150,7 +150,7 @@ export const PRODUCTS: Product[] = [
     name: 'Boîte à Charcuterie',
     category: 'Produits Plastiques',
     description: 'Boîte de conservation hermétique avec plateau de service intégré, idéale pour garder vos tranches fraîches.',
-    image: 'https://image2url.com/r2/default/images/1768986115774-efa2d7a6-2858-4dbb-a76e-f44d406fe942.webp',
+    image: 'https://image2url.com/r2/default/images/1769011156528-19290dd7-0c3b-4891-8c74-9397bc2a039b.webp',
     highlights: ['Hermétique', 'Plateau intégré', 'Sans BPA'],
     margin: '42%+',
     rotation: 'Haute'
@@ -159,8 +159,8 @@ export const PRODUCTS: Product[] = [
     id: 'p-plast-7',
     name: 'Lot de 4 Brosses de Massage',
     category: 'Produits Plastiques',
-    description: 'Brosses circulaires souples pour masser le cuir chevelu et démêler les cheveux sous la douche.',
-    image: 'https://image2url.com/r2/default/images/1768986117374-e3507d48-f100-490c-ace0-413526d77091.webp',
+    description: 'Brosses circulaires souples.',
+    image: 'https://image2url.com/r2/default/images/1769011153366-3a212d52-3011-4d36-9680-4de6b01b0d09.webp',
     highlights: ['Doux', 'Ergonomique', 'Pack de 4'],
     margin: '50%+',
     rotation: 'Stable'
@@ -190,7 +190,7 @@ export const PRODUCTS: Product[] = [
     name: 'Set de Cintres Colorés',
     category: 'Produits Plastiques',
     description: 'Lot de cintres en plastique robuste avec encoches, parfaits pour organiser tous types de vêtements.',
-    image: 'https://image2url.com/r2/default/images/1768986121895-2f63df3c-43c0-48d9-ab2f-4b578063bf7c.webp',
+    image: 'https://image2url.com/r2/default/images/1769011155558-39076379-0de3-45c6-ac13-0b56d25a3836.webp',
     highlights: ['Antiglisse', 'Robuste', 'Coloris vifs'],
     margin: '38%+',
     rotation: 'Très Haute'
@@ -200,7 +200,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pack Cuisine 3-en-1',
     category: 'Alum / Film Alimentaire',
     description: 'Trio économique comprenant film étirable (100m), aluminium (50m) et papier cuisson (30m).',
-    image: 'https://image2url.com/r2/default/images/1768986114098-5ac13a93-2129-4ed5-a7a8-0689d3ffc261.webp',
+    image: 'https://image2url.com/r2/default/images/1769011154529-1a991eb3-62ed-416a-a1ee-72fa2364dec8.webp',
     highlights: ['Pack Eco', 'Multi-usage', 'Conservation pro'],
     margin: '45%+',
     rotation: 'Très Haute'
