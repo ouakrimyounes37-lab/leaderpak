@@ -52,7 +52,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.40,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     usage: 'Nettoyage intensif cuisine',
-    image: 'https://image2url.com/r2/default/images/1768906567857-857bb208-9ac8-4d1f-aafb-b14f1ae2b80e.webp',
+    image: 'https://image2url.com/r2/default/images/1768986128156-6c413006-2295-4704-b1fc-d47c1f5867ed.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '20g',
@@ -66,7 +66,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.55,
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
     usage: 'Usage professionnel / Collectivités',
-    image: 'https://image2url.com/r2/default/images/1768905375783-8ea61cd5-37e8-4fd2-b963-735d90ceeca4.webp',
+    image: 'https://image2url.com/r2/default/images/1768986125616-27ba249b-d9d8-467b-81e1-385d5de83b24.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '40g',
@@ -80,7 +80,7 @@ export const HERO_SPONGES: any[] = [
     price: 0.48,
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
     usage: 'Céramique et vitrocéramique',
-    image: 'https://image2url.com/r2/default/images/1768906609623-04caf814-42fe-4a4c-868d-8c3761fca138.webp',
+    image: 'https://image2url.com/r2/default/images/1768986112563-0c2625cd-e5af-43fe-928e-4db2eda7e77f.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '18g',
@@ -94,7 +94,7 @@ export const HERO_SPONGES: any[] = [
     price: 1.10,
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
     usage: 'Consommation domestique',
-    image: 'https://image2url.com/r2/default/images/1768906635809-89c7f8ec-665c-4f8b-a4a9-875a3028976c.webp',
+    image: 'https://image2url.com/r2/default/images/1768986123912-76ab0428-d0f2-474f-9f97-da7ae8e33afe.webp',
     tech: {
       material: 'Acier Inoxydable',
       weight: '15g x 3',
@@ -110,7 +110,7 @@ export const PRODUCTS: Product[] = [
     name: 'Éponge à spirale (Pack 3+1)',
     category: 'Éponge Métallique',
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
+    image: 'https://image2url.com/r2/default/images/1768986128156-6c413006-2295-4704-b1fc-d47c1f5867ed.webp',
     highlights: ['Pack économique', 'Inox pur', 'Usage intensif'],
     margin: '35%+',
     rotation: 'Haute'
@@ -120,7 +120,7 @@ export const PRODUCTS: Product[] = [
     name: 'Éponge Power Inox (Pack 1+1)',
     category: 'Éponge Métallique',
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
+    image: 'https://image2url.com/r2/default/images/1768986125616-27ba249b-d9d8-467b-81e1-385d5de83b24.webp',
     highlights: ['Ultra-puissant', 'Longue durée', 'Qualité Pro'],
     margin: '35%+',
     rotation: 'Stable'
@@ -130,7 +130,7 @@ export const PRODUCTS: Product[] = [
     name: 'Lavettes Mailles Inox (x5)',
     category: 'Éponge Métallique',
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
-    image: 'https://image2url.com/r2/default/images/1768905214686-68eef7f2-9fea-4bd7-b2c3-14a548b87403.webp',
+    image: 'https://image2url.com/r2/default/images/1768986112563-0c2625cd-e5af-43fe-928e-4db2eda7e77f.webp',
     highlights: ['Souplesse acier', 'Anti-odeur', 'Lavable'],
     margin: '35%+',
     rotation: 'Haute'
