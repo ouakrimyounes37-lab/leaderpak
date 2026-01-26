@@ -9,9 +9,9 @@ export const COMPANY_STATS: CompanyStat[] = [
 ];
 
 export const OUR_BRANDS = [
-  { name: 'Production Locale', icon: 'fa-industry', color: 'text-blue-500' },
   { name: 'Logistique Réactive', icon: 'fa-truck-fast', color: 'text-cyan-500' },
   { name: 'Marges GMS', icon: 'fa-coins', color: 'text-green-500' },
+  { name: 'Production Locale', icon: 'fa-industry', color: 'text-blue-500' },
   { name: 'Innovation Packaging', icon: 'fa-box-open', color: 'text-yellow-500' },
   { name: 'Import maîtrisé', icon: 'fa-globe-africa', color: 'text-slate-400' }
 ];
