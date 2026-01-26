@@ -160,9 +160,9 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                 <div style={{ fontSize: '32px', fontWeight: '900', color: '#1d4ed8', letterSpacing: '-1.5px', marginBottom: '4px' }}>LEADER PAK</div>
                 <div style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '3px', color: '#94a3b8', fontWeight: '700' }}>Industrial Sourcing & Production</div>
                 <div style={{ fontSize: '11px', color: '#64748b', marginTop: '15px', lineHeight: '1.5' }}>
-                  LeaderPak Sourcing SARL<br/>
-                  Zone Industrielle, Tit Mellil, Casablanca<br/>
-                  contact@leaderpak.com
+                  LeaderPak SARL<br/>
+                  43, zone industrielle sud-ouest Mohammedia<br/>
+                  Contact@leaderpak.ma
                 </div>
               </td>
               <td style={{ verticalAlign: 'top', textAlign: 'right', width: '40%' }}>
@@ -226,14 +226,8 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
 
         <div style={{ position: 'absolute', bottom: '60px', left: '60px', right: '60px' }}>
           <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '25px' }}>
-            <div style={{ backgroundColor: '#0f172a', color: 'white', padding: '25px', borderRadius: '15px', fontSize: '11px', lineHeight: '1.8' }}>
-              <div style={{ fontWeight: '900', color: '#3b82f6', marginBottom: '8px', textTransform: 'uppercase' }}>Conditions Commerciales :</div>
-              • Règlement par virement ou chèque certifié à la commande.<br/>
-              • Livraison sous 72h ouvrables après confirmation bancaire.<br/>
-              • Validité de l'offre : 15 jours calendaires.
-            </div>
             <div style={{ textAlign: 'center', marginTop: '30px', fontSize: '9px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: '800' }}>
-              LeaderPak Sourcing SARL | www.leaderpak.com
+              LeaderPak SARL | www.leaderpak.ma
             </div>
           </div>
         </div>
@@ -320,12 +314,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                   className="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-2xl font-bold transition-all shadow-xl flex items-center justify-center gap-3 text-white active:scale-95"
                 >
                   <i className="fas fa-file-pdf"></i>Exporter PDF
-                </button>
-                <button 
-                  onClick={handleOpenEmailModal} 
-                  className="w-full py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-2xl font-bold transition-all flex items-center justify-center gap-3 text-white"
-                >
-                  <i className="fas fa-envelope"></i>M'envoyer par email
                 </button>
               </div>
             </div>
@@ -433,10 +421,10 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
 
         {showPreviewModal && (
           <div className="fixed inset-0 z-[180] bg-slate-900/95 backdrop-blur-md overflow-y-auto flex flex-col items-center p-4 py-8 md:justify-center">
-              <div className="w-full max-w-5xl flex justify-between items-center mb-6 text-white px-2">
-                  <h3 className="text-xl md:text-2xl font-black flex items-center gap-3"><i className="fas fa-eye text-blue-400"></i>Aperçu A4 (Page Unique)</h3>
+              <div className="w-full max-w-5xl flex justify-between items-center mb-6 text-white px-2 shrink-0">
+                  <h3 className="text-[13px] md:text-2xl font-black flex items-center gap-3"><i className="fas fa-eye text-blue-400"></i>Aperçu A4 (Page Unique)</h3>
                   <div className="flex gap-4">
-                      <button onClick={handleDownloadPDF} disabled={isGeneratingPDF} className="bg-blue-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-2xl font-bold flex items-center gap-3 active:scale-95 disabled:opacity-50 transition-all shadow-xl shadow-blue-900/40">
+                      <button onClick={handleDownloadPDF} disabled={isGeneratingPDF} className="bg-blue-600 text-white px-4 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl text-[10px] md:text-base font-bold flex items-center gap-2 md:gap-3 active:scale-95 disabled:opacity-50 transition-all shadow-xl shadow-blue-900/40">
                           {isGeneratingPDF ? <i className="fas fa-spinner animate-spin"></i> : <i className="fas fa-download"></i>}
                           {isGeneratingPDF ? 'Génération...' : 'Télécharger PDF'}
                       </button>
@@ -446,34 +434,11 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                   </div>
               </div>
               
-              <div className="bg-slate-700 p-2 md:p-10 rounded-[20px] md:rounded-[40px] shadow-2xl overflow-auto w-full max-w-[850px] max-h-[85vh] flex justify-center my-auto">
-                  <div className="bg-white shadow-2xl origin-top" style={{ margin: '0 auto' }}>
+              <div className="bg-slate-700 p-1 md:p-10 rounded-[20px] md:rounded-[40px] shadow-2xl overflow-hidden md:overflow-auto w-full max-w-[850px] h-[520px] md:h-auto md:max-h-[85vh] flex justify-center items-start my-auto">
+                  <div className="bg-white shadow-2xl origin-top scale-[0.4] sm:scale-[0.6] md:scale-100 transition-transform" style={{ margin: '0 auto' }}>
                     <QuoteTemplate />
                   </div>
               </div>
-          </div>
-        )}
-
-        {showEmailModal && (
-          <div className="fixed inset-0 z-[120] bg-slate-900/80 backdrop-blur-md overflow-y-auto flex justify-center p-4 py-8 md:items-center">
-            <div className="bg-white w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-scale-in text-center md:text-left my-auto">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold text-slate-900">Envoi par Email</h3>
-                <button onClick={() => setShowEmailModal(false)} className="text-slate-400 hover:text-slate-900"><i className="fas fa-times"></i></button>
-              </div>
-              <form onSubmit={handleEmailRequest} className="space-y-5">
-                <div>
-                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest block mb-2">Email Professionnel</label>
-                  <input required type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:ring-4 focus:ring-blue-100 transition-all font-bold text-center md:text-left" />
-                </div>
-                <div className="p-4 bg-blue-50 rounded-xl text-blue-700 text-xs font-medium">
-                  Le devis pour <strong>{companyName}</strong> d'un montant de <strong>{totalHT.toFixed(2)} Dh (HT)</strong> sera envoyé.
-                </div>
-                <button type="submit" disabled={isEmailing} className="w-full py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
-                  {isEmailing ? <i className="fas fa-spinner animate-spin"></i> : <><i className="fas fa-paper-plane"></i> Confirmer l'envoi</>}
-                </button>
-              </form>
-            </div>
           </div>
         )}
 

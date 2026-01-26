@@ -1,3 +1,4 @@
+
 import { Product, CompanyStat } from './types.ts';
 
 export const COMPANY_STATS: CompanyStat[] = [
@@ -51,7 +52,7 @@ export const HERO_SPONGES: any[] = [
     name: 'Éponge à spirale (Pack 3+1)',
     price: 0.40,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
-    usage: 'Nettoyage intensif cuisine',
+    usage: '',
     image: 'https://image2url.com/r2/default/images/1768986128156-6c413006-2295-4704-b1fc-d47c1f5867ed.webp',
     tech: {
       material: 'Acier Inoxydable',
@@ -65,7 +66,7 @@ export const HERO_SPONGES: any[] = [
     name: 'Éponge Power Inox (Pack 1+1)',
     price: 0.55,
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
-    usage: 'Usage professionnel / Collectivités',
+    usage: '',
     image: 'https://image2url.com/r2/default/images/1769011150189-6e1fddd6-88cd-47b6-b80b-2a7b39cb38b7.webp',
     tech: {
       material: 'Acier Inoxydable',
@@ -79,7 +80,7 @@ export const HERO_SPONGES: any[] = [
     name: 'Lavettes Mailles Inox (x5)',
     price: 0.48,
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
-    usage: 'Céramique et vitrocéramique',
+    usage: '',
     image: 'https://image2url.com/r2/default/images/1768986112563-0c2625cd-e5af-43fe-928e-4db2eda7e77f.webp',
     tech: {
       material: 'Acier Inoxydable',
@@ -93,7 +94,7 @@ export const HERO_SPONGES: any[] = [
     name: 'Éponges À Récurer avec Poignée (x3)',
     price: 1.10,
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
-    usage: 'Consommation domestique',
+    usage: '',
     image: 'https://image2url.com/r2/default/images/1768986123912-76ab0428-d0f2-474f-9f97-da7ae8e33afe.webp',
     tech: {
       material: 'Acier Inoxydable',

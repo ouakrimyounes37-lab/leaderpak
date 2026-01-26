@@ -140,7 +140,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
       <div style={{ marginTop: '20mm', padding: '15px', backgroundColor: '#0f172a', borderRadius: '10px', color: 'white' }}>
         <p style={{ margin: '0', fontSize: '9pt', textAlign: 'center', lineHeight: '1.5' }}>
           Ce document constitue une spécification technique officielle pour la production B2B.<br/>
-          LeaderPak Sourcing SARL | Zone Industrielle Tit Mellil, Casablanca | contact@leaderpak.com
+          LeaderPak SARL | 43, zone industrielle sud-ouest Mohammedia | Contact@leaderpak.ma
         </p>
       </div>
     </div>
