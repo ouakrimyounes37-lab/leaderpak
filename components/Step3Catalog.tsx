@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
 
@@ -138,6 +138,45 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
               <div className="text-slate-500 font-bold">Aucun produit trouvé dans cette catégorie.</div>
           </div>
         )}
+
+        {/* Section Nouveautés à venir */}
+        <div className="mb-20">
+          <div className="relative bg-slate-900 rounded-[40px] p-8 md:p-16 overflow-hidden group">
+            {/* Background elements */}
+            <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-600/20 blur-[100px] rounded-full group-hover:bg-blue-600/30 transition-all duration-1000"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 border-[20px] border-white/5 rounded-full"></div>
+            
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10">
+              <div className="flex-1 text-center lg:text-left">
+                <span className="inline-block bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.3em] px-4 py-1.5 rounded-full mb-6 animate-pulse">
+                  Innovation Continue
+                </span>
+                <h3 className="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter leading-tight mb-6">
+                  D'autres catalogues <br /> <span className="text-blue-500">arrivent bientôt...</span>
+                </h3>
+                <p className="text-slate-400 text-sm md:text-lg max-w-xl leading-relaxed">
+                  Notre département R&D finalise actuellement de nouvelles gammes pour le nettoyage industriel, l'hygiène domestique et des solutions plastiques intelligentes. Restez connectés pour nos prochaines releases.
+                </p>
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-4 lg:w-[400px]">
+                {[
+                  { label: 'Hygiène', icon: 'fa-hands-bubbles' },
+                  { label: 'Ménage', icon: 'fa-broom' },
+                  { label: 'Cuisine', icon: 'fa-utensils' },
+                  { label: 'Accessoires', icon: 'fa-screwdriver-wrench' }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 p-4 md:p-6 rounded-3xl flex flex-col items-center justify-center gap-3 w-[140px] md:w-[170px] hover:bg-white/10 hover:border-blue-500/50 transition-all">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600/20 text-blue-400 rounded-xl flex items-center justify-center">
+                      <i className={`fas ${item.icon} text-lg md:text-xl`}></i>
+                    </div>
+                    <span className="text-[10px] md:text-xs font-bold text-white uppercase tracking-widest text-center">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* MODALE FICHE TECHNIQUE PLEIN ECRAN MOBILE AVEC TEXTE REDUIT */}
         {selectedProduct && (
