@@ -211,7 +211,7 @@ const Step2HeroProduct: React.FC<Props> = ({ onNext, onPrev }) => {
                                   />
                                   <div className="absolute -bottom-2 -right-2 bg-white p-2 md:p-4 rounded-[14px] md:rounded-[20px] shadow-lg border border-slate-100 hidden md:block animate-float">
                                       <div className="text-[7px] md:text-[8px] font-black text-slate-400 uppercase tracking-widest">Qualité Inox</div>
-                                      <div className="text-blue-600 font-bold text-xs md:text-sm uppercase tracking-tighter">VEDAL Inox 410</div>
+                                      <div className="text-blue-600 font-bold text-xs md:text-sm uppercase tracking-tighter">VEDAL Inox</div>
                                   </div>
                               </div>
                           </div>

@@ -9,16 +9,11 @@ export const COMPANY_STATS: CompanyStat[] = [
 ];
 
 export const OUR_BRANDS = [
-  { name: 'PRO-SHINE', icon: 'fa-sparkles', color: 'text-blue-500' },
-  { name: 'CLEAN-MASTER', icon: 'fa-broom', color: 'text-cyan-500' },
-  { name: 'ECO-PLAST', icon: 'fa-recycle', color: 'text-green-500' },
-  { name: 'ALU-PRO', icon: 'fa-scroll', color: 'text-slate-400' },
-  { name: 'HYGIENA', icon: 'fa-hand-holding-medical', color: 'text-red-400' },
-  { name: 'DURAMAX', icon: 'fa-shield-halved', color: 'text-indigo-500' },
-  { name: 'SOFT-TOUCH', icon: 'fa-feather', color: 'text-pink-400' },
-  { name: 'PURE-SOAP', icon: 'fa-soap', color: 'text-blue-300' },
-  { name: 'METAL-X', icon: 'fa-cube', color: 'text-slate-600' },
-  { name: 'BRITE-WAY', icon: 'fa-sun', color: 'text-yellow-500' }
+  { name: 'Production Locale', icon: 'fa-industry', color: 'text-blue-500' },
+  { name: 'Logistique Réactive', icon: 'fa-truck-fast', color: 'text-cyan-500' },
+  { name: 'Marges GMS', icon: 'fa-coins', color: 'text-green-500' },
+  { name: 'Innovation Packaging', icon: 'fa-box-open', color: 'text-yellow-500' },
+  { name: 'Import maîtrisé', icon: 'fa-globe-africa', color: 'text-slate-400' }
 ];
 
 export const VISION_CATEGORIES = [
