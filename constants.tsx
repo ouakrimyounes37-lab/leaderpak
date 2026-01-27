@@ -45,7 +45,7 @@ export const HERO_SPONGES: any[] = [
   {
     id: 's1',
     name: 'Éponge à spirale (Pack 3+1)',
-    price: 0.40,
+    price: 0.00,
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     usage: '',
     image: 'https://image2url.com/r2/default/images/1768986128156-6c413006-2295-4704-b1fc-d47c1f5867ed.webp',
@@ -59,7 +59,7 @@ export const HERO_SPONGES: any[] = [
   {
     id: 's2',
     name: 'Éponge Power Inox (Pack 1+1)',
-    price: 0.55,
+    price: 0.00,
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
     usage: '',
     image: 'https://image2url.com/r2/default/images/1769011150189-6e1fddd6-88cd-47b6-b80b-2a7b39cb38b7.webp',
@@ -73,7 +73,7 @@ export const HERO_SPONGES: any[] = [
   {
     id: 's3',
     name: 'Lavettes Mailles Inox (x5)',
-    price: 0.48,
+    price: 0.00,
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
     usage: '',
     image: 'https://image2url.com/r2/default/images/1768986112563-0c2625cd-e5af-43fe-928e-4db2eda7e77f.webp',
@@ -87,7 +87,7 @@ export const HERO_SPONGES: any[] = [
   {
     id: 's4',
     name: 'Éponges À Récurer avec Poignée (x3)',
-    price: 1.10,
+    price: 0.00,
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
     usage: '',
     image: 'https://image2url.com/r2/default/images/1768986123912-76ab0428-d0f2-474f-9f97-da7ae8e33afe.webp',
