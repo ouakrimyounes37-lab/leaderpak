@@ -1,5 +1,6 @@
 
-import { useState, useEffect } from 'react';
+// Import React to provide the React namespace for FC and JSX
+import React, { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
 
@@ -111,11 +112,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                           </p>
                           
                           <div className="flex items-center justify-between w-full mb-6 pt-4 border-t border-slate-50">
-                              <div className="text-center md:text-left">
-                                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">Marge Distr.</div>
-                                  <div className="text-green-600 font-bold">{product.margin}</div>
-                              </div>
-                              <div className="text-right">
+                              <div className="text-center md:text-left w-full">
                                   <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">Rotation</div>
                                   <div className="text-slate-900 font-bold">{product.rotation}</div>
                               </div>
@@ -200,11 +197,7 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
-                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
-                            <div className="text-[8px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Potentiel Marge</div>
-                            <div className="text-lg md:text-2xl font-black text-green-600">{selectedProduct.margin}</div>
-                        </div>
+                    <div className="grid grid-cols-1 gap-3 md:gap-4 mb-6 md:mb-8">
                         <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
                             <div className="text-[8px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Rotation Rayon</div>
                             <div className="text-lg md:text-2xl font-black text-blue-600">{selectedProduct.rotation}</div>

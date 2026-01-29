@@ -22,11 +22,29 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
   const [showFullPriceModal, setShowFullPriceModal] = useState(false);
   const [fullPriceFormSent, setFullPriceFormSent] = useState(false);
 
+  // States pour le verrouillage des prix
+  const [pricesUnlocked, setPricesUnlocked] = useState(false);
+  const [showCodePrompt, setShowCodePrompt] = useState(false);
+  const [inputCode, setInputCode] = useState("");
+  const [codeError, setCodeError] = useState(false);
+
   const pdfTemplateRef = useRef<HTMLDivElement>(null);
 
   const updateQty = (id: string, val: string) => {
     const n = Math.max(0, parseInt(val) || 0);
     setQuantities(prev => ({ ...prev, [id]: n }));
+  };
+
+  const handleUnlockPrices = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Code d'accès par défaut: 2013 (Année de fondation de LeaderPak)
+    if (inputCode === "2013") {
+      setPricesUnlocked(true);
+      setShowCodePrompt(false);
+      setCodeError(false);
+    } else {
+      setCodeError(true);
+    }
   };
 
   const totalTTC = HERO_SPONGES.reduce((sum: number, s: any) => sum + (quantities[s.id] * s.price), 0);
@@ -37,6 +55,10 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
   const quoteNumber = `LP-${Math.floor(Date.now() / 100000)}`;
 
   const handleExportPDF = () => {
+    if (!pricesUnlocked) {
+      setShowCodePrompt(true);
+      return;
+    }
     if (!companyName.trim()) {
       setShowNameError(true);
       return;
@@ -48,15 +70,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
       return;
     }
     setShowPreviewModal(true);
-  };
-
-  const handleOpenEmailModal = () => {
-    if (!companyName.trim()) {
-      setShowNameError(true);
-      return;
-    }
-    setShowNameError(false);
-    setShowEmailModal(true);
   };
 
   const handleDownloadPDF = async () => {
@@ -96,20 +109,6 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
     } finally {
       setIsGeneratingPDF(false);
     }
-  };
-
-  const handleEmailRequest = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!userEmail.trim()) {
-        alert("Veuillez saisir votre email.");
-        return;
-    }
-    setIsEmailing(true);
-    setTimeout(() => {
-      setIsEmailing(false);
-      setShowEmailModal(false);
-      alert(`✅ Devis envoyé avec succès à : ${userEmail}`);
-    }, 1500);
   };
 
   const handleFullPriceSubmit = async (e: React.FormEvent) => {
@@ -268,12 +267,14 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                         <div className="hidden md:block text-[10px] text-slate-400 font-medium uppercase mt-0.5">{s.usage}</div>
                       </td>
                       <td className="p-4 md:p-6 text-center font-bold text-slate-600 text-xs md:text-base">
-                        {(s.price / 1.2).toFixed(2)} Dh
+                        {pricesUnlocked ? `${(s.price / 1.2).toFixed(2)} Dh` : '---'}
                       </td>
                       <td className="p-4 md:p-6">
                         <input type="number" min="0" value={quantities[s.id]} onChange={(e) => updateQty(s.id, e.target.value)} className="w-16 md:w-24 mx-auto block px-2 md:px-4 py-2 border border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 outline-none font-bold text-center text-xs md:text-base" />
                       </td>
-                      <td className="p-4 md:p-6 text-right font-black text-blue-600 text-xs md:text-base">{((quantities[s.id] * s.price) / 1.2).toFixed(2)} Dh</td>
+                      <td className="p-4 md:p-6 text-right font-black text-blue-600 text-xs md:text-base">
+                        {pricesUnlocked ? `${((quantities[s.id] * s.price) / 1.2).toFixed(2)} Dh` : '---'}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -305,10 +306,18 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
                 </div>
                 <div className="pt-6 border-t border-white/10 flex flex-col gap-1 items-center md:items-start">
                   <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">Total HT Estimé</span>
-                  <span className="text-4xl font-black">{totalHT.toFixed(2)} Dh</span>
+                  <span className="text-4xl font-black">{pricesUnlocked ? `${totalHT.toFixed(2)} Dh` : '---'}</span>
                 </div>
               </div>
               <div className="space-y-3">
+                {!pricesUnlocked && (
+                  <button 
+                    onClick={() => setShowCodePrompt(true)} 
+                    className="w-full py-4 bg-white text-blue-600 hover:bg-slate-100 rounded-2xl font-bold transition-all shadow-xl flex items-center justify-center gap-3 active:scale-95 mb-4"
+                  >
+                    <i className="fas fa-eye"></i>Afficher les prix
+                  </button>
+                )}
                 <button 
                   onClick={handleExportPDF} 
                   className="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-2xl font-bold transition-all shadow-xl flex items-center justify-center gap-3 text-white active:scale-95"
@@ -330,6 +339,38 @@ const Step4Simulator: React.FC<Props> = ({ onNext, onPrev }) => {
             </div>
           </div>
         </div>
+
+        {/* MODALE CODE D'ACCES */}
+        {showCodePrompt && (
+          <div className="fixed inset-0 z-[200] bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="bg-white w-full max-w-sm rounded-[32px] p-8 shadow-2xl animate-scale-in text-center">
+              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-lock text-2xl"></i>
+              </div>
+              <h3 className="text-xl font-black text-slate-900 mb-2 uppercase tracking-tighter">Accès Restreint</h3>
+              <p className="text-slate-500 text-sm mb-6">Saisissez votre code d'accès pour déverrouiller l'affichage des prix industriels.</p>
+              
+              <form onSubmit={handleUnlockPrices} className="space-y-4">
+                <input 
+                  autoFocus
+                  type="text"
+                  placeholder="CODE D'ACCÈS"
+                  value={inputCode}
+                  onChange={(e) => { setInputCode(e.target.value); setCodeError(false); }}
+                  className={`w-full px-6 py-4 bg-slate-50 border rounded-2xl outline-none font-black text-center text-lg tracking-[0.5em] transition-all focus:ring-4 focus:ring-blue-100 ${
+                    codeError ? 'border-red-500 text-red-500' : 'border-slate-100'
+                  }`}
+                />
+                {codeError && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest">Code incorrect</p>}
+                
+                <div className="flex gap-3">
+                  <button type="button" onClick={() => setShowCodePrompt(false)} className="flex-1 py-4 bg-slate-100 text-slate-500 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-slate-200">Annuler</button>
+                  <button type="submit" className="flex-[2] py-4 bg-blue-600 text-white rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-blue-700 shadow-lg shadow-blue-100">Valider</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* MODALE TARIFS COMPLETS */}
         {showFullPriceModal && (
