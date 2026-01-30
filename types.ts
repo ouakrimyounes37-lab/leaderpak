@@ -8,7 +8,9 @@ export enum TourStep {
   CREDIBILITY = 5,
   CONVERSION = 6,
   QUICK_PRICES = 7,
-  DASHBOARD = 8
+  DASHBOARD = 8,
+  ADMIN_LOGIN = 9,
+  ADMIN_STATS = 10
 }
 
 export interface ProductVariant {
@@ -27,7 +29,6 @@ export interface Product {
   description: string;
   image: string;
   highlights: string[];
-  margin: string;
   rotation: string;
   variants?: ProductVariant[];
 }
@@ -36,4 +37,14 @@ export interface CompanyStat {
   label: string;
   value: string;
   icon: string;
+}
+
+export interface VisitLog {
+  id?: number;
+  url: string;
+  created_at: string;
+  ip: string;
+  device: string;
+  browser: string;
+  source: string;
 }

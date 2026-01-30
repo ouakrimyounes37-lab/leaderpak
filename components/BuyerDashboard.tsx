@@ -20,17 +20,10 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
   
   const effectiveSellPrice = sellPrice * (1 - promoImpact / 100);
   const marginRaw = effectiveSellPrice - buyPrice;
-  const marginPercent = (marginRaw / effectiveSellPrice) * 100;
   const monthlyMargin = marginRaw * monthlyQty;
   
   const unitsPerShelf = 80;
   const linearRentability = (marginRaw * unitsPerShelf * (monthlyQty / (unitsPerShelf * 10))).toFixed(2);
-
-  const getMarginColor = (percent: number) => {
-    if (percent >= 35) return 'text-green-500 bg-green-50 border-green-200';
-    if (percent >= 20) return 'text-orange-500 bg-orange-50 border-orange-200';
-    return 'text-red-500 bg-red-50 border-red-200';
-  };
 
   return (
     <div className="p-6 md:p-12 animate-fade-in bg-slate-50 min-h-screen">
@@ -64,10 +57,9 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
             </div>
 
             {/* Cartes d'indicateurs (KPI Cards) horizontales */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { label: 'Marge brute cible GMS', value: '35% – 48%', icon: 'fa-coins', pastelBg: 'bg-green-100 text-green-600' },
-                { label: 'Rotation estimée', value: 'Élevé', icon: 'fa-repeat', pastelBg: 'bg-blue-100 text-blue-600' },
+                { label: 'Rotation estimée', value: 'Élevée', icon: 'fa-repeat', pastelBg: 'bg-blue-100 text-blue-600' },
                 { label: 'Taux de service', value: '98%', icon: 'fa-truck-fast', pastelBg: 'bg-purple-100 text-purple-600' },
                 { label: 'MOQ flexible', value: 'Sur-mesure', icon: 'fa-boxes-packing', pastelBg: 'bg-orange-100 text-orange-600' },
                 { label: 'Packaging adaptatif', value: 'Personnalisable', icon: 'fa-puzzle-piece', pastelBg: 'bg-cyan-100 text-cyan-600' }
@@ -95,7 +87,7 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
 
         <div className="max-w-5xl mx-auto">
           
-          {/* SECTION B: Simulateur orienté MARGE - With Coming Soon Overlay */}
+          {/* SECTION B: Simulateur orienté VOLUME - With Coming Soon Overlay */}
           <div className="relative">
             {/* Coming Soon Overlay */}
             <div className="absolute inset-0 z-20 bg-white/60 backdrop-blur-[2px] rounded-[40px] flex items-center justify-center">
@@ -108,9 +100,9 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
               <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4 text-center md:text-left">
                 <h2 className="text-2xl font-black text-slate-900 flex items-center gap-4 uppercase tracking-tighter">
                   <i className="fas fa-calculator text-blue-600"></i>
-                  Simulateur de Marge
+                  Simulateur de Rentabilité
                 </h2>
-                <div className="px-4 py-2 bg-blue-50 text-blue-700 rounded-xl font-bold text-xs uppercase tracking-widest">Temps Réel</div>
+                <div className="px-4 py-2 bg-blue-50 text-blue-700 rounded-xl font-bold text-xs uppercase tracking-widest">Projection</div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
@@ -157,18 +149,18 @@ const BuyerDashboard: React.FC<Props> = ({ onBack }) => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12 border-t border-slate-100">
-                <div className={`p-10 rounded-[40px] border-2 flex flex-col items-center text-center transition-all ${getMarginColor(marginPercent)}`}>
-                  <div className="text-[10px] font-black uppercase tracking-widest mb-2 opacity-70">Rendement Marge</div>
-                  <div className="text-6xl font-black tracking-tighter">{marginPercent.toFixed(1)}%</div>
+                <div className="p-10 rounded-[40px] border-2 flex flex-col items-center text-center transition-all bg-blue-50 border-blue-100">
+                  <div className="text-[10px] font-black uppercase tracking-widest mb-2 text-slate-400">Potentiel de Croissance</div>
+                  <div className="text-6xl font-black tracking-tighter text-blue-600">Max</div>
                   <div className="text-[10px] font-black mt-4 uppercase tracking-[0.2em] px-4 py-1.5 rounded-full border border-current opacity-60">
-                    {marginPercent >= 35 ? 'Marge Optimale' : marginPercent >= 20 ? 'Marge Standard' : 'Marge Critique'}
+                    Volume Distributeur
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-1 gap-6">
                     <div className="p-8 rounded-[32px] bg-blue-600 text-white shadow-xl shadow-blue-200 flex justify-between items-center text-center md:text-left">
                         <div className="flex flex-col items-center md:items-start w-full md:w-auto">
-                            <div className="text-[10px] font-black uppercase opacity-70 mb-1 tracking-widest">Marge Mensuelle</div>
+                            <div className="text-[10px] font-black uppercase opacity-70 mb-1 tracking-widest">Gain Mensuel Projeté</div>
                             <div className="text-3xl font-black tracking-tighter">{monthlyMargin.toLocaleString()} Dh</div>
                         </div>
                         <i className="fas fa-sack-dollar text-4xl opacity-20 hidden md:block"></i>

@@ -1,8 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { TourStep } from './types.ts';
 import LandingView from './components/LandingView.tsx';
 import Step1ValueProp from './components/Step1ValueProp.tsx';
-// Fix: remove space between Step2 and HeroProduct in the import identifier
 import Step2HeroProduct from './components/Step2HeroProduct.tsx';
 import Step3Catalog from './components/Step3Catalog.tsx';
 import Step4Simulator from './components/Step4Simulator.tsx';
@@ -10,18 +10,24 @@ import Step5Credibility from './components/Step5Credibility.tsx';
 import Step6Conversion from './components/Step6Conversion.tsx';
 import QuickPriceAccess from './components/QuickPriceAccess.tsx';
 import BuyerDashboard from './components/BuyerDashboard.tsx';
+import AdminLogin from './components/AdminLogin.tsx';
+import AdminStats from './components/AdminStats.tsx';
 import TourProgress from './components/TourProgress.tsx';
+import { logVisit } from './supabaseService.ts';
 
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState<TourStep>(TourStep.LANDING);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeCatalogFilter, setActiveCatalogFilter] = useState<string>('Tous');
 
-  // Réinitialisation forcée du scroll en haut de page à chaque changement d'étape
+  // Tracking automatique des visites au chargement
+  useEffect(() => {
+    logVisit();
+  }, []);
+
+  // Réinitialisation forcée du scroll
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    document.body.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [currentStep]);
 
   const nextStep = () => {
@@ -81,14 +87,17 @@ const App: React.FC = () => {
         return <QuickPriceAccess onBack={() => goToStep(TourStep.LANDING)} onSample={() => goToStep(TourStep.CONVERSION)} />;
       case TourStep.DASHBOARD:
         return <BuyerDashboard onBack={() => goToStep(TourStep.LANDING)} />;
+      case TourStep.ADMIN_LOGIN:
+        return <AdminLogin onLoginSuccess={() => goToStep(TourStep.ADMIN_STATS)} onBack={() => goToStep(TourStep.LANDING)} />;
+      case TourStep.ADMIN_STATS:
+        return <AdminStats onBack={() => goToStep(TourStep.LANDING)} />;
       default:
         return <LandingView onStart={() => nextStep()} onExplore={() => goToStep(TourStep.CATALOG)} onQuickPrices={() => goToStep(TourStep.QUICK_PRICES)} onDashboard={() => goToStep(TourStep.DASHBOARD)} />;
     }
   };
 
-  const isAltPage = currentStep === TourStep.QUICK_PRICES || currentStep === TourStep.DASHBOARD;
+  const isAltPage = currentStep === TourStep.QUICK_PRICES || currentStep === TourStep.DASHBOARD || currentStep === TourStep.ADMIN_LOGIN || currentStep === TourStep.ADMIN_STATS;
   
-  // Calcul de la progression globale pour la barre de progression
   const totalTourSteps = 6; 
   const progressPercent = currentStep >= 1 && currentStep <= 6 
     ? (currentStep / totalTourSteps) * 100 
@@ -96,11 +105,8 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen w-screen bg-white text-slate-900 flex flex-col relative overflow-x-hidden">
-      {/* Header Épinglé - Mobile: Bas, Desktop: Haut */}
       {currentStep !== TourStep.LANDING && (
         <nav className="fixed bottom-0 md:top-0 md:bottom-auto left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t md:border-t-0 md:border-b border-slate-100 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] md:shadow-sm flex flex-col">
-          
-          {/* LIGNE DE PROGRESSION HEADER - Placée en haut sur mobile pour la visibilité en bottom nav */}
           {!isAltPage && (
             <div className="w-full h-[2px] bg-slate-100 relative overflow-hidden md:hidden">
                 <div 
@@ -110,13 +116,12 @@ const App: React.FC = () => {
             </div>
           )}
 
-          {/* VERSION DESKTOP */}
+          {/* DESKTOP NAV */}
           <div className="hidden md:flex px-8 py-3 items-center justify-between h-20">
             <div className="flex items-center gap-4">
               <button 
                   onClick={() => setIsSidebarOpen(true)}
                   className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
-                  aria-label="Menu"
               >
                 <i className="fas fa-bars text-slate-600"></i>
               </button>
@@ -157,7 +162,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* VERSION MOBILE */}
+          {/* MOBILE NAV */}
           <div className="flex md:hidden items-center justify-between px-4 h-[85px] w-full pb-2">
             <button 
               onClick={() => setIsSidebarOpen(true)}
@@ -188,45 +193,34 @@ const App: React.FC = () => {
         </nav>
       )}
 
-      {/* Contenu principal - pt-0 pb-[85px] sur mobile car nav en bas */}
       <main className={`flex-1 w-full ${currentStep !== TourStep.LANDING ? `pt-0 md:pt-24 pb-[85px] md:pb-8` : ''}`}>
-        <div className={`${currentStep !== TourStep.LANDING && currentStep < TourStep.CONVERSION && !isAltPage ? 'pb-20 md:pb-0' : ''}`}>
            {renderStep()}
-        </div>
       </main>
 
-      {/* Sidebar Mobile */}
       {isSidebarOpen && (
-        <div 
-            className="fixed inset-0 z-[60] bg-slate-900/40 backdrop-blur-sm"
-            onClick={() => setIsSidebarOpen(false)}
-        >
-            <div 
-                className="w-72 h-full bg-white shadow-2xl p-6 flex flex-col gap-8 overflow-y-auto"
-                onClick={(e) => e.stopPropagation()}
-            >
+        <div className="fixed inset-0 z-[60] bg-slate-900/40 backdrop-blur-sm" onClick={() => setIsSidebarOpen(false)}>
+            <div className="w-72 h-full bg-white shadow-2xl p-6 flex flex-col gap-8 overflow-y-auto" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center justify-between">
                     <div className="font-bold text-xl text-blue-700 tracking-tighter">LEADER PAK</div>
-                    <button onClick={() => setIsSidebarOpen(false)} className="text-slate-400 hover:text-slate-900">
+                    <button onClick={() => setIsSidebarOpen(false)} className="text-slate-400">
                         <i className="fas fa-times"></i>
                     </button>
                 </div>
                 <div className="flex flex-col gap-2">
-                    {Object.values(TourStep).filter(v => typeof v === 'number').map((step) => {
-                        const stepNum = step as number;
-                        const labels = ["Accueil", "Vision LeaderPak", "Éponge Héros", "Nos Catalogues", "Devis Interactif", "Nos Garanties", "Contact", "Grille Tarifaire", "Dashboard Acheteur"];
-                        return (
-                            <button
-                                key={stepNum}
-                                onClick={() => goToStep(stepNum)}
-                                className={`px-4 py-3 rounded-xl transition-all font-medium text-center md:text-left ${
-                                    currentStep === stepNum ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-100'
-                                }`}
-                            >
-                                {labels[stepNum]}
-                            </button>
-                        );
-                    })}
+                    {/* Navigation classique */}
+                    {["Accueil", "Vision", "Héros", "Catalogue", "Devis", "Confiance", "Contact"].map((label, i) => (
+                      <button key={i} onClick={() => goToStep(i)} className={`px-4 py-3 rounded-xl transition-all font-medium text-left ${currentStep === i ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-100'}`}>
+                        {label}
+                      </button>
+                    ))}
+                    <div className="my-4 border-t border-slate-100"></div>
+                    {/* Liens Admin/Dashboard */}
+                    <button onClick={() => goToStep(TourStep.DASHBOARD)} className={`px-4 py-3 rounded-xl transition-all font-medium text-left ${currentStep === TourStep.DASHBOARD ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-600 hover:bg-slate-100'}`}>
+                       <i className="fas fa-chart-line mr-2"></i> Dashboard Acheteur
+                    </button>
+                    <button onClick={() => goToStep(TourStep.ADMIN_LOGIN)} className={`px-4 py-3 rounded-xl transition-all font-medium text-left ${currentStep === TourStep.ADMIN_LOGIN || currentStep === TourStep.ADMIN_STATS ? 'bg-slate-900 text-white shadow-lg' : 'text-slate-400 hover:bg-slate-100'}`}>
+                       <i className="fas fa-lock mr-2"></i> Admin Stats
+                    </button>
                 </div>
             </div>
         </div>

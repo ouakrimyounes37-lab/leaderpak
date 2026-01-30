@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PRODUCTS, VISION_CATEGORIES } from '../constants';
 import { Product } from '../types';
 
@@ -110,12 +110,8 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                               {product.description}
                           </p>
                           
-                          <div className="flex items-center justify-between w-full mb-6 pt-4 border-t border-slate-50">
-                              <div className="text-center md:text-left">
-                                  <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">Marge Distr.</div>
-                                  <div className="text-green-600 font-bold">{product.margin}</div>
-                              </div>
-                              <div className="text-right">
+                          <div className="flex items-center justify-center w-full mb-6 pt-4 border-t border-slate-50">
+                              <div className="text-center">
                                   <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-0.5">Rotation</div>
                                   <div className="text-slate-900 font-bold">{product.rotation}</div>
                               </div>
@@ -200,12 +196,8 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
-                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
-                            <div className="text-[8px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Potentiel Marge</div>
-                            <div className="text-lg md:text-2xl font-black text-green-600">{selectedProduct.margin}</div>
-                        </div>
-                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
+                    <div className="flex justify-center mb-6 md:mb-8">
+                        <div className="p-4 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100 text-center w-full max-w-xs">
                             <div className="text-[8px] md:text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Rotation Rayon</div>
                             <div className="text-lg md:text-2xl font-black text-blue-600">{selectedProduct.rotation}</div>
                         </div>
@@ -242,10 +234,10 @@ const Step3Catalog: React.FC<Props> = ({ onNext, onPrev, initialFilter }) => {
         )}
 
         <div className="flex justify-between items-center pt-8 border-t border-slate-100">
-            <button onClick={onPrev} className="text-slate-500 hover:text-slate-900 font-semibold px-6 py-3">
+            <button onClick={onPrev} className="text-slate-500 font-bold px-6 py-3 uppercase text-xs tracking-widest">
                 <i className="fas fa-chevron-left mr-2"></i> Retour
             </button>
-            <button onClick={onNext} className="bg-slate-900 text-white px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center gap-3">
+            <button onClick={onNext} className="bg-slate-900 text-white px-10 py-4 rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center gap-3 uppercase text-xs tracking-widest">
                 Calculer un Devis
                 <i className="fas fa-arrow-right"></i>
             </button>

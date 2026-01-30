@@ -108,7 +108,6 @@ export const PRODUCTS: Product[] = [
     description: 'L\'éponge Vedal haute performance pour un usage quotidien intensif.',
     image: 'https://image2url.com/r2/default/images/1768986128156-6c413006-2295-4704-b1fc-d47c1f5867ed.webp',
     highlights: ['Pack économique', 'Inox pur', 'Usage intensif'],
-    margin: '35%+',
     rotation: 'Haute'
   },
   {
@@ -118,7 +117,6 @@ export const PRODUCTS: Product[] = [
     description: 'Le récurage plat ultra-puissant qui dure 5 fois plus longtemps.',
     image: 'https://image2url.com/r2/default/images/1769011150189-6e1fddd6-88cd-47b6-b80b-2a7b39cb38b7.webp',
     highlights: ['Ultra-puissant', 'Longue durée', 'Qualité Pro'],
-    margin: '35%+',
     rotation: 'Stable'
   },
   {
@@ -128,7 +126,6 @@ export const PRODUCTS: Product[] = [
     description: "La souplesse d'un chiffon alliée à la force de l'acier.",
     image: 'https://image2url.com/r2/default/images/1768986112563-0c2625cd-e5af-43fe-928e-4db2eda7e77f.webp',
     highlights: ['Souplesse acier', 'Anti-odeur', 'Lavable'],
-    margin: '35%+',
     rotation: 'Haute'
   },
   {
@@ -138,7 +135,6 @@ export const PRODUCTS: Product[] = [
     description: 'Un récurage impeccable sans jamais se mouiller les mains.',
     image: 'https://image2url.com/r2/default/images/1768986123912-76ab0428-d0f2-474f-9f97-da7ae8e33afe.webp',
     highlights: ['Poignée ergonomique', 'Zéro contact', 'Pack de 3'],
-    margin: '35%+',
     rotation: 'Haute'
   },
   {
@@ -148,7 +144,6 @@ export const PRODUCTS: Product[] = [
     description: 'Boîte de conservation hermétique avec plateau de service intégré, idéale pour garder vos tranches fraîches.',
     image: 'https://image2url.com/r2/default/images/1769011156528-19290dd7-0c3b-4891-8c74-9397bc2a039b.webp',
     highlights: ['Hermétique', 'Plateau intégré', 'Sans BPA'],
-    margin: '42%+',
     rotation: 'Haute'
   },
   {
@@ -158,7 +153,6 @@ export const PRODUCTS: Product[] = [
     description: 'Brosses circulaires souples.',
     image: 'https://image2url.com/r2/default/images/1769011153366-3a212d52-3011-4d36-9680-4de6b01b0d09.webp',
     highlights: ['Doux', 'Ergonomique', 'Pack de 8'],
-    margin: '50%+',
     rotation: 'Stable'
   },
   {
@@ -168,7 +162,6 @@ export const PRODUCTS: Product[] = [
     description: 'Tête de raclette large en plastique pour évacuer l’eau efficacement sur tous les types de sols.',
     image: 'https://image2url.com/r2/default/images/1768986118756-da0d766d-d0f5-4ce9-9bc0-8e89ca8f41f7.webp',
     highlights: ['Lame silicone', 'Manche adaptable', 'Ultra-léger'],
-    margin: '45%+',
     rotation: 'Très Haute'
   },
   {
@@ -178,7 +171,6 @@ export const PRODUCTS: Product[] = [
     description: 'Crochet vertical multi-niveaux à suspendre pour ranger sacs, chapeaux et accessoires sans percer.',
     image: 'https://image2url.com/r2/default/images/1768986120446-814bdcba-5ea9-4476-b2f4-728f62ee2e13.webp',
     highlights: ['Zéro perçage', 'Multi-niveaux', 'Gain de place'],
-    margin: '40%+',
     rotation: 'Moyenne'
   },
   {
@@ -188,7 +180,6 @@ export const PRODUCTS: Product[] = [
     description: 'Lot de cintres en plastique robuste avec encoches, parfaits pour organiser tous types de vêtements.',
     image: 'https://image2url.com/r2/default/images/1769011155558-39076379-0de3-45c6-ac13-0b56d25a3836.webp',
     highlights: ['Antiglisse', 'Robuste', 'Coloris vifs'],
-    margin: '38%+',
     rotation: 'Très Haute'
   },
   {
@@ -198,7 +189,6 @@ export const PRODUCTS: Product[] = [
     description: 'Trio économique comprenant film étirable (100m), aluminium (50m) et papier cuisson (30m).',
     image: 'https://image2url.com/r2/default/images/1769011154529-1a991eb3-62ed-416a-a1ee-72fa2364dec8.webp',
     highlights: ['Pack Eco', 'Multi-usage', 'Conservation pro'],
-    margin: '45%+',
     rotation: 'Très Haute'
   }
 ];
